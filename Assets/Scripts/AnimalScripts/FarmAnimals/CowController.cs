@@ -39,9 +39,10 @@ public class CowController : MonoBehaviour
             case CowStates.Graze:
                 Graze();
                 break;
+            case CowStates.Flee: 
+                Flee(); 
+                break;
         }
-
-        Flee();
     }
 
     private bool _isMoving;
@@ -61,18 +62,28 @@ public class CowController : MonoBehaviour
                 executingState = CowStates.Graze;
             }    
         }
+
+        CheckDistanceToPlayer();
     }
 
+    float distanceToPlayer;
     private void Flee()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
+        Vector3 fleeDirection = (transform.position - _player.position).normalized;
+        Vector3 fleePosition = transform.position + fleeDirection * moveRadius;
+        Agent.SetDestination(fleePosition);
+
+        executingState = CowStates.Graze;
+    }
+    private void CheckDistanceToPlayer()
+    {
+        distanceToPlayer = Vector3.Distance(transform.position, _player.position);
         if (distanceToPlayer < detectionRadius)
         {
-            Vector3 fleeDirection = (transform.position - _player.position).normalized;
-            Vector3 fleePosition = transform.position + fleeDirection * moveRadius;
-            Agent.SetDestination(fleePosition);
+            executingState = CowStates.Flee;
         }
     }
+
 
     private Vector3 GetRandomPos(Vector3 center, float range)
     {
@@ -90,5 +101,7 @@ public class CowController : MonoBehaviour
             executingState = CowStates.MoveAround;
             _grazeTimer = grazeTime;
         }
+
+        CheckDistanceToPlayer();
     }
 }
