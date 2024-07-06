@@ -8,6 +8,12 @@ public class TorchController : MonoBehaviour
     float cooldown = 0;
     bool canAttack = true;
 
+    [SerializeField] float fearPerAttack = 5f;
+
+    [SerializeField] Transform torchHead;
+    [SerializeField] float fearAttackRadius=3f;
+    [SerializeField] LayerMask layerToGiveFear;
+
 
     private void Update()
     {
@@ -29,5 +35,25 @@ public class TorchController : MonoBehaviour
     private void Attack()
     {
         animator.SetTrigger("Attack");
+    }
+
+    private void GiveFear()
+    {
+        var rayCastHits = Physics.SphereCastAll(torchHead.position, fearAttackRadius,-Vector3.up, layerToGiveFear);
+
+        foreach (var hit in rayCastHits)
+        {
+            var wolf = hit.collider.GetComponent<WolfController>();
+            if (wolf)
+                wolf.AddFear(fearPerAttack);
+        }
+       
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawWireSphere(torchHead.position, fearAttackRadius);
     }
 }

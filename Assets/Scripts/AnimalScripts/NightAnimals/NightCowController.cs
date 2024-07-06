@@ -9,10 +9,9 @@ public class NightCowController : MonoBehaviour
 {
     [SerializeField] Animator animator;
 
+    [Header("Hit Point")]
     [SerializeField] private float hitPointMaximum;
-
     [SerializeField] private Image hitPointUI;
-
 
     bool isAlive = true;
 

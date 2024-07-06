@@ -58,7 +58,7 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
     void ChooseAndSendAWolfToAttack()
     {
         int randomIndex = Random.Range(0, circleWolves.Count);
-        if (randomIndex < -1) return;
+        if (randomIndex <= -1) return;
         var selectedWolf = circleWolves[randomIndex];
 
         if (selectedWolf == null) return;

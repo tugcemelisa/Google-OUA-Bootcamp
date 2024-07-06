@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity;
 using UnityEngine.AI;
 using System.Collections;
+using UnityEngine.UI;
 
 public class WolfController : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class WolfController : MonoBehaviour
 
     bool isTargetAttackable = false;
 
+    [Header("Fear")]
+    [SerializeField] float maxFear=10;
+    [SerializeField] private Image fearUI;
+    float fear = 0;
     private void Update()
     {
         if (hasTarget())
@@ -105,6 +110,22 @@ public class WolfController : MonoBehaviour
         }
         agent.isStopped = true;
         WolfManager.Instance.AddWolfToTheCircle(this,target);
+    }
+
+    public void AddFear(float amount)
+    {
+        fear += amount;
+        fearUI.fillAmount = fear / maxFear;
+        CheckFear();
+    }
+
+    public void CheckFear()
+    {
+        if(fear >= maxFear)
+        {
+            // TO UPDATE
+            this.gameObject.SetActive(false);
+        }
     }
 }
 
