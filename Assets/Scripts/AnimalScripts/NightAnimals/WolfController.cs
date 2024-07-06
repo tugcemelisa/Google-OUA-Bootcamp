@@ -18,6 +18,8 @@ public class WolfController : MonoBehaviour
     bool isMoving = false;
     bool isAttacking = false;
 
+    bool isTargetAttackable = false;
+
     private void Update()
     {
         if (hasTarget())
@@ -27,7 +29,7 @@ public class WolfController : MonoBehaviour
                 agent.isStopped = true;
                 isMoving = false;
 
-                if (!isAttacking)
+                if (isTargetAttackable && !isAttacking)
                     Attack();
             }
             else
@@ -66,7 +68,7 @@ public class WolfController : MonoBehaviour
         {
             return;
         }
-        else if (!isTargetInAttackRange())
+        else
         {
             animator.SetTrigger("Run");
             agent.SetDestination(target.position);
@@ -79,6 +81,30 @@ public class WolfController : MonoBehaviour
     public void GiveDamage()
     {
         target.GetComponent<NightCowController>().TakeDamage(attackDamage);
+    }
+
+    public void AssignNewTarget(Transform target, bool isDamageable)
+    {
+        this.target = target;
+        this.isTargetAttackable = isDamageable;
+    }
+
+    public void StartCircleRun(Transform target)
+    {
+        AssignNewTarget(target, false);
+        isMoving = false;
+        MoveToTarget();
+        StartCoroutine(RunToTheCircle());
+    }
+
+    IEnumerator RunToTheCircle()
+    {
+        while(Vector3.Distance(transform.position, target.position) > .15f)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        agent.isStopped = true;
+        WolfManager.Instance.AddWolfToTheCircle(this,target);
     }
 }
 
