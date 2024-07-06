@@ -5,21 +5,21 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
 {
+    [Header("Targets")]
     [SerializeField] Transform[] attackableTargets;
-
     [SerializeField] Transform[] circleTargets;
     [SerializeField] Transform centerOfTheCircle;
+    [SerializeField] Transform[] gettingOutTransforms;
 
+    [Header("Wolves")]
     [SerializeField] List<WolfController> normalWolves = new List<WolfController>();
+    List<WolfController> circleWolves = new List<WolfController>();
 
-    [SerializeField] List<WolfController> circleWolves = new List<WolfController>();
-
-    [SerializeField] float timeBetweenAttacks = 5f;
-
-
+    [Header("Configurations")]
     [Range(0, 360)]
     float angle = 0f;
     [SerializeField] float rotationSpeed = 5f;
+    [SerializeField] float timeBetweenAttacks = 5f;
 
     private void Start()
     {
@@ -78,4 +78,33 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
         circleWolves.Add(wolf);
     }
 
+    public void RunAway(WolfController wolf)
+    {
+        if (normalWolves.Contains(wolf))
+            normalWolves.Remove(wolf);
+        if (circleWolves.Contains(wolf))
+            circleWolves.Remove(wolf);
+
+        var selectedGettingOutTransform = findClosestTransform(gettingOutTransforms, wolf.transform.position);
+        wolf.transform.parent = selectedGettingOutTransform;
+        wolf.AssignNewTarget(selectedGettingOutTransform, false);
+    }
+
+    Transform findClosestTransform(Transform[] transforms, Vector3 pos)
+    {
+        var closestOne = transforms[0];
+        var closestDistance = (closestOne.position - pos).magnitude;
+
+        foreach (var transform in transforms)
+        {
+            var distance = (transform.position - pos).magnitude;
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestOne = transform;
+            }
+        }
+
+        return closestOne;
+    }
 }

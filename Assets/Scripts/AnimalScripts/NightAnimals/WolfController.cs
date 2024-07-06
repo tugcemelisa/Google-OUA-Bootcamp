@@ -22,7 +22,7 @@ public class WolfController : MonoBehaviour
     bool isTargetAttackable = false;
 
     [Header("Fear")]
-    [SerializeField] float maxFear=10;
+    [SerializeField] float maxFear = 10;
     [SerializeField] private Image fearUI;
     float fear = 0;
     private void Update()
@@ -69,23 +69,22 @@ public class WolfController : MonoBehaviour
 
     void MoveToTarget()
     {
-        if (isMoving)
-        {
-            return;
-        }
-        else
+        if (!isMoving)
         {
             animator.SetTrigger("Run");
-            agent.SetDestination(target.position);
             isMoving = true;
             agent.isStopped = false;
+            return;
         }
+  
+        agent.SetDestination(target.position);
     }
 
 
     public void GiveDamage()
     {
-        target.GetComponent<NightCowController>().TakeDamage(attackDamage);
+        var cow = target.GetComponent<NightCowController>();
+        if (cow) cow.TakeDamage(attackDamage);
     }
 
     public void AssignNewTarget(Transform target, bool isDamageable)
@@ -104,12 +103,12 @@ public class WolfController : MonoBehaviour
 
     IEnumerator RunToTheCircle()
     {
-        while(Vector3.Distance(transform.position, target.position) > .15f)
+        while (Vector3.Distance(transform.position, target.position) > .15f)
         {
             yield return new WaitForFixedUpdate();
         }
         agent.isStopped = true;
-        WolfManager.Instance.AddWolfToTheCircle(this,target);
+        WolfManager.Instance.AddWolfToTheCircle(this, target);
     }
 
     public void AddFear(float amount)
@@ -121,10 +120,10 @@ public class WolfController : MonoBehaviour
 
     public void CheckFear()
     {
-        if(fear >= maxFear)
+        if (fear >= maxFear)
         {
             // TO UPDATE
-            this.gameObject.SetActive(false);
+            WolfManager.Instance.RunAway(this);
         }
     }
 }
