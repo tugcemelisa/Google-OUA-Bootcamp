@@ -26,5 +26,19 @@ Oyunumuz 3D ve simülasyon türünde olup, Simülasyon, Hobi - İş ve Rol Yapma
 
 ## Sprint 1
 **1. sprint aşamasında amacımız oyunun temelini kurmak, ve genel yapısını inşa etmek. Geliştirme aşaması olarak: Alpha
+## Puan Mantığı: 80 Puan
+**80 puan üzerinden gidilmesine kararlaştırdık. Şu anlık oyunun ana yapısını kuracağımız için temel fonksiyon dışındaki görevleri 2. Scrum'da yapmaya karar verdik.
+## Daily Scrum: WhatsApp
+**Herkesin iş/gündelik hayattan dolayı iletişimi WhatsApp üzerinden sürdürdük. Toplantılarımızı Discord üzerinden gerçekleştirdik.
+## Haftalık Toplantılar
+**Her Salı 22.30 ve Cumartesi 22.30 (Özel durumunda Pazar 14.00) Discord kanalı üzerinden
+
+![Ekran görüntüsü 2024-07-06 163825](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/411940e4-36d8-410d-99c9-bfee7e580683)
+![Ekran görüntüsü 2024-07-02 222703](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/1c1dcac6-9665-48bf-bde4-522b3aef7b8b)
+![Ekran görüntüsü 2024-06-26 225834](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/f4701e95-9eef-4d54-a7e5-ece5a25ba303)
+![Ekran görüntüsü 2024-07-06 163835](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/888c1f1d-b04c-4870-bbc6-67ccc0261dbf)
+![Ekran görüntüsü 2024-07-06 164023](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/129b0993-a5c9-46de-af5a-613a6230dac2)
+
+
 
 
