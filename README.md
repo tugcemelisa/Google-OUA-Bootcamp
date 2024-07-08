@@ -16,22 +16,38 @@ Code: FarmeR
 https://miro.com/app/board/uXjVK2F2-WQ=/
 
 ## Oyun Açıklaması
-Oyunumuz 3D ve simülasyon türünde olup, Simülasyon, Hobi - İş ve Rol Yapma türünde oyun sevenler hedeflenerek yapılmıştır. Persona olarak 20-30 yaş arası, simülasyon ve RPG oyunlarını seven, Gas Station Simulator benzeri oyunları seven gamerlar, ve YouTube, Kick ve Twitch gibi platformlar üzerinden yayın yapan yayıncılar hedefledik
+Oyunumuz tek kişilik singleplayer türünde yapılmıştır. Oyunda gündüzleri hayvanları gütme, onları yönlendirme ve kaynak toplayıp satma üzerine kurulu olacak. Geceleri ise hayvanlarımızı yemek isteyen kurt ve tilki gibi saldırgan hayvanlara karşı korumak üzerine olacak
+
+## Oyun Özellikleri
+**Simülasyon
+**3D
+**Singleplayer
+**Roleplay
+**Strateji
+
 
 ## Hedef Kitle
-- RPG Oyunlarını Oynayan 15-30 Yaş Arası Erkek ve Kadınlar
-- Simülasyon Oyunları Oynayan 15-35 Yaş Arası Erkek ve Kadınlar
-- 3D Oyun Oynayan 20-35 Yaş Arası Erkek ve Kadınlar
-- Indie Oyun Oynayan Kitle
-- YouTube, Kick ve Twitch üzerinde yayın yapan yayıncılar
+**RPG Oyunlarını Oynayan 15-30 Yaş Arası Erkek ve Kadınlar
+**Simülasyon Oyunları Oynayan 15-35 Yaş Arası Erkek ve Kadınlar
+**3D Oyun Oynayan 20-35 Yaş Arası Erkek ve Kadınlar
+**Indie Oyun Oynayan Kitle
+**YouTube, Kick ve Twitch üzerinde yayın yapan yayıncılar
 
 ## Sprint 1
 **1. sprint aşamasında amacımız oyunun temelini kurmak, ve genel yapısını inşa etmek. Geliştirme aşaması olarak: Alpha
-## Puan Mantığı: 80 Puan
-**80 puan üzerinden gidilmesine kararlaştırdık. Şu anlık oyunun ana yapısını kuracağımız için temel fonksiyon dışındaki görevleri 2. Scrum'da yapmaya karar verdik.
+
+## Sprint Puanı: 10 Puan
+**Sprint Puanı olarak 10 puan hedefi koyduk. İlk sprint'te oyunumuzun türü, mekaniklerine karar verip temel harita tasarımını yapmak üzerine kurduk. 10 puan hedefimize ulaşmış durumdayız.
+
+## Backlog Puan Mantığı: 80 Puan
+**Backlog Puanı'nı 80 puan üzerinden yapmayı kararlaştırdık. Şu anlık oyunun ana yapısını kuracağımız için temel fonksiyon dışındaki görevleri 2. Scrum'da yapmaya karar verdik. 80 puan hedefine ulaştık.
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/0f3b45ff-8d5d-47c6-bf22-d6c3550797a7)
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/72327b96-acd6-46d9-8dbe-67c905b51590)
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/4d38de5f-1ee7-4d8f-a4dc-e3137c0926c5)
+
+## Geliştirme Ekran Görüntüleri
+![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/dc5d0fba-9648-4175-8bd1-38e0f392dc43)
+![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/7f631f19-d00f-43e7-98c7-08f13fb51228)
 
 
 
@@ -51,7 +67,18 @@ https://docs.google.com/document/d/1mZp6CSDwYcwkymt_h7y5vC6phQNhz2JBaWzmgE8BrLI/
 
 
 
-## Post Sprint Toplantısı
-**Toplantının 9 Temmuz Salı 22.30'da yapılmasına oy birliği ile karar verdik.
-**Toplantıda ayrıca Sprint 2 için de yapılacaklar konuşulup planlanacak.
+https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/15c372cb-5c9b-4030-8d2c-7cdfdfefc864
+
+
+
+## Sprint Review
+**Tanışma ve rolleri kararlaştırma
+**Oyunumuzun geliştirme aşamalarına karar verip Alpha aşamasını geliştirdik. Hayvanların, ve animasyonların yerleştirilmesi, ve hayvanların can implementasyonu yapıldı
+**Karakterin saldırı animasyonu yapıldı
+**Katılımcılar: Zeynep Kefalı, Melisa Tuğçe Haspolat, Beyzanur Özen, Bahadır Şahin, Muhammed Sefa Karataş
+
+## Sprint Retrospective
+**Rollerde değişim yok
+**Art kısmı ile görüşülüp UI için içerik oluşturulması kararlaştırıldı
+**Karakter ve hayvanların animasyonları ve can barları eklendi
 
