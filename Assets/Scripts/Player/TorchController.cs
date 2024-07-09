@@ -30,6 +30,11 @@ public class TorchController : MonoBehaviour
             cooldown = attackCooldown;
             Attack();
         }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            animator.SetTrigger("Gather");
+        }
     }
 
     private void Attack()
