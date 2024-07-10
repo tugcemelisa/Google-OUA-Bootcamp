@@ -33,13 +33,9 @@ Oyunumuz tek kişilik singleplayer türünde yapılmıştır. Oyunda gündüzler
 **Indie Oyun Oynayan Kitle
 **YouTube, Kick ve Twitch üzerinde yayın yapan yayıncılar
 
-## Sprint 1
+## SPRİNT 1
 **1. sprint aşamasında amacımız oyunun temelini kurmak, ve genel yapısını inşa etmek. Geliştirme aşaması olarak: Alpha
-
-## Sprint Puanı: 10 Puan
-**Sprint Puanı olarak 10 puan hedefi koyduk. İlk sprint'te oyunumuzun türü, mekaniklerine karar verip temel harita tasarımını yapmak üzerine kurduk. 10 puan hedefimize ulaşmış durumdayız.
-
-## Backlog Puan Mantığı: 80 Puan
+**Toplam Backlog Puanı olarak 400 Puan hedeflenmiştir.
 **Backlog Puanı'nı 80 puan üzerinden yapmayı kararlaştırdık. Şu anlık oyunun ana yapısını kuracağımız için temel fonksiyon dışındaki görevleri 2. Scrum'da yapmaya karar verdik. 80 puan hedefine ulaştık.
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/0f3b45ff-8d5d-47c6-bf22-d6c3550797a7)
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/72327b96-acd6-46d9-8dbe-67c905b51590)
@@ -65,8 +61,6 @@ https://docs.google.com/document/d/1mZp6CSDwYcwkymt_h7y5vC6phQNhz2JBaWzmgE8BrLI/
 ![Ekran görüntüsü 2024-07-06 163835](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/888c1f1d-b04c-4870-bbc6-67ccc0261dbf)
 ![Ekran görüntüsü 2024-07-06 164023](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/129b0993-a5c9-46de-af5a-613a6230dac2)
 
-
-
 https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/15c372cb-5c9b-4030-8d2c-7cdfdfefc864
 
 
@@ -81,4 +75,19 @@ https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/15c372cb-5c9b
 **Rollerde değişim yok
 **Art kısmı ile görüşülüp UI için içerik oluşturulması kararlaştırıldı
 **Karakter ve hayvanların animasyonları ve can barları eklendi
+
+## SPRİNT 2
+**2. Sprint Puanı olarak hedefimiz 160 Puan.
+**Bu sprint'te hedefimiz görsel tasarımı bitirip 3D modellemeleri yerleştirmek, ve 2D UI elementlerini oyuna yerleştirmek.
+![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/2cf56036-131e-493a-a45e-f63d540930e1)
+![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/95152424-e6f4-4d8b-9d6d-d8da48a08f0c)
+
+
+
+
+## SPRİNT 3
+**3. Sprint Puanı olarak hedefimiz 160 Puan.
+**Bu sprint'te hedefimiz oyunumuzun Q&A'sini yapıp creative materyallerini yapmak olacak
+![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/0f977a25-ddd6-4bad-8ab6-ac4cc47fcd90)
+![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/9b9ed32f-d1fb-4af2-9840-6a4d0a6bfc5b)
 
