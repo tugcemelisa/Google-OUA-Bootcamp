@@ -34,9 +34,9 @@ Oyunumuz tek kişilik singleplayer türünde yapılmıştır. Oyunda gündüzler
 **YouTube, Kick ve Twitch üzerinde yayın yapan yayıncılar
 
 ## SPRİNT 1
-**1. sprint aşamasında amacımız oyunun temelini kurmak, ve genel yapısını inşa etmek. Geliştirme aşaması olarak: Alpha
-**Toplam Backlog Puanı olarak 400 Puan hedeflenmiştir.
-**Backlog Puanı'nı 80 puan üzerinden yapmayı kararlaştırdık. Şu anlık oyunun ana yapısını kuracağımız için temel fonksiyon dışındaki görevleri 2. Scrum'da yapmaya karar verdik. 80 puan hedefine ulaştık.
+** 1. sprint aşamasında amacımız oyunun temelini kurmak, ve genel yapısını inşa etmek. Geliştirme aşaması olarak: Alpha
+** Toplam Backlog Puanı olarak 400 Puan hedeflenmiştir.
+** Backlog Puanı'nı 80 puan üzerinden yapmayı kararlaştırdık. Şu anlık oyunun ana yapısını kuracağımız için temel fonksiyon dışındaki görevleri 2. Scrum'da yapmaya karar verdik. 80 puan hedefine ulaştık.
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/0f3b45ff-8d5d-47c6-bf22-d6c3550797a7)
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/72327b96-acd6-46d9-8dbe-67c905b51590)
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/4d38de5f-1ee7-4d8f-a4dc-e3137c0926c5)
