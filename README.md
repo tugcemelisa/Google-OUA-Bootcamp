@@ -19,11 +19,11 @@ https://miro.com/app/board/uXjVK2F2-WQ=/
 Oyunumuz tek kişilik singleplayer türünde yapılmıştır. Oyunda gündüzleri hayvanları gütme, onları yönlendirme ve kaynak toplayıp satma üzerine kurulu olacak. Geceleri ise hayvanlarımızı yemek isteyen kurt ve tilki gibi saldırgan hayvanlara karşı korumak üzerine olacak
 
 ## Oyun Özellikleri
-**Simülasyon
-**3D
-**Singleplayer
-**Roleplay
-**Strateji
+- Simülasyon
+- 3D
+- Singleplayer
+- Roleplay
+- Strateji
 
 
 ## Hedef Kitle
