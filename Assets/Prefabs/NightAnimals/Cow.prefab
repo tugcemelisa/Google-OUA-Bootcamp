@@ -1938,7 +1938,7 @@ GameObject:
   - component: {fileID: 3439498426421410957}
   - component: {fileID: 4549537399843549546}
   - component: {fileID: 3316944788944332295}
-  - component: {fileID: 4902549318905434552}
+  - component: {fileID: 6785888249662648887}
   m_Layer: 0
   m_Name: Cow
   m_TagString: Untagged
@@ -2001,7 +2001,7 @@ MonoBehaviour:
   animator: {fileID: 4549537399843549546}
   hitPointMaximum: 10
   hitPointUI: {fileID: 2493016630287132030}
---- !u!208 &4902549318905434552
+--- !u!208 &6785888249662648887
 NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2014,7 +2014,7 @@ NavMeshObstacle:
   m_Extents: {x: 0.5, y: 0.5, z: 1.5}
   m_MoveThreshold: 0.1
   m_Carve: 1
-  m_CarveOnlyStationary: 1
+  m_CarveOnlyStationary: 0
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
 --- !u!1 &9180225545562275221

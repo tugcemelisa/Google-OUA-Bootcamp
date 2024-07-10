@@ -35,6 +35,11 @@ public class TorchController : MonoBehaviour
         {
             animator.SetTrigger("Gather");
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            animator.SetTrigger("Petting");
+        }
     }
 
     private void Attack()
