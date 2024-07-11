@@ -43,9 +43,10 @@ GameObject:
   - component: {fileID: 1517106023775156329}
   - component: {fileID: 6403496312350503280}
   - component: {fileID: 8207165073875513603}
+  - component: {fileID: 5561207175784555001}
   m_Layer: 0
   m_Name: CowPrefab
-  m_TagString: Untagged
+  m_TagString: Cow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,10 +79,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9aebd3354c6f23469e8577add885e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
+  Agent: {fileID: 0}
+  executingState: 0
   detectionRadius: 5
   moveRadius: 10
-  grazeTime: 3
+  grazeTime: 6
+  cowDetectionRadius: 1.5
+  _herdHeartbeat: 0
+  _maxDuration: 1
 --- !u!195 &8207165073875513603
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -92,11 +97,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 1.2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -104,6 +109,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &5561207175784555001
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673882889601390739}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 2.04}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &930354666154316163
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,6 +656,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9203528780245468392}
+  - component: {fileID: 1238845077181440906}
+  - component: {fileID: 2956379696299577633}
   m_Layer: 0
   m_Name: Cow
   m_TagString: Untagged
@@ -654,6 +682,40 @@ Transform:
   - {fileID: 8820329428979346737}
   m_Father: {fileID: 1517106023775156329}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1238845077181440906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3323218274438430794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf9c29c35fa20de43a10aff1aaa2d336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &2956379696299577633
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3323218274438430794}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1c314f06152cf5346a089d9b2bc36170, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3415060365899580912
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,9 @@ TagManager:
   tags:
   - CinemachineTarget
   - Ground
+  - TourchSpot
+  - Cow
+  - Barn
   layers:
   - Default
   - TransparentFX

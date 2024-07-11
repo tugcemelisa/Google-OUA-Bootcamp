@@ -1,107 +1,188 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-enum CowStates
+public enum ExecutingCowState
 {
     MoveAround,
     Graze,
-    Flee
+    Flee,
+    FollowHerd,
+    Rest
 }
 
-public class CowController : MonoBehaviour
+public class CowController : AnimalBase, IFarmAnimal
 {
-    CowStates executingState;
-    [SerializeField] private Transform _player;
+    #region Actions
+    [HideInInspector] public Action OnGraze;
+    [HideInInspector] public Action OnGrazeFinish;
+    [HideInInspector] public Action OnFlee;
+    #endregion
+
+    #region FSM
+    public ExecutingCowState executingState;
+    public CowStates currentState;
+    [HideInInspector] public CowMoveAroundState moveAroundState = new();
+    [HideInInspector] public CowGrazeState grazeState = new();
+    [HideInInspector] public CowFleeState fleeState = new();
+    [HideInInspector] public CowFollowHerdState followHerdState = new();
+    [HideInInspector] public CowRestState restState = new();
+    #endregion
+
     private Vector3 randomPoint;
     public float detectionRadius = 5f;
     public float moveRadius = 10f;
 
-    public float grazeTime = 3f;
+    public float grazeTime = 6f;
     private float _grazeTimer;
 
-    private NavMeshAgent Agent;
     private NavMeshHit hit;
 
-    private void Start()
+    public override void Start()
     {
-        Agent = GetComponent<NavMeshAgent>();
-        executingState = CowStates.Graze;
+        base.Start();
+        executingState = ExecutingCowState.Graze;
+        currentState = grazeState;
+        currentState.EnterState(this);
+
         _grazeTimer = grazeTime;
     }
 
     private void Update()
     {
-        switch (executingState)
-        {
-            case CowStates.MoveAround:
-                MoveAround();
-                break;
-            case CowStates.Graze:
-                Graze();
-                break;
-            case CowStates.Flee: 
-                Flee(); 
-                break;
-        }
+        currentState.UpdateState(this);
     }
 
-    private bool _isMoving;
-    private void MoveAround()
+    public void StartMove()
     {
         if (_player != null)
         {
-            if (!_isMoving)
-            {
-                Agent.SetDestination(GetRandomPos(_player.position, 50f));
-                _isMoving = true;
-            }
-                
-            if (!Agent.hasPath || Agent.velocity.sqrMagnitude == 0f)
-            {
-                _isMoving = false;
-                executingState = CowStates.Graze;
-            }    
+            OnWalk.Invoke();
+            Agent.SetDestination(GetRandomPos(_player.position, 15f));
         }
 
-        CheckDistanceToPlayer();
+    }
+    public void CheckIfArrived()
+    {
+        // if (!Agent.hasPath || Agent.velocity.sqrMagnitude == 0f)
+        if (Agent.remainingDistance <= Agent.stoppingDistance)
+        {
+            executingState = ExecutingCowState.Graze;
+        }
     }
 
     float distanceToPlayer;
-    private void Flee()
+    Vector3 fleeDirection;
+    Vector3 fleePosition;
+    public void StartFlee()
     {
-        Vector3 fleeDirection = (transform.position - _player.position).normalized;
-        Vector3 fleePosition = transform.position + fleeDirection * moveRadius;
+        fleeDirection = (transform.position - _player.position).normalized;
+        fleePosition = transform.position + fleeDirection * moveRadius;
         Agent.SetDestination(fleePosition);
-
-        executingState = CowStates.Graze;
     }
-    private void CheckDistanceToPlayer()
+    public void Flee()
     {
         distanceToPlayer = Vector3.Distance(transform.position, _player.position);
         if (distanceToPlayer < detectionRadius)
         {
-            executingState = CowStates.Flee;
+            StartFlee();
+        }
+    }
+    public void CheckDistanceToPlayer()
+    {
+        distanceToPlayer = Vector3.Distance(transform.position, _player.position);
+        if (distanceToPlayer < detectionRadius)
+        {
+            executingState = ExecutingCowState.Flee;
         }
     }
 
 
     private Vector3 GetRandomPos(Vector3 center, float range)
     {
-        randomPoint = center + Random.insideUnitSphere * range;
+        randomPoint = center + UnityEngine.Random.insideUnitSphere * range;
         NavMesh.SamplePosition(randomPoint, out hit, range, NavMesh.AllAreas);
 
         return hit.position;
     }
 
-    private void Graze()
+    public void Graze()
     {
         _grazeTimer -= Time.deltaTime;
         if (_grazeTimer <= 0f)
         {
-            executingState = CowStates.MoveAround;
+            executingState = ExecutingCowState.MoveAround;
             _grazeTimer = grazeTime;
         }
+    }
 
-        CheckDistanceToPlayer();
+    public float cowDetectionRadius = 4f;
+    Vector3 herdDirection;
+    int neighborCount;
+
+    [HideInInspector] public float _herdHeartbeat;
+    [HideInInspector] public float _maxDuration = 1f;
+    public void FindNearestHerd()
+    {
+        _herdHeartbeat -= Time.deltaTime;
+
+        if (_herdHeartbeat <= 0f)
+        {
+            herdDirection = Vector3.zero;
+            neighborCount = 0;
+
+            Collider[] nearbyCows = Physics.OverlapSphere(transform.position, cowDetectionRadius);
+            foreach (Collider cow in nearbyCows)
+            {
+                if (cow.gameObject != this.gameObject && cow.CompareTag("Cow"))
+                {
+                    herdDirection += cow.transform.forward;
+                    neighborCount++;
+                }
+            }
+
+            if (neighborCount > 0)
+            {
+                executingState = ExecutingCowState.FollowHerd;
+            }
+
+            _herdHeartbeat = _maxDuration;
+        }  
+    }
+    public void FollowHerd()
+    {
+        herdDirection /= neighborCount;
+        Vector3 herdPosition = transform.position + herdDirection.normalized * moveRadius;
+        Agent.SetDestination(herdPosition);
+    }
+
+    public void SettleInBarn()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, transform.forward, out hit, 5f))
+        {
+            if (hit.collider.CompareTag("Barn"))
+            {
+                Agent.SetDestination(GetRandomPos(hit.transform.position, hit.transform.localScale.x / 2));
+                executingState = ExecutingCowState.Rest;
+            }
+        }
+    }
+    
+
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawWireSphere(herdCenter, herdRadius);
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawWireSphere(herdCenter, grazingRadius);
+    //}
+
+
+    public void SwitchState(CowStates nextState)
+    {
+        currentState = nextState;
+        currentState.EnterState(this);
     }
 }
