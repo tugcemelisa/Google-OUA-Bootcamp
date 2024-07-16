@@ -10,6 +10,7 @@ public class AnimalBase : MonoBehaviour
     //public AnimalStates currentState;
 
     protected Transform _player;
+    protected IPlayer IPlayer;
 
     [HideInInspector] public NavMeshAgent Agent;
 

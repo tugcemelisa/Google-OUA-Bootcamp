@@ -13,10 +13,10 @@ public class CowMoveAroundState : CowStates
     {
         if (fsm.executingState == ExecutingCowState.MoveAround)
         {
-            fsm.SettleInBarn();
             fsm.FindNearestHerd();
             fsm.CheckIfArrived();
             fsm.CheckDistanceToPlayer();
+            //fsm.SettleInBarn();
         }   
         else
             ExitState(fsm);

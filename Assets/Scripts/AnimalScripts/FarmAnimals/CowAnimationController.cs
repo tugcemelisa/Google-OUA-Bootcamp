@@ -44,12 +44,4 @@ public class CowAnimationController : MonoBehaviour
     {
         Animator.SetTrigger(trigger);
     }
-
-    #region Animation Event
-    public void EndGraze()
-    {
-        //CowController.OnGrazeFinish.Invoke();
-        Debug.Log("graze ended");
-    }
-    #endregion
 }

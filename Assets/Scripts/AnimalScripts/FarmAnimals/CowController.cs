@@ -9,7 +9,9 @@ public enum ExecutingCowState
     Graze,
     Flee,
     FollowHerd,
-    Rest
+    Rest,
+    GetMilked,
+    DoNothing
 }
 
 public class CowController : AnimalBase, IFarmAnimal
@@ -28,6 +30,7 @@ public class CowController : AnimalBase, IFarmAnimal
     [HideInInspector] public CowFleeState fleeState = new();
     [HideInInspector] public CowFollowHerdState followHerdState = new();
     [HideInInspector] public CowRestState restState = new();
+    [HideInInspector] public CowGetMilkedState getMilkedState = new();
     #endregion
 
     private Vector3 randomPoint;
@@ -164,12 +167,46 @@ public class CowController : AnimalBase, IFarmAnimal
         {
             if (hit.collider.CompareTag("Barn"))
             {
-                Agent.SetDestination(GetRandomPos(hit.transform.position, hit.transform.localScale.x / 2));
+                Agent.SetDestination(GetRandomPos(hit.transform.position, 4f));
                 executingState = ExecutingCowState.Rest;
+                Debug.Log((hit.transform.lossyScale.x - 2) / 2);
             }
         }
     }
-    
+    Vector3 GetRandomPositionInBarn(Vector3 barnPosition, Vector3 barnScale)
+    {
+        //Bounds barnBounds = new Bounds(barnPosition, barnScale);
+
+        Vector3 barnMin = barnPosition - (barnScale / 2);
+        Vector3 barnMax = barnPosition + (barnScale / 2);
+
+        Vector3 randomPosition = new Vector3(
+            UnityEngine.Random.Range(barnMin.x, barnMax.x),
+            barnPosition.y, 
+            UnityEngine.Random.Range(barnMin.z, barnMax.z)
+        );
+
+        return randomPosition;
+    }
+
+    public void GetMilked()
+    {
+        distanceToPlayer = Vector3.Distance(transform.position, _player.position);
+        if (distanceToPlayer < 1.5f)
+        {
+            IPlayer = _player.GetComponent<IPlayer>();
+            if (IPlayer != null)
+            {
+                IPlayer.Milk(transform);
+                IPlayer.StartMilk();
+            }
+        }
+    }
+
+    public void StandIdle()
+    {
+        executingState = ExecutingCowState.DoNothing;
+    }
 
     //private void OnDrawGizmosSelected()
     //{

@@ -17,6 +17,7 @@ public class CowRestState : CowStates
             {
                 fsm.Agent.SetDestination(fsm.transform.position);
                 fsm.OnIdle.Invoke();
+                fsm.executingState = ExecutingCowState.GetMilked;
             } 
         }
         else
@@ -25,6 +26,7 @@ public class CowRestState : CowStates
 
     public override void ExitState(CowController fsm)
     {
-
+        if (fsm.executingState == ExecutingCowState.GetMilked)
+            fsm.SwitchState(fsm.getMilkedState);
     }
 }
