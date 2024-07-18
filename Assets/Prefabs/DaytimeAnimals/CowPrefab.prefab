@@ -81,10 +81,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Agent: {fileID: 0}
   executingState: 0
-  detectionRadius: 5
+  detectionRadius: 4
   moveRadius: 10
   grazeTime: 6
-  cowDetectionRadius: 1.5
+  _grazeTimer: 0
+  cowDetectionRadius: 2
   _herdHeartbeat: 0
   _maxDuration: 1
 --- !u!195 &8207165073875513603
@@ -96,16 +97,16 @@ NavMeshAgent:
   m_GameObject: {fileID: 673882889601390739}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1.77
   m_Speed: 1.2
   m_Acceleration: 8
-  avoidancePriority: 50
+  avoidancePriority: 53
   m_AngularSpeed: 60
   m_StoppingDistance: 0.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1.62
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -128,8 +129,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.21, y: 1, z: 2.04}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 0.84, y: 0.92989206, z: 2.722461}
+  m_Center: {x: 0.000000042342922, y: 1.035054, z: 0.31992343}
 --- !u!1 &930354666154316163
 GameObject:
   m_ObjectHideFlags: 0

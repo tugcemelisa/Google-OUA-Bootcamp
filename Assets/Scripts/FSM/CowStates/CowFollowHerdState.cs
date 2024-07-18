@@ -23,9 +23,11 @@ public class CowFollowHerdState : CowStates
 
     public override void ExitState(CowController fsm)
     {
-        if (fsm.executingState == ExecutingCowState.Graze)
+        if (fsm.executingState == ExecutingCowState.Rest)
+            fsm.SwitchState(fsm.restState);
+        else if (fsm.executingState == ExecutingCowState.Graze)
             fsm.SwitchState(fsm.grazeState);
-        else if(fsm.executingState == ExecutingCowState.Flee)
+        else if (fsm.executingState == ExecutingCowState.Flee)
             fsm.SwitchState(fsm.fleeState);
     }
 }

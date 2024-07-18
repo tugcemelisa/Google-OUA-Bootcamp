@@ -34,11 +34,11 @@ public class CowController : AnimalBase, IFarmAnimal
     #endregion
 
     private Vector3 randomPoint;
-    public float detectionRadius = 5f;
+    public float detectionRadius = 4f;
     public float moveRadius = 10f;
 
     public float grazeTime = 6f;
-    private float _grazeTimer;
+    [HideInInspector] public float _grazeTimer;
 
     private NavMeshHit hit;
 
@@ -49,7 +49,7 @@ public class CowController : AnimalBase, IFarmAnimal
         currentState = grazeState;
         currentState.EnterState(this);
 
-        _grazeTimer = grazeTime;
+        //_grazeTimer = grazeTime;
     }
 
     private void Update()
@@ -71,6 +71,7 @@ public class CowController : AnimalBase, IFarmAnimal
         // if (!Agent.hasPath || Agent.velocity.sqrMagnitude == 0f)
         if (Agent.remainingDistance <= Agent.stoppingDistance)
         {
+            Debug.Log(name + " arrived");
             executingState = ExecutingCowState.Graze;
         }
     }
@@ -101,22 +102,13 @@ public class CowController : AnimalBase, IFarmAnimal
         }
     }
 
-
-    private Vector3 GetRandomPos(Vector3 center, float range)
-    {
-        randomPoint = center + UnityEngine.Random.insideUnitSphere * range;
-        NavMesh.SamplePosition(randomPoint, out hit, range, NavMesh.AllAreas);
-
-        return hit.position;
-    }
-
     public void Graze()
     {
         _grazeTimer -= Time.deltaTime;
         if (_grazeTimer <= 0f)
         {
             executingState = ExecutingCowState.MoveAround;
-            _grazeTimer = grazeTime;
+            //_grazeTimer = grazeTime;
         }
     }
 
@@ -167,9 +159,8 @@ public class CowController : AnimalBase, IFarmAnimal
         {
             if (hit.collider.CompareTag("Barn"))
             {
-                Agent.SetDestination(GetRandomPos(hit.transform.position, 4f));
+                Agent.SetDestination(GetRandomPos(hit.transform.position + Vector3.back*2, 1.55f));
                 executingState = ExecutingCowState.Rest;
-                Debug.Log((hit.transform.lossyScale.x - 2) / 2);
             }
         }
     }
@@ -208,14 +199,13 @@ public class CowController : AnimalBase, IFarmAnimal
         executingState = ExecutingCowState.DoNothing;
     }
 
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.green;
-    //    Gizmos.DrawWireSphere(herdCenter, herdRadius);
-    //    Gizmos.color = Color.yellow;
-    //    Gizmos.DrawWireSphere(herdCenter, grazingRadius);
-    //}
+    private Vector3 GetRandomPos(Vector3 center, float range)
+    {
+        randomPoint = center + UnityEngine.Random.insideUnitSphere * range;
+        NavMesh.SamplePosition(randomPoint, out hit, range, NavMesh.AllAreas);
 
+        return hit.position;
+    }
 
     public void SwitchState(CowStates nextState)
     {
