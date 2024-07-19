@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9b16a60f611b4634bb23464a24bde78a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 36300000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176906
+  packageName: Low Poly Vegetation Kit Lite
+  packageVersion: 1.1.4
+  assetPath: Assets/Proxy Games/Low Poly Vegetation Kit Lite/Scenes/Showcase Demo
+    Scene/OcclusionCullingData.asset
+  uploadId: 674889
