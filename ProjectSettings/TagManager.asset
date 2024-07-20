@@ -9,6 +9,7 @@ TagManager:
   - TourchSpot
   - Cow
   - Barn
+  - Item
   layers:
   - Default
   - TransparentFX
