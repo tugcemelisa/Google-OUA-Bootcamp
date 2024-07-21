@@ -9,25 +9,20 @@ public class AnimalBase : MonoBehaviour
 
     //public AnimalStates currentState;
 
-    protected Transform _player;
+    protected Transform _playerTransform;
     protected IPlayer IPlayer;
 
     [HideInInspector] public NavMeshAgent Agent;
 
+    [HideInInspector] public float acceleration;
+    [HideInInspector] public float speed;
+
     public virtual void Start()
     {
         Agent = GetComponent<NavMeshAgent>();
-        _player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        _playerTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
+
+        acceleration = Agent.acceleration;
+        speed = Agent.speed;
     }
-
-    //void Update()
-    //{
-    //    currentState.UpdateState(this);
-    //}
-
-    //public void SwitchState(AnimalStates nextState)
-    //{
-    //    currentState = nextState;
-    //    currentState.EnterState(this);
-    //}
 }

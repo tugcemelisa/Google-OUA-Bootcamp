@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 enum PlayerStates
 {
@@ -33,6 +34,16 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
                 break;
             default:
                 break;
+        }
+    }
+
+    public void ScareAnimal(NavMeshAgent animalAgent)
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            InputTrigger("Scare");
+            animalAgent.acceleration = 16;
+            animalAgent.speed = 3;
         }
     }
 

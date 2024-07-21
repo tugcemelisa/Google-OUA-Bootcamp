@@ -8,6 +8,7 @@ public class CowFleeState : CowStates
         fsm._herdHeartbeat = fsm._maxDuration;
         fsm.OnWalk.Invoke();
         fsm.StartFlee();
+        Debug.Log("walk in flee " + fsm.Agent.pathEndPosition);
     }
 
     public override void UpdateState(CowController fsm)
@@ -17,6 +18,10 @@ public class CowFleeState : CowStates
             fsm.Flee();
             fsm.FindNearestHerd();
             fsm.CheckIfArrived();
+            //if (fsm.Agent.remainingDistance <= 4.1f)
+            //{
+            //    fsm.executingState = ExecutingCowState.Graze;
+            //}
             fsm.SettleInBarn();
         }   
         else
@@ -25,6 +30,9 @@ public class CowFleeState : CowStates
 
     public override void ExitState(CowController fsm)
     {
+        fsm.Agent.acceleration = fsm.acceleration;
+        fsm.Agent.speed = fsm.speed;
+
         if (fsm.executingState == ExecutingCowState.Graze)
             fsm.SwitchState(fsm.grazeState);
         else if(fsm.executingState == ExecutingCowState.FollowHerd)

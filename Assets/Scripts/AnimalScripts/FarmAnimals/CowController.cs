@@ -59,19 +59,19 @@ public class CowController : AnimalBase, IFarmAnimal
 
     public void StartMove()
     {
-        if (_player != null)
+        if (_playerTransform != null)
         {
             OnWalk.Invoke();
-            Agent.SetDestination(GetRandomPos(_player.position, 15f));
+            Debug.Log("walk in startmove");
+            Agent.SetDestination(GetRandomPos(_playerTransform.position, 15f));
         }
 
     }
     public void CheckIfArrived()
     {
-        // if (!Agent.hasPath || Agent.velocity.sqrMagnitude == 0f)
         if (Agent.remainingDistance <= Agent.stoppingDistance)
         {
-            Debug.Log(name + " arrived");
+            //Debug.Log(name + " arrived");
             executingState = ExecutingCowState.Graze;
         }
     }
@@ -81,21 +81,76 @@ public class CowController : AnimalBase, IFarmAnimal
     Vector3 fleePosition;
     public void StartFlee()
     {
-        fleeDirection = (transform.position - _player.position).normalized;
+        fleeDirection = (transform.position - _playerTransform.position).normalized;
         fleePosition = transform.position + fleeDirection * moveRadius;
-        Agent.SetDestination(fleePosition);
+
+        if (NavMesh.SamplePosition(fleePosition, out hit, 1f, NavMesh.AllAreas))
+        {
+            if (IsValidDestination(hit.position))
+            {
+                Agent.SetDestination(hit.position);
+            }
+            else
+            {
+                FindAlternativeDestination();
+            }
+        }
+        else
+        {
+            FindAlternativeDestination();
+        }
     }
+
+    private void FindAlternativeDestination()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * 15f;
+            randomDirection += _playerTransform.position;
+            NavMeshHit navHit;
+            if (NavMesh.SamplePosition(randomDirection, out navHit, 15f, NavMesh.AllAreas))
+            {
+                if (IsValidDestination(navHit.position))
+                {
+                    Agent.SetDestination(navHit.position);
+                    return;
+                }
+            }
+        }
+        Debug.Log("Suitable destination not found. Stopping agent.");
+        Agent.SetDestination(transform.position);
+    }
+    private bool IsValidDestination(Vector3 position)
+    {
+        NavMeshPath path = new NavMeshPath();
+        if (Agent.CalculatePath(position, path))
+        {
+            if (path.status == NavMeshPathStatus.PathComplete)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public void Flee()
     {
-        distanceToPlayer = Vector3.Distance(transform.position, _player.position);
+        distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
         if (distanceToPlayer < detectionRadius)
         {
+            IPlayer = _playerTransform.GetComponent<IPlayer>();
+            if (IPlayer != null)
+            {
+                IPlayer.ScareAnimal(Agent);
+            }
+
             StartFlee();
         }
     }
     public void CheckDistanceToPlayer()
     {
-        distanceToPlayer = Vector3.Distance(transform.position, _player.position);
+        distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
         if (distanceToPlayer < detectionRadius)
         {
             executingState = ExecutingCowState.Flee;
@@ -182,10 +237,10 @@ public class CowController : AnimalBase, IFarmAnimal
 
     public void GetMilked()
     {
-        distanceToPlayer = Vector3.Distance(transform.position, _player.position);
+        distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
         if (distanceToPlayer < 1.5f)
         {
-            IPlayer = _player.GetComponent<IPlayer>();
+            IPlayer = _playerTransform.GetComponent<IPlayer>();
             if (IPlayer != null)
             {
                 IPlayer.Milk(transform);
@@ -209,7 +264,10 @@ public class CowController : AnimalBase, IFarmAnimal
 
     public void SwitchState(CowStates nextState)
     {
-        currentState = nextState;
-        currentState.EnterState(this);
+        if (currentState != nextState)
+        {
+            currentState = nextState;
+            currentState.EnterState(this);
+        }
     }
 }
