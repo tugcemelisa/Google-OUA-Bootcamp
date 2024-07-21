@@ -34,7 +34,7 @@ Oyunumuz tek kişilik singleplayer türünde yapılmıştır. Oyunda gündüzler
 - YouTube, Kick ve Twitch üzerinde yayın yapan yayıncılar
 
 ## SPRİNT 1
-- Sprint 1aşamasında amacımız oyunun temelini kurmak, ve genel yapısını inşa etmek. Geliştirme aşaması olarak: Alpha
+- Sprint 1 aşamasında amacımız oyunun temelini kurmak, ve genel yapısını inşa etmek. Geliştirme aşaması olarak: Alpha
 - Toplam Backlog Puanı olarak 400 Puan hedeflenmiştir.
 - Backlog Puanı'nı 80 puan üzerinden yapmayı kararlaştırdık. Şu anlık oyunun ana yapısını kuracağımız için temel fonksiyon dışındaki görevleri 2. Scrum'da yapmaya karar verdik. 80 puan hedefine ulaştık.
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/0f3b45ff-8d5d-47c6-bf22-d6c3550797a7)
@@ -77,7 +77,7 @@ https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/15c372cb-5c9b
 - Karakter ve hayvanların animasyonları ve can barları eklendi
 
 ## SPRİNT 2
-- 2. Sprint Puanı olarak hedefimiz 160 Puan.
+- Sprint 2 Puanı olarak hedefimiz 160 Puan.
 - 160 Puan hedefimizin 110 Puanına ulaşabildik.
 - Bu sprint'te hedefimiz görsel tasarımı bitirip 3D modellemeleri yerleştirmek, ve 2D UI elementlerini oyuna yerleştirmek.
 - Level Design ve 3D modellemede gecikmeler, ekip üyelerinin başına gelen teknik ve ani oluşan sorunlar nedeniyle yetişemedi. 3. Sprint'te tamamlanacak.
