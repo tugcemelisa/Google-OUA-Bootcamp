@@ -77,17 +77,20 @@ https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/15c372cb-5c9b
 **Karakter ve hayvanların animasyonları ve can barları eklendi
 
 ## SPRİNT 2
-**2. Sprint Puanı olarak hedefimiz 160 Puan.
+**2. Sprint Puanı olarak hedefimiz 160 Puan. 
+**160 Puan hedefimizin 110 Puanına ulaşabildik.
 **Bu sprint'te hedefimiz görsel tasarımı bitirip 3D modellemeleri yerleştirmek, ve 2D UI elementlerini oyuna yerleştirmek.
-![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/2cf56036-131e-493a-a45e-f63d540930e1)
-![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/95152424-e6f4-4d8b-9d6d-d8da48a08f0c)
+**Level Design ve 3D modellemede gecikmeler, ekip üyelerinin başına gelen teknik ve ani oluşan sorunlar nedeniyle yetişemedi. 3. Sprint'te tamamlanacak.
+![OUA Unity 65](https://github.com/user-attachments/assets/61c92a1d-f6e0-40bd-b02c-07212d352c61)
+![OUA Unity 65 (1)](https://github.com/user-attachments/assets/cfcf73d9-cd21-4367-acea-b5003279bb3c)
+
 
 
 
 
 ## SPRİNT 3
-**3. Sprint Puanı olarak hedefimiz 160 Puan.
-**Bu sprint'te hedefimiz oyunumuzun Q&A'sini yapıp creative materyallerini yapmak olacak
+**3. Sprint Puanı olarak hedefimiz 160 Puan. 2. Sprint'ten kalan 50 Puan da 3. Sprint'te tamamlamayı hedefliyoruz. TOPLAM: 210 Puan
+**Bu sprint'te hedefimiz oyunumuzun Q&A'sini yapıp creative materyallerini yapmak olacak. 2. Sprint'ten kalan 3D modelleme ve Level Design işleri bu sprint'te tamamlanacak.
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/0f977a25-ddd6-4bad-8ab6-ac4cc47fcd90)
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/9b9ed32f-d1fb-4af2-9840-6a4d0a6bfc5b)
 
