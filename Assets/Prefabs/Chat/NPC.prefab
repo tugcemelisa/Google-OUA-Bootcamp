@@ -860,10 +860,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8bf1bd7f2650e84fb6fd6026a55437c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactIcon: {fileID: 21300000, guid: 2969d90b86698124696637a6df64a112, type: 3}
-  InteractableInformation: Talk with Red Woman NPC
+  interactableUIElements: []
   animator: {fileID: 4807975370456083134}
   npcHeadLookAt: {fileID: 5166038728871341275}
+  textToSay: Dialog NPC
 --- !u!114 &5166038728871341275
 MonoBehaviour:
   m_ObjectHideFlags: 0

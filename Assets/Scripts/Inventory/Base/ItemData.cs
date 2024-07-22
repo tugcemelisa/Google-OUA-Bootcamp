@@ -1,7 +1,7 @@
-
 using UnityEngine;
 
-public class Item : MonoBehaviour
+[System.Serializable]
+public class ItemData
 {
     public ItemType Type;
     public int count;

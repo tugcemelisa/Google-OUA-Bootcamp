@@ -92,11 +92,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 269614742913590059}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9dfdf9cb3c3eb74189cf3bac8d1dc26, type: 3}
+  m_Script: {fileID: 11500000, guid: 61bb17f7fce84554b868d70199c067cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: {fileID: 11400000, guid: 8ab3c5c15706a8f40bb5fac681389d30, type: 2}
-  count: 1
+  itemData:
+    Type: {fileID: 11400000, guid: 8ab3c5c15706a8f40bb5fac681389d30, type: 2}
+    count: 1
 --- !u!1 &3930697235720913264
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7325141567798525289}
   - component: {fileID: 1005875216223427796}
   - component: {fileID: 2583604920470093979}
-  - component: {fileID: 2708544061979498501}
   m_Layer: 0
   m_Name: Milk
   m_TagString: Untagged
@@ -87,20 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2708544061979498501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4387882447219425709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9dfdf9cb3c3eb74189cf3bac8d1dc26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Type: {fileID: 11400000, guid: 424c1ef6f4e96fe4b9998b1f9ca2e36e, type: 2}
-  count: 1
 --- !u!1 &8702759894803844633
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +97,7 @@ GameObject:
   - component: {fileID: 2777195038161513}
   - component: {fileID: 75122495509472594}
   - component: {fileID: 44832975482092289}
-  - component: {fileID: 5901908618432019113}
+  - component: {fileID: 3295150760926203521}
   m_Layer: 0
   m_Name: Milk
   m_TagString: Item
@@ -186,7 +171,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5901908618432019113
+--- !u!114 &3295150760926203521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,8 +180,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8702759894803844633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9dfdf9cb3c3eb74189cf3bac8d1dc26, type: 3}
+  m_Script: {fileID: 11500000, guid: 61bb17f7fce84554b868d70199c067cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: {fileID: 11400000, guid: 424c1ef6f4e96fe4b9998b1f9ca2e36e, type: 2}
-  count: 1
+  itemData:
+    Type: {fileID: 11400000, guid: 424c1ef6f4e96fe4b9998b1f9ca2e36e, type: 2}
+    count: 1

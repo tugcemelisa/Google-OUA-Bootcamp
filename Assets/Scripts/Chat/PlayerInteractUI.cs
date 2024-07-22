@@ -5,9 +5,8 @@ using UnityEngine.UI;
 public class PlayerInteractableUI : MonoBehaviour
 {
     [SerializeField] PlayerInteract playerInteract;
-    [SerializeField] GameObject interactUI;
-    [SerializeField] TextMeshProUGUI interactableText;
-    [SerializeField] Image interactIcon;
+    [SerializeField] GameObject interactableUI;
+    [SerializeField] InteractUIOptionPlaceHolder[] interactableUIPlaceHolders;
 
     Interactable interactable;
     Interactable previousInteractable;
@@ -38,12 +37,30 @@ public class PlayerInteractableUI : MonoBehaviour
             return;
         }
         previousInteractable = interactable;
-        interactableText.text = interactable.InteractableInformation1;
-        interactIcon.sprite = interactable.InteractIcon;
-        interactUI.SetActive(true);
+
+        SetInteractableUIElements(previousInteractable);
+
+        interactableUI.SetActive(true);
     }
     void Hide()
     {
-        interactUI.SetActive(false);
+        interactableUI.SetActive(false);
+    }
+
+    void SetInteractableUIElements(Interactable interactable)
+    {
+        foreach (var element in interactableUIPlaceHolders)
+        {
+            element.gameObject.SetActive(false);
+        }
+
+        var UIElements = interactable.InteractableUIElements;
+        int i = 0;
+        foreach (var element in UIElements)
+        {
+            var placeHolder = interactableUIPlaceHolders[i++];
+            placeHolder.SetOption(element);
+            placeHolder.gameObject.SetActive(true);
+        }
     }
 }

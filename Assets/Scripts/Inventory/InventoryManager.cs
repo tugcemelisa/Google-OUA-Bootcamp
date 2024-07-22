@@ -11,6 +11,8 @@ public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManage
     [SerializeField]
     private Transform handTransform;
 
+    [SerializeField] private Animator animator;
+
     private void Start()
     {
         ShowInventory();
@@ -43,20 +45,23 @@ public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManage
         }
     }
 
-    public void AddItem(Item item)
+    public void AddItem(ItemMonoBehaviour itemMonobehaviour)
     {
 
         //Already has that type of item, then increase the count
         foreach (InventorySlot slot in slots)
         {
-            if (!slot.isSlotEmpty() && slot.GetItem().Type == item.Type)
-            {
-                slot.AddItem(item.count);
 
-                item.GetComponent<Collider>().enabled = false;
-                item.gameObject.SetActive(false);
-                item.transform.SetParent(this.handTransform);
-                item.gameObject.transform.localPosition = Vector3.zero;
+            if (slot.isSlotEmpty()) continue;
+
+            ItemData slotItemData = slot.GetItem().ItemData;
+            if (slotItemData.Type == itemMonobehaviour.ItemData.Type)
+            {
+                slotItemData.count += itemMonobehaviour.ItemData.count;
+
+                slot.UpdateItem();
+
+                Destroy(itemMonobehaviour.gameObject);
                 return;
             }
         }
@@ -68,12 +73,12 @@ public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManage
             if (slot.isSlotEmpty())
             {
                 hasEmptySlot = true;
-                slot.SetItem(item);
+                slot.SetItem(itemMonobehaviour);
 
-                item.GetComponent<Collider>().enabled = false;
-                item.gameObject.SetActive(false);
-                item.transform.SetParent(this.handTransform);
-                item.gameObject.transform.localPosition = Vector3.zero;
+                itemMonobehaviour.GetComponent<Collider>().enabled = false;
+                itemMonobehaviour.gameObject.SetActive(false);
+                itemMonobehaviour.transform.SetParent(this.handTransform);
+                itemMonobehaviour.gameObject.transform.localPosition = Vector3.zero;
                 break;
             }
         }
@@ -81,6 +86,81 @@ public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManage
         if (!hasEmptySlot)
         {
             print("DO NOT HAVE EMPTHY SLOT");
+        }
+    }
+
+    private void RemoveItem(ItemType itemType, int count)
+    {
+        int countToBeRemoved = count;
+        foreach (InventorySlot slot in slots)
+        {
+            if (countToBeRemoved <= 0)
+            {
+                break;
+            }
+
+            if (slot.isSlotEmpty())
+                continue;
+
+            ItemData data = slot.GetItem().ItemData;
+            if (data.Type == itemType)
+            {
+                if (data.count >= countToBeRemoved)
+                {
+                    data.count -= countToBeRemoved;
+                }
+                else
+                {
+                    countToBeRemoved -= data.count;
+                    data.count = 0;
+                }
+
+                slot.UpdateItem();
+            }
+        }
+    }
+
+    private bool HasItem(ItemType itemType, int count)
+    {
+        int existCount = 0;
+        foreach (InventorySlot slot in slots)
+        {
+            if (existCount >= count)
+            {
+                return true;
+            }
+
+            if (slot.isSlotEmpty())
+                continue;
+
+            ItemData slotData = slot.GetItem().ItemData;
+            if (slotData.Type == itemType)
+            {
+                existCount += slotData.count;
+            }
+        }
+
+        return existCount >= count;
+    }
+
+    public bool HasItems(List<ItemData> items)
+    {
+        foreach (ItemData item in items)
+        {
+            if (!HasItem(item.Type, item.count))
+            {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+    public void RemoveItems(List<ItemData> items)
+    {
+        foreach (ItemData item in items)
+        {
+            RemoveItem(item.Type, item.count);
         }
     }
 
@@ -96,7 +176,7 @@ public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManage
     {
         if (other.CompareTag("Item"))
         {
-            Item item = other.GetComponent<Item>();
+            ItemMonoBehaviour item = other.GetComponent<ItemMonoBehaviour>();
 
 
             AddItem(item);
@@ -104,10 +184,16 @@ public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManage
         }
     }
 
-    public void HoldItem(Item item)
+    public void HoldItemAnimation(ItemMonoBehaviour item)
     {
         item.gameObject.SetActive(true);
         item.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+
+        animator.SetTrigger("Hold");
+    }
+    public void RemoveItemAnimation()
+    {
+        animator.SetTrigger("FinishHolding");
     }
 
     public KeyCode SelectSlot()
@@ -121,4 +207,6 @@ public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManage
         if (Input.GetKeyDown(KeyCode.Alpha7)) { return KeyCode.Alpha7; }
         return KeyCode.None;
     }
+
+
 }

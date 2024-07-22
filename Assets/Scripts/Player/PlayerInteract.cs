@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,12 +9,23 @@ public class PlayerInteract : MonoBehaviourSingletonPersistent<PlayerInteract>
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        KeyCode keyCode = SelectKey();
+        if (keyCode == KeyCode.None)
         {
-            var interactable = GetInteractable();
-            if (interactable) { interactable.Interact(interactor); }
+            return;
         }
 
+        var interactable = GetInteractable();
+        if (interactable) { interactable.Interact(interactor, keyCode); }
+
+    }
+
+    private KeyCode SelectKey()
+    {
+        if (Input.GetKeyDown(KeyCode.E)) { return KeyCode.E; }
+        if (Input.GetKeyDown(KeyCode.R)) { return KeyCode.R; }
+        if (Input.GetKeyDown(KeyCode.T)) { return KeyCode.T; }
+        return KeyCode.None;
     }
 
     public Interactable GetInteractable()
