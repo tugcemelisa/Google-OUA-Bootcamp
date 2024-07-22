@@ -4,7 +4,7 @@ public class CowFollowHerdState : CowStates
 {
     public override void EnterState(CowController fsm)
     {
-        Debug.Log("FOLLOW HERD " + fsm.gameObject.name);
+        //Debug.Log("FOLLOW HERD " + fsm.gameObject.name);
         //fsm.OnWalk.Invoke();
         fsm.FollowHerd();
     }

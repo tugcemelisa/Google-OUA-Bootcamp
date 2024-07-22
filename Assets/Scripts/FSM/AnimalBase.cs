@@ -2,10 +2,15 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AnimalBase : MonoBehaviour
+public abstract class AnimalBase : MonoBehaviour, IFarmAnimal
 {
+    #region Actions
     [HideInInspector] public Action OnWalk;
     [HideInInspector] public Action OnIdle;
+    [HideInInspector] public Action OnGraze;
+    [HideInInspector] public Action OnGrazeFinish;
+    [HideInInspector] public Action OnFlee;
+    #endregion
 
     //public AnimalStates currentState;
 
@@ -25,4 +30,6 @@ public class AnimalBase : MonoBehaviour
         acceleration = Agent.acceleration;
         speed = Agent.speed;
     }
+
+    public abstract void StandIdle();
 }

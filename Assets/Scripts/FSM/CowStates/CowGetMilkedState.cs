@@ -4,7 +4,7 @@ public class CowGetMilkedState : CowStates
 {
     public override void EnterState(CowController fsm)
     {
-        Debug.Log("GET MILKED " + fsm.gameObject.name);
+        //Debug.Log("GET MILKED " + fsm.gameObject.name);
     }
 
     public override void UpdateState(CowController fsm)

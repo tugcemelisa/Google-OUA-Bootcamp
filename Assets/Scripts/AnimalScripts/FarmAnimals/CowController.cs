@@ -14,14 +14,8 @@ public enum ExecutingCowState
     DoNothing
 }
 
-public class CowController : AnimalBase, IFarmAnimal
+public class CowController : AnimalBase
 {
-    #region Actions
-    [HideInInspector] public Action OnGraze;
-    [HideInInspector] public Action OnGrazeFinish;
-    [HideInInspector] public Action OnFlee;
-    #endregion
-
     #region FSM
     public ExecutingCowState executingState;
     public CowStates currentState;
@@ -84,21 +78,21 @@ public class CowController : AnimalBase, IFarmAnimal
         fleeDirection = (transform.position - _playerTransform.position).normalized;
         fleePosition = transform.position + fleeDirection * moveRadius;
 
-        if (NavMesh.SamplePosition(fleePosition, out hit, 1f, NavMesh.AllAreas))
-        {
-            if (IsValidDestination(hit.position))
+        //if (NavMesh.SamplePosition(fleePosition, out hit, 1f, NavMesh.AllAreas))
+        //{
+            if (IsValidDestination(fleePosition))
             {
-                Agent.SetDestination(hit.position);
+                Agent.SetDestination(fleePosition);
             }
             else
             {
                 FindAlternativeDestination();
             }
-        }
-        else
-        {
-            FindAlternativeDestination();
-        }
+        //}
+        //else
+        //{
+        //    FindAlternativeDestination();
+        //}
     }
 
     private void FindAlternativeDestination()
@@ -142,7 +136,7 @@ public class CowController : AnimalBase, IFarmAnimal
             IPlayer = _playerTransform.GetComponent<IPlayer>();
             if (IPlayer != null)
             {
-                IPlayer.ScareAnimal(Agent);
+                IPlayer.ScareAnimal(Agent); 
             }
 
             StartFlee();
@@ -249,7 +243,7 @@ public class CowController : AnimalBase, IFarmAnimal
         }
     }
 
-    public void StandIdle()
+    public override void StandIdle()
     {
         executingState = ExecutingCowState.DoNothing;
     }

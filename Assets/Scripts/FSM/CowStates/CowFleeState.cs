@@ -4,7 +4,7 @@ public class CowFleeState : CowStates
 {
     public override void EnterState(CowController fsm)
     {
-        Debug.Log("FLEE " + fsm.gameObject.name);
+        //Debug.Log("FLEE " + fsm.gameObject.name);
         fsm._herdHeartbeat = fsm._maxDuration;
         fsm.OnWalk.Invoke();
         fsm.StartFlee();

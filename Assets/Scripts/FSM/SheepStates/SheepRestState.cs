@@ -1,48 +1,43 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CowRestState : CowStates
+public class SheepRestState : SheepStates
 {
-    public override void EnterState(CowController fsm)
+    public override void EnterState(SheepController fsm)
     {
-        //Debug.Log("REST " + fsm.gameObject.name);
-
+        Debug.Log("rest");
         lastPosition = fsm.Agent.transform.position;
         stuckCheckIntervalTimer = stuckCheckInterval;
         stuckTime = 0.0f;
     }
 
-    public override void UpdateState(CowController fsm)
+    public override void UpdateState(SheepController fsm)
     {
-        if (fsm.executingState == ExecutingCowState.Rest)
+        if (fsm.executingState == ExecutingSheepState.Rest)
         {
             stuckCheckIntervalTimer -= Time.deltaTime;
-            if(stuckCheckIntervalTimer <= 0.0f)
+            if (stuckCheckIntervalTimer <= 0.0f)
             {
                 CheckIfStuck(fsm.Agent);
                 stuckCheckIntervalTimer = stuckCheckInterval;
             }
 
-            if (fsm.Agent.remainingDistance <= /*fsm.Agent.stoppingDistance*/ 3.60f)
+            if (fsm.Agent.remainingDistance <= 3.60f)
             {
                 fsm.Agent.SetDestination(fsm.transform.position);
                 fsm.OnIdle.Invoke();
-                fsm.executingState = ExecutingCowState.GetMilked;
-            } 
+                fsm.executingState = ExecutingSheepState.GetSheared;
+            }
         }
         else
             ExitState(fsm);
     }
 
-    public override void ExitState(CowController fsm)
+    public override void ExitState(SheepController fsm)
     {
-        if (fsm.executingState == ExecutingCowState.GetMilked)
-            fsm.SwitchState(fsm.getMilkedState);
+        if (fsm.executingState == ExecutingSheepState.GetSheared)
+            fsm.SwitchState(fsm.getShearedState);
     }
-
 
     private float maxTimeToReachDestination = 2.0f;
     private float stuckThreshold = 0.1f; // Hareket etmeme eþiði

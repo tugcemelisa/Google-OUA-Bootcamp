@@ -5,7 +5,7 @@ public class CowGrazeState : CowStates
 {
     public override void EnterState(CowController fsm)
     {
-        Debug.Log("GRAZE " + fsm.gameObject.name + "\n " + fsm._grazeTimer);
+        //Debug.Log("GRAZE " + fsm.gameObject.name + "\n " + fsm._grazeTimer);
         ChooseAnim(fsm);
         fsm.Agent.SetDestination(fsm.transform.position);
         fsm._grazeTimer = fsm.grazeTime;
