@@ -81,6 +81,12 @@ https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/15c372cb-5c9b
 - 160 Puan hedefimizin 110 Puanına ulaşabildik.
 - Bu sprint'te hedefimiz görsel tasarımı bitirip 3D modellemeleri yerleştirmek, ve 2D UI elementlerini oyuna yerleştirmek.
 - Level Design ve 3D modellemede gecikmeler, ekip üyelerinin başına gelen teknik ve ani oluşan sorunlar nedeniyle yetişemedi. 3. Sprint'te tamamlanacak.
+
+## Daily Scrum Toplantı Notları
+- https://docs.google.com/document/d/1DfvLOTVW5Q_hrXPTaVVVrtVW1eARHI7NoyNak2bmEYc/edit?usp=sharing
+
+# Sprint 2 Toplantı Notları
+- https://docs.google.com/document/d/1mZp6CSDwYcwkymt_h7y5vC6phQNhz2JBaWzmgE8BrLI/edit?usp=sharing
 ![OUA Unity 65](https://github.com/user-attachments/assets/61c92a1d-f6e0-40bd-b02c-07212d352c61)
 ![OUA Unity 65 (1)](https://github.com/user-attachments/assets/cfcf73d9-cd21-4367-acea-b5003279bb3c)
 
