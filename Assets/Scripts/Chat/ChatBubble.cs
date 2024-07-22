@@ -16,20 +16,9 @@ public class ChatBubble : MonoBehaviour
     }
 
 
-    [SerializeField] SpriteRenderer backgroundSpriteRenderer;
-    [SerializeField] SpriteRenderer iconSpriteRenderer;
-    [SerializeField] TextMeshPro textMeshPro;
-
-    [SerializeField] IconData[] icons;
-
-
-    [System.Serializable]
-    public class IconData
-    {
-        public IconType IconType;
-        public string IconName;
-        public Sprite Sprite;
-    }
+    [SerializeField] protected SpriteRenderer backgroundSpriteRenderer;
+    [SerializeField] protected SpriteRenderer iconSpriteRenderer;
+    [SerializeField] protected TextMeshPro textMeshPro;
 
     private void Setup(IconData iconData, string text)
     {
@@ -52,7 +41,7 @@ public class ChatBubble : MonoBehaviour
     {
         IconData data = null;
 
-        foreach (var item in icons)
+        foreach (var item in GameAssets.Instance.icons)
         {
             if (item.IconType == iconType)
                 data = item;
@@ -70,4 +59,12 @@ public enum IconType
     Bargain,
     Failure,
     Informative
+}
+
+[System.Serializable]
+public class IconData
+{
+    public IconType IconType;
+    public string IconName;
+    public Sprite Sprite;
 }

@@ -51,22 +51,6 @@ MonoBehaviour:
   backgroundSpriteRenderer: {fileID: 7319351709352873391}
   iconSpriteRenderer: {fileID: 4449117632660333166}
   textMeshPro: {fileID: 7009871197712378576}
-  icons:
-  - IconType: 0
-    IconName: Neutral
-    Sprite: {fileID: 21300000, guid: c1f93ca7265df0744a951c03cfd2a975, type: 3}
-  - IconType: 1
-    IconName: Success
-    Sprite: {fileID: 21300000, guid: a529ca8c41efe964290637b0fea711f7, type: 3}
-  - IconType: 2
-    IconName: Bargain
-    Sprite: {fileID: 21300000, guid: 5f7e61db94bfb334fb692c52d151dee2, type: 3}
-  - IconType: 3
-    IconName: Failure
-    Sprite: {fileID: 21300000, guid: eca5871199eee2f45a82dba549343126, type: 3}
-  - IconType: 4
-    IconName: Informative
-    Sprite: {fileID: 21300000, guid: 2969d90b86698124696637a6df64a112, type: 3}
 --- !u!95 &4780853710960753537
 Animator:
   serializedVersion: 7
@@ -433,7 +417,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 0.8, y: 0.8}
+  m_Size: {x: 30, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

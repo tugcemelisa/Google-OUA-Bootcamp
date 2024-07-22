@@ -16,8 +16,15 @@ public class NPCQuestInteractable : NPCInteractable
             {
                 itemList += item.Type.itemName + " : " + item.count.ToString();
             }
-            Talk(interactorTransform, IconType.Informative, textToSay + itemList);
+            ShowQuest(interactorTransform, IconType.Bargain, textToSay + " | " + itemList);
         }
+    }
+
+    private void ShowQuest(Transform interactor, IconType iconType, string textToSay)
+    {
+        BargainBubble.Create(this.transform, new Vector3(.7f, 2.1f), iconType, textToSay, neededItems);
+        animator.SetTrigger("Talk");
+        npcHeadLookAt.LookAt(interactor);
     }
 
     private void RemoveItemsInInventory()
