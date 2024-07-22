@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerInteractableUI : MonoBehaviour
+public class PlayerInteractableUI : MonoBehaviourSingletonPersistent<PlayerInteractableUI>
 {
     [SerializeField] PlayerInteract playerInteract;
     [SerializeField] GameObject interactableUI;
@@ -58,9 +58,15 @@ public class PlayerInteractableUI : MonoBehaviour
         int i = 0;
         foreach (var element in UIElements)
         {
+            if (!element.enabled) continue;
             var placeHolder = interactableUIPlaceHolders[i++];
             placeHolder.SetOption(element);
             placeHolder.gameObject.SetActive(true);
         }
+    }
+
+    public void UpdateUIElements()
+    {
+        SetInteractableUIElements(interactable);
     }
 }

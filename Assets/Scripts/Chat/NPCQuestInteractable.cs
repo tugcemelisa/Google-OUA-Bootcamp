@@ -44,6 +44,17 @@ public class NPCQuestInteractable : NPCInteractable
             RemoveItemsInInventory();
             Talk(interactorTransform, IconType.Success, " The quest has been completed succesfully. Thank for seeling me those items and here is your money.");
 
+            foreach (var item in InteractableUIElements)
+            {
+                if (item.enabled && item.InteractKey == InteractKeys.Bargain)
+                {
+                    item.Disable(true);
+
+                    PlayerInteractableUI.Instance.UpdateUIElements();
+                    break;
+                }
+            }
+
             print("YOU GAINED MONEY");
         }
         else
