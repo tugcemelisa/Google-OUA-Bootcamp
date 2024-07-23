@@ -5,8 +5,7 @@ public class CowGrazeState : CowStates
 {
     public override void EnterState(CowController fsm)
     {
-        Debug.Log("GRAZE " + fsm.gameObject.name + "\n " + fsm._grazeTimer);
-        //fsm.OnGraze.Invoke();
+        //Debug.Log("GRAZE " + fsm.gameObject.name + "\n " + fsm._grazeTimer);
         ChooseAnim(fsm);
         fsm.Agent.SetDestination(fsm.transform.position);
         fsm._grazeTimer = fsm.grazeTime;
@@ -25,8 +24,6 @@ public class CowGrazeState : CowStates
 
     public override void ExitState(CowController fsm)
     {
-        fsm._grazeTimer = fsm.grazeTime;
-
         if (fsm.executingState == ExecutingCowState.MoveAround)
             fsm.SwitchState(fsm.moveAroundState);
         else if (fsm.executingState == ExecutingCowState.Flee)
@@ -40,5 +37,10 @@ public class CowGrazeState : CowStates
             fsm.OnGraze.Invoke();
         else if(stateIndex == 1)
             fsm.OnIdle.Invoke();
+    }
+
+    public override void Interact(CowController fsm, KeyCode interactKey)
+    {
+        
     }
 }

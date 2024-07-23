@@ -4,7 +4,7 @@ public class CowMoveAroundState : CowStates
 {
     public override void EnterState(CowController fsm)
     {
-        Debug.Log("MOVE AROUND " + fsm.gameObject.name);
+        //Debug.Log("MOVE AROUND " + fsm.gameObject.name);
         fsm._herdHeartbeat = fsm._maxDuration;
         fsm.StartMove();
     }
@@ -30,5 +30,10 @@ public class CowMoveAroundState : CowStates
             fsm.SwitchState(fsm.fleeState);
         else if (fsm.executingState == ExecutingCowState.FollowHerd)
             fsm.SwitchState(fsm.followHerdState);
+    }
+
+    public override void Interact(CowController fsm, KeyCode interactKey)
+    {
+        
     }
 }

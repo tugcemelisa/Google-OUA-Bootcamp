@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,11 +9,17 @@ public class CowRestState : CowStates
 {
     public override void EnterState(CowController fsm)
     {
-        Debug.Log("REST " + fsm.gameObject.name);
+        //Debug.Log("REST " + fsm.gameObject.name);
 
         lastPosition = fsm.Agent.transform.position;
         stuckCheckIntervalTimer = stuckCheckInterval;
         stuckTime = 0.0f;
+
+        //InteractableUIElement activeUIElement;
+        //if(fsm.InteractableUIElements.Any(x => x.enabled))
+        //{
+        //    activeUIElement = fsm.InteractableUIElements.Where(x => x.enabled);
+        //}
     }
 
     public override void UpdateState(CowController fsm)
@@ -72,5 +79,10 @@ public class CowRestState : CowStates
         }
 
         lastPosition = agent.transform.position;
+    }
+
+    public override void Interact(CowController fsm, KeyCode interactKey)
+    {
+        
     }
 }

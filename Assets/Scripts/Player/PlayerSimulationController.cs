@@ -1,12 +1,16 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 enum PlayerStates
 {
     Default,
     Milking,
     HoldingMilkPail,
-    Selling
+    Selling,
+    Shear,
+    HoldingWool
 }
 public class PlayerSimulationController : MonoBehaviour, IPlayer
 {
@@ -15,6 +19,8 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     IFarmAnimal _milkable;
     [SerializeField] private Transform milkPailTransform;
     [SerializeField] private GameObject milkPailPrefab;
+    [SerializeField] private ParticleSystem cutWoolEffect;
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -25,8 +31,8 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     {
         switch (_executingState)
         {
-            case PlayerStates.Milking:
-                Milk();
+            case PlayerStates.HoldingWool:
+                HoldWool();
                 break;
             case PlayerStates.HoldingMilkPail:
                 SellRequest(); 
@@ -36,37 +42,35 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         }
     }
 
+    public void ScareAnimal(NavMeshAgent animalAgent)
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            InputTrigger("Scare");
+            animalAgent.acceleration = 16;
+            animalAgent.speed = 3;
+        }
+    }
+
     Transform _milkingAnimal;
     public void Milk(Transform milkingAnimal)
     {
         _milkingAnimal = milkingAnimal;
-    }
-    private void Milk()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            float distanceToAnimal = Vector3.Distance(transform.position, _milkingAnimal.position);
-            if (distanceToAnimal < 1.5f)
-            {
-                _milkable = _milkingAnimal.GetComponent<IFarmAnimal>();
-                InputTrigger("Crouch");
-                _holdingPail = Instantiate(milkPailPrefab, _milkingAnimal.position + new Vector3(0.3f, 0, 0), Quaternion.identity);
+        _milkable = _milkingAnimal.GetComponent<IFarmAnimal>();
+        InputTrigger("Crouch");
+        _holdingPail = Instantiate(milkPailPrefab, _milkingAnimal.position + new Vector3(0.3f, 0, 0), Quaternion.identity);
 
-                if (_milkable != null)
-                    _milkable.StandIdle();
+        if (_milkable != null)
+            _milkable.StandIdle(3.5f);
 
-                StartCoroutine(FinishMilking());
-                return;
-            }
-            _executingState = PlayerStates.Default;
-        }
+        StartCoroutine(FinishMilking());
     }
 
     private IEnumerator FinishMilking()
     {
         yield return new WaitForSeconds(3.5f);
 
-        InputTrigger("FinishMilking");
+        InputTrigger("FinishCrouching");
         HoldMilkPail();
         _executingState = PlayerStates.HoldingMilkPail;
     }
@@ -85,6 +89,8 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         {
             InputTrigger("FinishHolding");
             _holdingPail.transform.SetParent(null);
+            _holdingPail.GetComponent<Rigidbody>().useGravity = true;
+            _holdingPail.GetComponent<Rigidbody>().isKinematic = false;
             _executingState = PlayerStates.Default;
         }
     }
@@ -98,6 +104,41 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
             
     }
 
+    public void Shear(Transform sheepTransform)
+    {
+        if (_executingState == PlayerStates.Default)
+        {
+            _executingState = PlayerStates.Shear;
+        }
+
+        _milkingAnimal = sheepTransform;
+        _milkable = _milkingAnimal.GetComponent<IFarmAnimal>();
+        InputTrigger("Crouch");
+        InputTrigger("HoldingDown");
+
+        if (_milkable != null)
+            _milkable.StandIdle(5.5f);
+
+        StartCoroutine(FinishShearing());
+    }
+
+    private IEnumerator FinishShearing()
+    {
+        yield return new WaitForSeconds(5.5f);
+
+        InputTrigger("FinishCrouching");
+        cutWoolEffect.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        _executingState = PlayerStates.HoldingWool;
+    }
+    private void HoldWool()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            InputTrigger("FinishHolding");
+            _executingState = PlayerStates.Default;
+        }
+    }
+
     private void InputTrigger(string trigger)
     {
         _animator.SetTrigger(trigger);
@@ -107,6 +148,17 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     public void StartMilkAnimation()
     {
         InputTrigger("Milk");
+    }
+
+    public void StartCuttingAnimation()
+    {
+        InputTrigger("Cut");
+        cutWoolEffect.Play();
+    }
+
+    public void FinishScare()
+    {
+        InputTrigger("FinishScare");
     }
     #endregion
 }

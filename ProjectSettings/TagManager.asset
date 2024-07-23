@@ -9,6 +9,9 @@ TagManager:
   - TourchSpot
   - Cow
   - Barn
+  - Item
+  - NPC
+  - Sheep
   layers:
   - Default
   - TransparentFX
@@ -45,6 +48,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Dialog
+    uniqueID: 1430905217
     locked: 0
   m_RenderingLayers:
   - Default

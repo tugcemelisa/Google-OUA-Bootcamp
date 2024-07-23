@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class MonoBehaviourSingleton<T> : MonoBehaviour
     where T : Component
@@ -41,7 +40,7 @@ public class MonoBehaviourSingletonPersistent<T> : MonoBehaviour
         if (Instance == null)
         {
             Instance = this as T;
-            DontDestroyOnLoad(this);
+            //DontDestroyOnLoad(this);
         }
         else
         {
