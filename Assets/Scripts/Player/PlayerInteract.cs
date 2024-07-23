@@ -25,6 +25,7 @@ public class PlayerInteract : MonoBehaviourSingletonPersistent<PlayerInteract>
         if (Input.GetKeyDown(KeyCode.E)) { return KeyCode.E; }
         if (Input.GetKeyDown(KeyCode.R)) { return KeyCode.R; }
         if (Input.GetKeyDown(KeyCode.T)) { return KeyCode.T; }
+        if (Input.GetKeyDown(KeyCode.Y)) { return KeyCode.Y; }
         return KeyCode.None;
     }
 

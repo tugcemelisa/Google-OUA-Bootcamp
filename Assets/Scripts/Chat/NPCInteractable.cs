@@ -2,9 +2,14 @@
 
 public class NPCInteractable : Interactable
 {
-    [SerializeField] protected Animator animator;
+    /*[SerializeField]*/ protected Animator animator;
     [SerializeField] protected NPCHeadLookAt npcHeadLookAt;
     [SerializeField] protected string textToSay = "Hello World";
+
+    public virtual void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
 
     public void Talk(Transform interactor, IconType iconType, string textToSay)
     {
@@ -14,13 +19,9 @@ public class NPCInteractable : Interactable
     }
     public override void Interact(Transform interactorTransform, KeyCode keyCode)
     {
-        Debug.Log("do it");
-        //PlayerInteractableUI.Instance.Show(this);
         if ((int)keyCode == (int)InteractKeys.Talk)
         {
             Talk(interactorTransform, IconType.Informative, textToSay);
         }
-
-
     }
 }

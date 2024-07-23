@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 6203738536777300992}
   - component: {fileID: 6297474510441677862}
   - component: {fileID: -3566496977627862449}
+  - component: {fileID: 7943577687452076330}
   m_Layer: 8
   m_Name: Milk Pail
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,3 +154,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swayAmount: 0.5
   spillThreshold: 20
+--- !u!114 &7943577687452076330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4442379737664054029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61bb17f7fce84554b868d70199c067cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData:
+    Type: {fileID: 11400000, guid: 424c1ef6f4e96fe4b9998b1f9ca2e36e, type: 2}
+    count: 1
