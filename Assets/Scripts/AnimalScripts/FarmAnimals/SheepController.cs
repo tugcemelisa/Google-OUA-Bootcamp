@@ -30,6 +30,7 @@ public class SheepController : AnimalBase
     [HideInInspector] public SheepFollowHerdState followHerdState = new();
     [HideInInspector] public SheepRestState restState = new();
     [HideInInspector] public SheepGetShearedState getShearedState = new();
+    [HideInInspector] public SheepDoNothingState doNothingState = new();
     #endregion
 
     private Vector3 randomPoint;
@@ -53,8 +54,11 @@ public class SheepController : AnimalBase
     private void Update()
     {
         currentState.UpdateState(this);
-        //HandleTurningAnimation();
-        //previousPosition = transform.position;
+    }
+
+    public override void Interact(Transform interactorTransform, KeyCode interactKey)
+    {
+        currentState.Interact(this, interactKey);
     }
 
     private Vector3 previousPosition;
@@ -250,12 +254,11 @@ public class SheepController : AnimalBase
         return randomPosition;
     }
 
-    public void GetSheared()
+    public void GetSheared(KeyCode interactKey)
     {
-        distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
-        if (distanceToPlayer < 1.5f)
+        if ((int)interactKey == (int)InteractKeys.InteractAnimals)
         {
-            IPlayer = _playerTransform.GetComponent<IPlayer>();
+            IPlayer = _playerTransform.GetComponentInParent<IPlayer>();
             if (IPlayer != null)
             {
                 IPlayer.Shear(transform);
@@ -263,9 +266,11 @@ public class SheepController : AnimalBase
         }
     }
 
-    public override void StandIdle()
+    public override void StandIdle(float duration)
     {
         executingState = ExecutingSheepState.DoNothing;
+
+        Invoke("ChangeUIElement", duration);
     }
 
     private Vector3 GetRandomPos(Vector3 center, float range)

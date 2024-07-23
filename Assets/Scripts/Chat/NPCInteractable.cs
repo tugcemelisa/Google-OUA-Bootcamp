@@ -14,6 +14,8 @@ public class NPCInteractable : Interactable
     }
     public override void Interact(Transform interactorTransform, KeyCode keyCode)
     {
+        Debug.Log("do it");
+        //PlayerInteractableUI.Instance.Show(this);
         if ((int)keyCode == (int)InteractKeys.Talk)
         {
             Talk(interactorTransform, IconType.Informative, textToSay);

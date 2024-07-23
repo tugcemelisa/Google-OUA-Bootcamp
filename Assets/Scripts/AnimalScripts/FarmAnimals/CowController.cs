@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 public enum ExecutingCowState
 {
@@ -25,6 +26,7 @@ public class CowController : AnimalBase
     [HideInInspector] public CowFollowHerdState followHerdState = new();
     [HideInInspector] public CowRestState restState = new();
     [HideInInspector] public CowGetMilkedState getMilkedState = new();
+    [HideInInspector] public CowDoNothingState doNothingState = new();
     #endregion
 
     private Vector3 randomPoint;
@@ -49,6 +51,11 @@ public class CowController : AnimalBase
     private void Update()
     {
         currentState.UpdateState(this);
+    }
+
+    public override void Interact(Transform interactorTransform, KeyCode interactKey)
+    {
+        currentState.Interact(this, interactKey);
     }
 
     public void StartMove()
@@ -229,23 +236,22 @@ public class CowController : AnimalBase
         return randomPosition;
     }
 
-    public void GetMilked()
+    public void GetMilked(KeyCode interactKey)
     {
-        distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
-        if (distanceToPlayer < 1.5f)
+        if ((int)interactKey == (int)InteractKeys.InteractAnimals)
         {
-            IPlayer = _playerTransform.GetComponent<IPlayer>();
+            IPlayer = _playerTransform.GetComponentInParent<IPlayer>();
             if (IPlayer != null)
             {
                 IPlayer.Milk(transform);
-                IPlayer.StartMilk();
             }
         }
     }
-
-    public override void StandIdle()
+    public override void StandIdle(float duration)
     {
         executingState = ExecutingCowState.DoNothing;
+
+        Invoke("ChangeUIElement", duration);
     }
 
     private Vector3 GetRandomPos(Vector3 center, float range)

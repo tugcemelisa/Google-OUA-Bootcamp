@@ -105,6 +105,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 414006044344925063}
+  - component: {fileID: 3108349528359345705}
+  - component: {fileID: 6778879774404823308}
+  - component: {fileID: 1400916442791782276}
   - component: {fileID: 1233888992542719750}
   - component: {fileID: 2831138414027143438}
   - component: {fileID: 6504178523769766505}
@@ -131,6 +134,57 @@ Transform:
   - {fileID: 5132632900186997289}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3108349528359345705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327558593952929264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a91f95decbca94cbbd46a359e3b93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OptionName: rush
+  interactableText: Press T to Accelerate
+  interactIcon: {fileID: 21300000, guid: 2969d90b86698124696637a6df64a112, type: 3}
+  interactKey: 116
+  activateWhenDisable: {fileID: 6778879774404823308}
+--- !u!114 &6778879774404823308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327558593952929264}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a91f95decbca94cbbd46a359e3b93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OptionName: interactive
+  interactableText: Press T to Sheare
+  interactIcon: {fileID: 21300000, guid: 2969d90b86698124696637a6df64a112, type: 3}
+  interactKey: 0
+  activateWhenDisable: {fileID: 1400916442791782276}
+--- !u!114 &1400916442791782276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327558593952929264}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a91f95decbca94cbbd46a359e3b93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OptionName: non-interactive
+  interactableText: Already sheared
+  interactIcon: {fileID: 21300000, guid: eca5871199eee2f45a82dba549343126, type: 3}
+  interactKey: 116
+  activateWhenDisable: {fileID: 0}
 --- !u!114 &1233888992542719750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +197,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc857bcaf343e34f8b0b57a372074d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactableUIElements:
+  - {fileID: 3108349528359345705}
+  - {fileID: 6778879774404823308}
+  - {fileID: 1400916442791782276}
   Agent: {fileID: 0}
   acceleration: 0
   speed: 0

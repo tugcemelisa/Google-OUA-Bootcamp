@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class AnimalBase : MonoBehaviour, IFarmAnimal
+public abstract class AnimalBase : Interactable, IFarmAnimal
 {
     #region Actions
     [HideInInspector] public Action OnWalk;
@@ -31,5 +31,19 @@ public abstract class AnimalBase : MonoBehaviour, IFarmAnimal
         speed = Agent.speed;
     }
 
-    public abstract void StandIdle();
+    public abstract void StandIdle(float duration);
+
+    public void ChangeUIElement()
+    {
+        foreach (var item in InteractableUIElements)
+        {
+            if (item.enabled)
+            {
+                item.Disable(true);
+
+                PlayerInteractableUI.Instance.UpdateUIElements();
+                break;
+            }
+        }
+    }
 }

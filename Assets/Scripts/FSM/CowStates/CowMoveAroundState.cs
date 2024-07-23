@@ -31,4 +31,9 @@ public class CowMoveAroundState : CowStates
         else if (fsm.executingState == ExecutingCowState.FollowHerd)
             fsm.SwitchState(fsm.followHerdState);
     }
+
+    public override void Interact(CowController fsm, KeyCode interactKey)
+    {
+        
+    }
 }

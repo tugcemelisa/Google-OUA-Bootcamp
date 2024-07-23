@@ -38,4 +38,9 @@ public class CowGrazeState : CowStates
         else if(stateIndex == 1)
             fsm.OnIdle.Invoke();
     }
+
+    public override void Interact(CowController fsm, KeyCode interactKey)
+    {
+        
+    }
 }

@@ -44,6 +44,7 @@ public class PlayerInteract : MonoBehaviourSingletonPersistent<PlayerInteract>
 
         if (interactables.Count < 1)
             return null;
+            
 
         Interactable closestInteractable = interactables[0];
         float closestDistance = Vector3.Distance(transform.position, closestInteractable.transform.position);

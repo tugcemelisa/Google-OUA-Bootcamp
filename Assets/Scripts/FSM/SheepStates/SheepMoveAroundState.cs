@@ -30,4 +30,9 @@ public class SheepMoveAroundState : SheepStates
         else if (fsm.executingState == ExecutingSheepState.FollowHerd)
             fsm.SwitchState(fsm.followHerdState);
     }
+
+    public override void Interact(SheepController fsm, KeyCode interactKey)
+    {
+        
+    }
 }

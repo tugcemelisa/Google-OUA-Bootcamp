@@ -40,4 +40,9 @@ public class CowFleeState : CowStates
         else if(fsm.executingState == ExecutingCowState.Rest) 
             fsm.SwitchState(fsm.restState);
     }
+
+    public override void Interact(CowController fsm, KeyCode interactKey)
+    {
+        
+    }
 }

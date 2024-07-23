@@ -6,20 +6,29 @@ public class SheepGetShearedState : SheepStates
     {
         Debug.Log("get sheared");
         fsm.OnSit.Invoke();
+        fsm.ChangeUIElement();
     }
 
     public override void UpdateState(SheepController fsm)
     {
         if (fsm.executingState == ExecutingSheepState.GetSheared)
         {
-            fsm.GetSheared();
+            
         }
         else
             ExitState(fsm);
     }
 
+    public override void Interact(SheepController fsm, KeyCode interactKey)
+    {
+        fsm.GetSheared(interactKey);
+    }
+
     public override void ExitState(SheepController fsm)
     {
-        
+        if (fsm.executingState == ExecutingSheepState.DoNothing)
+            fsm.SwitchState(fsm.doNothingState);
     }
+
+    
 }

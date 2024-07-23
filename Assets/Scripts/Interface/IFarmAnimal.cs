@@ -3,5 +3,5 @@ using UnityEngine;
 
 public interface IFarmAnimal
 {
-    void StandIdle();
+    void StandIdle(float duration);
 }

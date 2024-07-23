@@ -68,4 +68,9 @@ public class SheepRestState : SheepStates
 
         lastPosition = agent.transform.position;
     }
+
+    public override void Interact(SheepController fsm, KeyCode interactKey)
+    {
+        
+    }
 }

@@ -15,5 +15,6 @@ public enum InteractKeys
 {
     Bargain = KeyCode.R,
     Talk = KeyCode.E,
+    InteractAnimals = KeyCode.T,
     NONE = KeyCode.None
 }

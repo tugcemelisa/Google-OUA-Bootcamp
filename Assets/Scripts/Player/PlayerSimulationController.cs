@@ -31,12 +31,6 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     {
         switch (_executingState)
         {
-            case PlayerStates.Shear:
-                Shear();
-                break;
-            case PlayerStates.Milking:
-                Milk();
-                break;
             case PlayerStates.HoldingWool:
                 HoldWool();
                 break;
@@ -62,26 +56,14 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     public void Milk(Transform milkingAnimal)
     {
         _milkingAnimal = milkingAnimal;
-    }
-    private void Milk()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            float distanceToAnimal = Vector3.Distance(transform.position, _milkingAnimal.position);
-            if (distanceToAnimal < 1.5f)
-            {
-                _milkable = _milkingAnimal.GetComponent<IFarmAnimal>();
-                InputTrigger("Crouch");
-                _holdingPail = Instantiate(milkPailPrefab, _milkingAnimal.position + new Vector3(0.3f, 0, 0), Quaternion.identity);
+        _milkable = _milkingAnimal.GetComponent<IFarmAnimal>();
+        InputTrigger("Crouch");
+        _holdingPail = Instantiate(milkPailPrefab, _milkingAnimal.position + new Vector3(0.3f, 0, 0), Quaternion.identity);
 
-                if (_milkable != null)
-                    _milkable.StandIdle();
+        if (_milkable != null)
+            _milkable.StandIdle(3.5f);
 
-                StartCoroutine(FinishMilking());
-                return;
-            }
-            _executingState = PlayerStates.Default;
-        }
+        StartCoroutine(FinishMilking());
     }
 
     private IEnumerator FinishMilking()
@@ -107,6 +89,8 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         {
             InputTrigger("FinishHolding");
             _holdingPail.transform.SetParent(null);
+            _holdingPail.GetComponent<Rigidbody>().useGravity = true;
+            _holdingPail.GetComponent<Rigidbody>().isKinematic = false;
             _executingState = PlayerStates.Default;
         }
     }
@@ -122,33 +106,22 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
 
     public void Shear(Transform sheepTransform)
     {
-        _milkingAnimal = sheepTransform;
-
         if (_executingState == PlayerStates.Default)
         {
             _executingState = PlayerStates.Shear;
         }
-    }
-    private void Shear()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            float distanceToAnimal = Vector3.Distance(transform.position, _milkingAnimal.position);
-            if (distanceToAnimal < 1.5f)
-            {
-                _milkable = _milkingAnimal.GetComponent<IFarmAnimal>();
-                InputTrigger("Crouch");
-                InputTrigger("HoldingDown");
 
-                if (_milkable != null)
-                    _milkable.StandIdle();
+        _milkingAnimal = sheepTransform;
+        _milkable = _milkingAnimal.GetComponent<IFarmAnimal>();
+        InputTrigger("Crouch");
+        InputTrigger("HoldingDown");
 
-                StartCoroutine(FinishShearing());
-                return;
-            }
-            _executingState = PlayerStates.Default;
-        }
+        if (_milkable != null)
+            _milkable.StandIdle(5.5f);
+
+        StartCoroutine(FinishShearing());
     }
+
     private IEnumerator FinishShearing()
     {
         yield return new WaitForSeconds(5.5f);

@@ -41,6 +41,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1517106023775156329}
+  - component: {fileID: 8573862606286282273}
+  - component: {fileID: 2124993031074205096}
+  - component: {fileID: 3021928274363226354}
   - component: {fileID: 6403496312350503280}
   - component: {fileID: 8207165073875513603}
   - component: {fileID: 5561207175784555001}
@@ -67,6 +70,57 @@ Transform:
   - {fileID: 9203528780245468392}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8573862606286282273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673882889601390739}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a91f95decbca94cbbd46a359e3b93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OptionName: non-interactive
+  interactableText: Already milked
+  interactIcon: {fileID: 21300000, guid: eca5871199eee2f45a82dba549343126, type: 3}
+  interactKey: 116
+  activateWhenDisable: {fileID: 0}
+--- !u!114 &2124993031074205096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673882889601390739}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a91f95decbca94cbbd46a359e3b93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OptionName: interactive
+  interactableText: Press T to Milk
+  interactIcon: {fileID: 21300000, guid: 2969d90b86698124696637a6df64a112, type: 3}
+  interactKey: 116
+  activateWhenDisable: {fileID: 8573862606286282273}
+--- !u!114 &3021928274363226354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673882889601390739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a91f95decbca94cbbd46a359e3b93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OptionName: rush
+  interactableText: Press T to Accelerate
+  interactIcon: {fileID: 21300000, guid: 2969d90b86698124696637a6df64a112, type: 3}
+  interactKey: 116
+  activateWhenDisable: {fileID: 2124993031074205096}
 --- !u!114 &6403496312350503280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,6 +133,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9aebd3354c6f23469e8577add885e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactableUIElements:
+  - {fileID: 2124993031074205096}
+  - {fileID: 8573862606286282273}
+  - {fileID: 3021928274363226354}
   Agent: {fileID: 0}
   acceleration: 0
   speed: 0

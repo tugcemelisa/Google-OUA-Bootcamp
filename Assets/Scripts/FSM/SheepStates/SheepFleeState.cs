@@ -31,4 +31,9 @@ public class SheepFleeState : SheepStates
         else if (fsm.executingState == ExecutingSheepState.Rest)
             fsm.SwitchState(fsm.restState);
     }
+
+    public override void Interact(SheepController fsm, KeyCode interactKey)
+    {
+        
+    }
 }
