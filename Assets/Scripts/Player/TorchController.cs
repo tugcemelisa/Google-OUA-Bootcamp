@@ -14,8 +14,21 @@ public class TorchController : MonoBehaviour
     [SerializeField] float fearAttackRadius=3f;
     [SerializeField] LayerMask layerToGiveFear;
 
+    private void OnEnable()
+    {
+        GameModeManager.OnNightStart += () => torchHead.gameObject.SetActive(true);
+    }
+    private void OnDisable()
+    {
+        GameModeManager.OnNightStart -= () => torchHead.gameObject.SetActive(true);
+    }
 
-    private void Update()
+    private void Start()
+    {
+        torchHead.gameObject.SetActive(false);
+    }
+
+    public void ControlAttack()
     {
         cooldown -= Time.deltaTime;
         if (cooldown <= 0)
@@ -31,15 +44,15 @@ public class TorchController : MonoBehaviour
             Attack();
         }
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             animator.SetTrigger("Gather");
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            animator.SetTrigger("Petting");
-        }
+    public void Pet()
+    {
+        animator.SetTrigger("Petting");
     }
 
     private void Attack()

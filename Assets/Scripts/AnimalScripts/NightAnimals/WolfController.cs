@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class WolfController : MonoBehaviour
 {
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] Transform target;
+    /*[SerializeField]*/ public Transform target;
     [SerializeField] Animator animator;
 
     [SerializeField] float attackRange = 1.5f;

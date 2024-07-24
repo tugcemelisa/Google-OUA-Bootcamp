@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class NightCowController : MonoBehaviour
 {
-    [SerializeField] Animator animator;
+    /*[SerializeField]*/ Animator animator;
 
     [Header("Hit Point")]
     [SerializeField] private float hitPointMaximum;
@@ -19,6 +19,7 @@ public class NightCowController : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         hitPoint = hitPointMaximum;
     }
 

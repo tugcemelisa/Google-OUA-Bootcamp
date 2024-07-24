@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,20 +11,38 @@ enum PlayerStates
     HoldingMilkPail,
     Selling,
     Shear,
-    HoldingWool
+    HoldingWool,
+    Fight
 }
 public class PlayerSimulationController : MonoBehaviour, IPlayer
 {
-    Animator _animator;
+    private Animator _animator;
+    public RuntimeAnimatorController daytimeAnimator;
+    public RuntimeAnimatorController nightAnimator;
     PlayerStates _executingState;
     IFarmAnimal _milkable;
+    TorchController _torchController;
     [SerializeField] private Transform milkPailTransform;
     [SerializeField] private GameObject milkPailPrefab;
     [SerializeField] private ParticleSystem cutWoolEffect;
 
+    private List<AnimalBase> _herd = new();
+    [HideInInspector] public static Action<List<AnimalBase>> OnTranshumingStart;
+
+    private void OnEnable()
+    {
+        GameModeManager.OnNightStart += ActivatePlayerNightMode;
+    }
+    private void OnDisable()
+    {
+        GameModeManager.OnNightStart -= ActivatePlayerNightMode;
+    }
+
     private void Start()
     {
+        _torchController = GetComponent<TorchController>();
         _animator = GetComponent<Animator>();
+        _animator.runtimeAnimatorController = daytimeAnimator;
         _executingState = PlayerStates.Default;
     }
 
@@ -37,9 +56,18 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
             case PlayerStates.HoldingMilkPail:
                 SellRequest(); 
                 break;
+            case PlayerStates.Fight:
+                _torchController.ControlAttack();
+                break;
             default:
                 break;
         }
+    }
+
+    public void TakeAnimals(List<AnimalBase> animals)
+    {
+        _herd.AddRange(animals);
+        OnTranshumingStart.Invoke(_herd);
     }
 
     public void ScareAnimal(NavMeshAgent animalAgent)
@@ -137,6 +165,12 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
             InputTrigger("FinishHolding");
             _executingState = PlayerStates.Default;
         }
+    }
+
+    private void ActivatePlayerNightMode()
+    {
+        _animator.runtimeAnimatorController = nightAnimator;
+        _executingState = PlayerStates.Fight;
     }
 
     private void InputTrigger(string trigger)

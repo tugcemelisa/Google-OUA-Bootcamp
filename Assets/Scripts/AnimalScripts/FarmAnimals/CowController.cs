@@ -41,8 +41,11 @@ public class CowController : AnimalBase
     public override void Start()
     {
         base.Start();
-        executingState = ExecutingCowState.Graze;
-        currentState = grazeState;
+        //executingState = ExecutingCowState.Graze;
+        //currentState = grazeState;
+        //currentState.EnterState(this);
+        executingState = ExecutingCowState.DoNothing;
+        currentState = doNothingState;
         currentState.EnterState(this);
 
         //_grazeTimer = grazeTime;

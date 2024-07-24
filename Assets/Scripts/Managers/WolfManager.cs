@@ -6,7 +6,8 @@ using Random = UnityEngine.Random;
 public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
 {
     [Header("Targets")]
-    [SerializeField] Transform[] attackableTargets;
+    //[SerializeField] Transform[] attackableTargets;
+    private List<Transform> attackableTargets = new();
     [SerializeField] Transform[] circleTargets;
     [SerializeField] Transform centerOfTheCircle;
     [SerializeField] Transform[] gettingOutTransforms;
@@ -21,10 +22,42 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
     [SerializeField] float rotationSpeed = 5f;
     [SerializeField] float timeBetweenAttacks = 5f;
 
-    private void Start()
+    //private void Start()
+    //{
+    //    CircleWaveStart();
+    //    StartCoroutine(WolfAttacks());
+    //}
+
+    private void OnEnable()
     {
-        CircleWaveStart();
-        StartCoroutine(WolfAttacks());
+        GameModeManager.OnNightStart += () => Invoke("StartAttack", 2f);
+        PlayerSimulationController.OnTranshumingStart += UpdateAttackableList;
+    }
+    private void OnDisable()
+    {
+        GameModeManager.OnNightStart -= () => Invoke("StartAttack", 2f);
+        PlayerSimulationController.OnTranshumingStart -= UpdateAttackableList;
+    }
+
+    private void UpdateAttackableList(List<AnimalBase> animalsToAttack)
+    {
+        for (int i = 0; i < animalsToAttack.Count; i++)
+        {
+            attackableTargets.Add(animalsToAttack[i].transform);
+        }
+        //for (int i = 0; i < circleWolves.Count; i++)
+        //{
+        //    circleWolves[i].target = attackableTargets[0];
+        //}
+    }
+
+    private void StartAttack()
+    {
+        if(attackableTargets.Count >= 1)
+        {
+            CircleWaveStart();
+            StartCoroutine(WolfAttacks());
+        }
     }
 
     private void Update()
@@ -64,7 +97,7 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
         if (selectedWolf == null) return;
         circleWolves.Remove(selectedWolf);
         selectedWolf.transform.parent = this.transform;
-        selectedWolf.AssignNewTarget(attackableTargets[Random.Range(0, attackableTargets.Length)], true);
+        selectedWolf.AssignNewTarget(attackableTargets[Random.Range(0, attackableTargets.Count)], true);
         normalWolves.Add(selectedWolf);
     }
 

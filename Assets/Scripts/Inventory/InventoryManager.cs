@@ -172,6 +172,7 @@ public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManage
         }
     }
 
+    IGameModeChanger IGameModeChanger;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Item"))
@@ -181,6 +182,14 @@ public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManage
 
             AddItem(item);
             ShowInventory();
+        }
+        else
+        {
+            IGameModeChanger = other.GetComponent<IGameModeChanger>();
+            if(IGameModeChanger != null)
+            {
+                IGameModeChanger.ChangeGameMode();
+            }
         }
     }
 

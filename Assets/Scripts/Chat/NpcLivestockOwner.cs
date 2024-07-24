@@ -51,6 +51,15 @@ public class NpcLivestockOwner : NPCInteractable
             }
         }
 
+        GiveAnimals();
         _executingState = executingState.Wait;
+    }
+
+    public GameObject player;
+    IPlayer IPlayer;
+    public void GiveAnimals()
+    {
+        IPlayer = player.GetComponent<IPlayer>();
+        IPlayer.TakeAnimals(herdAnimals);
     }
 }
