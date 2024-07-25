@@ -524,6 +524,71 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1517106023775156329, guid: ac88f950433a1d449bf290239fdce2f7, type: 3}
   m_PrefabInstance: {fileID: 590588846}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &614269374
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ea9b93c29111d894ab02fb5ae35371ee, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.68
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea9b93c29111d894ab02fb5ae35371ee, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea9b93c29111d894ab02fb5ae35371ee, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 22.7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea9b93c29111d894ab02fb5ae35371ee, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea9b93c29111d894ab02fb5ae35371ee, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea9b93c29111d894ab02fb5ae35371ee, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea9b93c29111d894ab02fb5ae35371ee, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea9b93c29111d894ab02fb5ae35371ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea9b93c29111d894ab02fb5ae35371ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea9b93c29111d894ab02fb5ae35371ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ea9b93c29111d894ab02fb5ae35371ee, type: 3}
+      propertyPath: m_Name
+      value: Windmill3.3.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: ea9b93c29111d894ab02fb5ae35371ee, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 08288d96771cd9e44a1ebd64627b76ca, type: 2}
+    - target: {fileID: 5866666021909216657, guid: ea9b93c29111d894ab02fb5ae35371ee, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ea9b93c29111d894ab02fb5ae35371ee, type: 3}
 --- !u!1001 &843120934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1323,6 +1388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2039754439b137a48b098f22fe94d8dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  daytimeAnimator: {fileID: 0}
+  nightAnimator: {fileID: 0}
   milkPailTransform: {fileID: 2633465499268055672}
   milkPailPrefab: {fileID: 4442379737664054029, guid: ce592b8d30c2dad478522fce463cc252, type: 3}
   cutWoolEffect: {fileID: 1729337754}
@@ -2168,3 +2235,4 @@ SceneRoots:
   - {fileID: 2005381166}
   - {fileID: 941150143}
   - {fileID: 1844661859}
+  - {fileID: 614269374}
