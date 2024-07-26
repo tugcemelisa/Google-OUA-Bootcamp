@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class NightCowController : MonoBehaviour
 {
-    /*[SerializeField]*/ Animator animator;
+    /*[SerializeField]*/ //Animator animator;
 
     [Header("Hit Point")]
     [SerializeField] private float hitPointMaximum;
@@ -17,9 +17,9 @@ public class NightCowController : MonoBehaviour
 
     float hitPoint = 10;
 
-    private void Start()
+    public void Start()
     {
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         hitPoint = hitPointMaximum;
     }
 
@@ -28,6 +28,7 @@ public class NightCowController : MonoBehaviour
         if (!isAlive) return;
         hitPoint -= amount;
         CheckIsDead();
+        Debug.Log(name +" taking damage");
     }
 
     private void CheckIsDead()
@@ -38,7 +39,7 @@ public class NightCowController : MonoBehaviour
         }
         else
         {
-            animator.SetTrigger("Hurt");
+            //animator.SetTrigger("Hurt");
             UpdateHitPointUI();
         }
 
@@ -51,7 +52,7 @@ public class NightCowController : MonoBehaviour
 
     void Die()
     {
-        animator.SetTrigger("Dead");
+        //animator.SetTrigger("Dead");
         isAlive = false;
 
         hitPointUI.fillAmount = 0;

@@ -22,6 +22,7 @@ public class DayNightCycle : MonoBehaviour
 
     void UpdateLighting(float timePercent)
     {
+        directionalLight.transform.Rotate(Vector3.up, (1f/ 5400f)*360f, Space.World);
         directionalLight.color = lightColor.Evaluate(timePercent);
         directionalLight.intensity = lightIntensity.Evaluate(timePercent);
     }

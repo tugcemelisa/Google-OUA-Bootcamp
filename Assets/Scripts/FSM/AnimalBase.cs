@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public abstract class AnimalBase : Interactable, IFarmAnimal
 {
@@ -10,6 +11,8 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     [HideInInspector] public Action OnGraze;
     [HideInInspector] public Action OnGrazeFinish;
     [HideInInspector] public Action OnFlee;
+    [HideInInspector] public Action OnHurt;
+    [HideInInspector] public Action OnDie;
     #endregion
 
     //public AnimalStates currentState;
@@ -22,6 +25,14 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     [HideInInspector] public float acceleration;
     [HideInInspector] public float speed;
 
+    [Header("Hit Point")]
+    [SerializeField] private float hitPointMaximum;
+    [SerializeField] private Image hitPointUI;
+
+    bool isAlive = true;
+
+    float hitPoint = 10;
+
     public virtual void Start()
     {
         Agent = GetComponent<NavMeshAgent>();
@@ -29,6 +40,8 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
 
         acceleration = Agent.acceleration;
         speed = Agent.speed;
+
+        hitPoint = hitPointMaximum;
     }
 
     public abstract void StandIdle(float duration);
@@ -45,5 +58,43 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
                 break;
             }
         }
+    }
+
+    public void TakeDamage(float amount)
+    {
+        if (!isAlive) return;
+        hitPoint -= amount;
+        CheckIsDead();
+        Debug.Log(name + " taking damage");
+    }
+
+    private void CheckIsDead()
+    {
+        if (hitPoint <= 0)
+        {
+            Die();
+        }
+        else
+        {
+            //animator.SetTrigger("Hurt");
+            OnHurt.Invoke();
+            UpdateHitPointUI();
+        }
+
+    }
+
+    private void UpdateHitPointUI()
+    {
+        hitPointUI.fillAmount = hitPoint / hitPointMaximum;
+    }
+
+    void Die()
+    {
+        //animator.SetTrigger("Dead");
+        OnDie.Invoke();
+        isAlive = false;
+
+        hitPointUI.fillAmount = 0;
+
     }
 }

@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: 2124993031074205096}
   - component: {fileID: 3021928274363226354}
   - component: {fileID: 6403496312350503280}
-  - component: {fileID: 797235518770049674}
   - component: {fileID: 8207165073875513603}
   - component: {fileID: 5561207175784555001}
   m_Layer: 0
@@ -141,6 +140,8 @@ MonoBehaviour:
   Agent: {fileID: 0}
   acceleration: 0
   speed: 0
+  hitPointMaximum: 10
+  hitPointUI: {fileID: 2651100822763241617}
   executingState: 0
   detectionRadius: 4
   moveRadius: 10
@@ -149,20 +150,6 @@ MonoBehaviour:
   cowDetectionRadius: 2
   _herdHeartbeat: 0
   _maxDuration: 1
---- !u!114 &797235518770049674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 673882889601390739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f9287727219c1147a7e5d93e9208176, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitPointMaximum: 10
-  hitPointUI: {fileID: 2651100822763241617}
 --- !u!195 &8207165073875513603
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -771,6 +758,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9c29c35fa20de43a10aff1aaa2d336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  daytimeAnimator: {fileID: 9100000, guid: 1c314f06152cf5346a089d9b2bc36170, type: 2}
+  nightAnimator: {fileID: 9100000, guid: 418b7f9728213e547b8bc705426856e3, type: 2}
 --- !u!95 &2956379696299577633
 Animator:
   serializedVersion: 7

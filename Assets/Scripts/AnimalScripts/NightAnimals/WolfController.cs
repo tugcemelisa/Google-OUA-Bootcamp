@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class WolfController : MonoBehaviour
 {
-    [SerializeField] NavMeshAgent agent;
+    WolfStates executingState;
+    /*[SerializeField]*/public NavMeshAgent agent;
     /*[SerializeField]*/ public Transform target;
     [SerializeField] Animator animator;
 
@@ -25,7 +26,30 @@ public class WolfController : MonoBehaviour
     [SerializeField] float maxFear = 10;
     [SerializeField] private Image fearUI;
     float fear = 0;
+
+    private void OnEnable()
+    {
+        WolfManager.OnWolfsAppear += Startt;
+    }
+    private void OnDisable()
+    {
+        WolfManager.OnWolfsAppear -= Startt;
+    }
+
+    private void Start()
+    {
+        executingState = WolfStates.Flee;
+    }
+    private void Startt()
+    {
+        executingState = WolfStates.TargetDetected;
+    }
     private void Update()
+    {
+        Hunt();
+    }
+
+    private void Hunt()
     {
         if (hasTarget())
         {
@@ -33,9 +57,12 @@ public class WolfController : MonoBehaviour
             {
                 agent.isStopped = true;
                 isMoving = false;
-
+                //Debug.Log(isTargetAttackable + " " + isAttacking);
                 if (isTargetAttackable && !isAttacking)
+                {
                     Attack();
+                    Debug.Log("target attacable");
+                }
             }
             else
             {
@@ -51,6 +78,7 @@ public class WolfController : MonoBehaviour
 
     bool isTargetInAttackRange()
     {
+        //Debug.Log((target.position - transform.position).magnitude);
         return (target.position - transform.position).magnitude < attackRange;
     }
 
@@ -64,6 +92,8 @@ public class WolfController : MonoBehaviour
     IEnumerator Attacking()
     {
         yield return new WaitForSeconds(attackDelay);
+        Debug.Log(name + "wolf attacking cow");
+        GiveDamage();
         isAttacking = false;
     }
 
@@ -78,23 +108,27 @@ public class WolfController : MonoBehaviour
         }
   
         agent.SetDestination(target.position);
+        //Debug.Log(name + " MoveToTarget");
     }
 
 
     public void GiveDamage()
     {
-        var cow = target.GetComponent<NightCowController>();
+        var cow = target.GetComponent<AnimalBase>();
         if (cow) cow.TakeDamage(attackDamage);
+        Debug.Log(name + "wolf damage cow..");
     }
 
     public void AssignNewTarget(Transform target, bool isDamageable)
     {
         this.target = target;
         this.isTargetAttackable = isDamageable;
+        Debug.Log(target.name + " is " + isTargetAttackable);
     }
 
     public void StartCircleRun(Transform target)
     {
+        //Debug.Log(name + " StartCircleRun");
         AssignNewTarget(target, false);
         isMoving = false;
         MoveToTarget();
@@ -103,8 +137,10 @@ public class WolfController : MonoBehaviour
 
     IEnumerator RunToTheCircle()
     {
-        while (Vector3.Distance(transform.position, target.position) > .15f)
+        //Debug.Log(name + " RunToTheCircle");
+        while (Vector3.Distance(transform.position, target.position) > .5f)    // 0.15f    !!!!!
         {
+            //Debug.Log(Vector3.Distance(transform.position, target.position));
             yield return new WaitForFixedUpdate();
         }
         agent.isStopped = true;
@@ -113,6 +149,7 @@ public class WolfController : MonoBehaviour
 
     public void AddFear(float amount)
     {
+        //Debug.Log(name + " scares");
         fear += amount;
         fearUI.fillAmount = fear / maxFear;
         CheckFear();
@@ -122,6 +159,7 @@ public class WolfController : MonoBehaviour
     {
         if (fear >= maxFear)
         {
+            //Debug.Log(name + " is done");
             // TO UPDATE
             WolfManager.Instance.RunAway(this);
         }
@@ -133,5 +171,6 @@ enum WolfStates
     TargetDetected,
     MoveToTarget,
     AttackToTarget,
-    Flee
+    Flee,
+    Hunt
 }

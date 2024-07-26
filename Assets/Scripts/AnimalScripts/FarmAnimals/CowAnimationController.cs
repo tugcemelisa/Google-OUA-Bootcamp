@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class CowAnimationController : MonoBehaviour
 {
+    public RuntimeAnimatorController daytimeAnimator;
+    public RuntimeAnimatorController nightAnimator;
+
     Animator animator;
     Animator Animator
     {
@@ -27,17 +30,30 @@ public class CowAnimationController : MonoBehaviour
 
     private void OnEnable()
     {
+        GameModeManager.OnNightStart += () => Animator.runtimeAnimatorController = nightAnimator;
+
         CowController.OnWalk += () => InputTrigger("Walk");
         CowController.OnGraze += () => InputTrigger("Graze");
         CowController.OnFlee += () => InputTrigger("Flee");
         CowController.OnIdle += () => InputTrigger("Idle");
+        CowController.OnHurt += () => InputTrigger("Hurt");
+        CowController.OnDie += () => InputTrigger("Dead");
     }
     private void OnDisable()
     {
+        GameModeManager.OnNightStart -= () => Animator.runtimeAnimatorController = nightAnimator;
+
         CowController.OnWalk -= () => InputTrigger("Walk");
         CowController.OnGraze -= () => InputTrigger("Graze");
         CowController.OnFlee -= () => InputTrigger("Flee");
         CowController.OnIdle -= () => InputTrigger("Idle");
+        CowController.OnHurt -= () => InputTrigger("Hurt");
+        CowController.OnDie -= () => InputTrigger("Dead");
+    }
+
+    private void Start()
+    {
+        Animator.runtimeAnimatorController = daytimeAnimator;
     }
 
     private void InputTrigger(string trigger)

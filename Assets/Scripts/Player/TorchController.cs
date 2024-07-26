@@ -58,6 +58,7 @@ public class TorchController : MonoBehaviour
     private void Attack()
     {
         animator.SetTrigger("Attack");
+        GiveFear();
     }
 
     private void GiveFear()
@@ -68,7 +69,10 @@ public class TorchController : MonoBehaviour
         {
             var wolf = hit.collider.GetComponent<WolfController>();
             if (wolf)
+            {
                 wolf.AddFear(fearPerAttack);
+                Debug.Log(name + " scares " + wolf.name + " TORCHCONTROLLER");
+            }
         }
        
     }

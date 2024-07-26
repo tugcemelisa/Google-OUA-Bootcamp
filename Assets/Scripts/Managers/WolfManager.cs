@@ -5,6 +5,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
 {
+    [HideInInspector] public static Action OnWolfsAppear;
     [Header("Targets")]
     //[SerializeField] Transform[] attackableTargets;
     private List<Transform> attackableTargets = new();
@@ -25,7 +26,6 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
     //private void Start()
     //{
     //    CircleWaveStart();
-    //    StartCoroutine(WolfAttacks());
     //}
 
     private void OnEnable()
@@ -56,12 +56,15 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
         if(attackableTargets.Count >= 1)
         {
             CircleWaveStart();
-            StartCoroutine(WolfAttacks());
+            OnWolfsAppear.Invoke();
+            //StartCoroutine(WolfAttacks());
         }
     }
 
     private void Update()
     {
+        if (GameModeManager.Instance.executingGameMode != ExecutingGameMode.Night) return;
+
         angle += Time.deltaTime * rotationSpeed;
         centerOfTheCircle.transform.localRotation = Quaternion.Euler(0f, angle, 0f);
     }
@@ -71,7 +74,8 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
         int i = 0;
         foreach (var wolf in normalWolves)
         {
-            wolf.transform.position = circleTargets[i].position;
+            //wolf.transform.position = circleTargets[i].position;
+            //wolf.GetComponent<WolfController>().agent.SetDestination(circleTargets[i].position);
             wolf.StartCircleRun(circleTargets[i]);
             i++;
             i %= circleTargets.Length;
@@ -90,9 +94,11 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
 
     void ChooseAndSendAWolfToAttack()
     {
+        Debug.Log("WOLF COUNT IS: " + circleWolves.Count);
         int randomIndex = Random.Range(0, circleWolves.Count);
         if (randomIndex <= -1) return;
         var selectedWolf = circleWolves[randomIndex];
+        Debug.Log(selectedWolf.name);
 
         if (selectedWolf == null) return;
         circleWolves.Remove(selectedWolf);
@@ -109,6 +115,12 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
         wolf.transform.parent = target;
 
         circleWolves.Add(wolf);
+        Debug.Log("Count: " + circleWolves.Count);
+        if(circleWolves.Count == circleTargets.Length)
+        {
+            GameModeManager.Instance.executingGameMode = ExecutingGameMode.Night;
+            StartCoroutine(WolfAttacks());
+        }
     }
 
     public void RunAway(WolfController wolf)
