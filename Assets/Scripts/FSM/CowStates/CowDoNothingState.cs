@@ -9,7 +9,7 @@ public class CowDoNothingState : CowStates
 
     public override void UpdateState(CowController fsm)
     {
-        fsm.Agent.SetDestination(fsm.transform.position);   //!!!!!!!!!!!!
+        
     }
 
     public override void Interact(CowController fsm, KeyCode interactKey)

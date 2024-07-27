@@ -16,8 +16,9 @@ public class CowFleeState : CowStates
         if (fsm.executingState == ExecutingCowState.Flee)
         {
             fsm.Flee();
-            fsm.FindNearestHerd();
+            //fsm.FindNearestHerd();
             fsm.CheckIfArrived();
+            fsm.FindNearestHerd();
             //if (fsm.Agent.remainingDistance <= 4.1f)
             //{
             //    fsm.executingState = ExecutingCowState.Graze;
@@ -39,6 +40,8 @@ public class CowFleeState : CowStates
             fsm.SwitchState(fsm.followHerdState);
         else if(fsm.executingState == ExecutingCowState.Rest) 
             fsm.SwitchState(fsm.restState);
+        else if (fsm.executingState == ExecutingCowState.GetHunted)
+            fsm.SwitchState(fsm.getHuntedState);
     }
 
     public override void Interact(CowController fsm, KeyCode interactKey)

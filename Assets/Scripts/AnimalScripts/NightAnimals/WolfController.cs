@@ -3,12 +3,12 @@ using Unity;
 using UnityEngine.AI;
 using System.Collections;
 using UnityEngine.UI;
+using DG.Tweening;
 
-public class WolfController : MonoBehaviour
+public class WolfController : Interactable
 {
-    WolfStates executingState;
-    /*[SerializeField]*/public NavMeshAgent agent;
-    /*[SerializeField]*/ public Transform target;
+    [SerializeField] private NavMeshAgent agent;
+    private Transform target;
     [SerializeField] Animator animator;
 
     [SerializeField] float attackRange = 1.5f;
@@ -27,23 +27,6 @@ public class WolfController : MonoBehaviour
     [SerializeField] private Image fearUI;
     float fear = 0;
 
-    private void OnEnable()
-    {
-        WolfManager.OnWolfsAppear += Startt;
-    }
-    private void OnDisable()
-    {
-        WolfManager.OnWolfsAppear -= Startt;
-    }
-
-    private void Start()
-    {
-        executingState = WolfStates.Flee;
-    }
-    private void Startt()
-    {
-        executingState = WolfStates.TargetDetected;
-    }
     private void Update()
     {
         Hunt();
@@ -57,11 +40,11 @@ public class WolfController : MonoBehaviour
             {
                 agent.isStopped = true;
                 isMoving = false;
-                //Debug.Log(isTargetAttackable + " " + isAttacking);
+
                 if (isTargetAttackable && !isAttacking)
                 {
                     Attack();
-                    Debug.Log("target attacable");
+                    Debug.Log("target attackable");
                 }
             }
             else
@@ -78,14 +61,15 @@ public class WolfController : MonoBehaviour
 
     bool isTargetInAttackRange()
     {
-        //Debug.Log((target.position - transform.position).magnitude);
         return (target.position - transform.position).magnitude < attackRange;
     }
 
     void Attack()
     {
         isAttacking = true;
+        RotateToPrey();     // !!!!!!!
         animator.SetTrigger("Attack");
+        Debug.Log(name + " " + animator.ToString());
         StartCoroutine(Attacking());
     }
 
@@ -108,7 +92,14 @@ public class WolfController : MonoBehaviour
         }
   
         agent.SetDestination(target.position);
-        //Debug.Log(name + " MoveToTarget");
+    }
+
+    public void RotateToPrey()
+    {
+        Vector3 direction = (target.position + new Vector3(-0.5f, 0, 0) - transform.position).normalized;
+        float singleStep = 2 * Time.deltaTime;
+        Vector3 targetEulerAngles = Quaternion.LookRotation(direction).eulerAngles;
+        transform.DORotate(targetEulerAngles, 2);
     }
 
 
@@ -123,12 +114,14 @@ public class WolfController : MonoBehaviour
     {
         this.target = target;
         this.isTargetAttackable = isDamageable;
-        Debug.Log(target.name + " is " + isTargetAttackable);
+        //if(isDamageable)
+        //{
+        //    RotateToPrey();
+        //}
     }
 
     public void StartCircleRun(Transform target)
     {
-        //Debug.Log(name + " StartCircleRun");
         AssignNewTarget(target, false);
         isMoving = false;
         MoveToTarget();
@@ -137,10 +130,8 @@ public class WolfController : MonoBehaviour
 
     IEnumerator RunToTheCircle()
     {
-        //Debug.Log(name + " RunToTheCircle");
         while (Vector3.Distance(transform.position, target.position) > .5f)    // 0.15f    !!!!!
         {
-            //Debug.Log(Vector3.Distance(transform.position, target.position));
             yield return new WaitForFixedUpdate();
         }
         agent.isStopped = true;
@@ -149,7 +140,6 @@ public class WolfController : MonoBehaviour
 
     public void AddFear(float amount)
     {
-        //Debug.Log(name + " scares");
         fear += amount;
         fearUI.fillAmount = fear / maxFear;
         CheckFear();
@@ -159,10 +149,17 @@ public class WolfController : MonoBehaviour
     {
         if (fear >= maxFear)
         {
-            //Debug.Log(name + " is done");
             // TO UPDATE
             WolfManager.Instance.RunAway(this);
         }
+    }
+
+    public override void Interact(Transform interactorTransform, KeyCode interactKey)
+    {
+        //if ((int)interactKey == (int)InteractKeys.InteractAnimals)
+        //{
+
+        //}
     }
 }
 
@@ -172,5 +169,4 @@ enum WolfStates
     MoveToTarget,
     AttackToTarget,
     Flee,
-    Hunt
 }

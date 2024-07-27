@@ -5,7 +5,6 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
 {
-    [HideInInspector] public static Action OnWolfsAppear;
     [Header("Targets")]
     //[SerializeField] Transform[] attackableTargets;
     private List<Transform> attackableTargets = new();
@@ -22,11 +21,6 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
     float angle = 0f;
     [SerializeField] float rotationSpeed = 5f;
     [SerializeField] float timeBetweenAttacks = 5f;
-
-    //private void Start()
-    //{
-    //    CircleWaveStart();
-    //}
 
     private void OnEnable()
     {
@@ -45,10 +39,6 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
         {
             attackableTargets.Add(animalsToAttack[i].transform);
         }
-        //for (int i = 0; i < circleWolves.Count; i++)
-        //{
-        //    circleWolves[i].target = attackableTargets[0];
-        //}
     }
 
     private void StartAttack()
@@ -56,8 +46,6 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
         if(attackableTargets.Count >= 1)
         {
             CircleWaveStart();
-            OnWolfsAppear.Invoke();
-            //StartCoroutine(WolfAttacks());
         }
     }
 
@@ -75,7 +63,6 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
         foreach (var wolf in normalWolves)
         {
             //wolf.transform.position = circleTargets[i].position;
-            //wolf.GetComponent<WolfController>().agent.SetDestination(circleTargets[i].position);
             wolf.StartCircleRun(circleTargets[i]);
             i++;
             i %= circleTargets.Length;
@@ -95,6 +82,7 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
     void ChooseAndSendAWolfToAttack()
     {
         Debug.Log("WOLF COUNT IS: " + circleWolves.Count);
+        if (circleWolves.Count <= 0) return;
         int randomIndex = Random.Range(0, circleWolves.Count);
         if (randomIndex <= -1) return;
         var selectedWolf = circleWolves[randomIndex];
