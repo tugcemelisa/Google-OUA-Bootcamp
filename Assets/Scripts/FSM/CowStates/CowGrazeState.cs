@@ -28,6 +28,8 @@ public class CowGrazeState : CowStates
             fsm.SwitchState(fsm.moveAroundState);
         else if (fsm.executingState == ExecutingCowState.Flee)
             fsm.SwitchState(fsm.fleeState);
+        else if (fsm.executingState == ExecutingCowState.GetHunted)
+            fsm.SwitchState(fsm.getHuntedState);
     }
 
     private void ChooseAnim(CowController fsm)
