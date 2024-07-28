@@ -46,7 +46,7 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         _torchController = GetComponent<TorchController>();
         _animator = GetComponent<Animator>();
         _animator.runtimeAnimatorController = daytimeAnimator;
-        _executingState = PlayerStates.TakeAnimals;
+        _executingState = PlayerStates.Default;
     }
 
     private void Update()
@@ -81,6 +81,7 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
             priority++;
         }
         OnTranshumingStart.Invoke(_herd);
+        _executingState = PlayerStates.TakeAnimals;
     }
 
     public void StartGrazing()
