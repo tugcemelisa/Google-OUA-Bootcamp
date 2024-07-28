@@ -13,9 +13,11 @@ public class CowFollowHerdState : CowStates
     {
         if (fsm.executingState == ExecutingCowState.FollowHerd)
         {
-            fsm.SettleInBarn();
             fsm.CheckIfArrived();
-            fsm.CheckDistanceToPlayer();
+            fsm.FollowHerd();
+            fsm.RejoinHerd();
+            fsm.SettleInBarn();
+            //fsm.CheckDistanceToPlayer();
         }
         else
             ExitState(fsm);
@@ -27,8 +29,10 @@ public class CowFollowHerdState : CowStates
             fsm.SwitchState(fsm.restState);
         else if (fsm.executingState == ExecutingCowState.Graze)
             fsm.SwitchState(fsm.grazeState);
-        else if (fsm.executingState == ExecutingCowState.Flee)
-            fsm.SwitchState(fsm.fleeState);
+        else if (fsm.executingState == ExecutingCowState.GoToMeadow)
+            fsm.SwitchState(fsm.goToMeadowState);
+        //else if (fsm.executingState == ExecutingCowState.Flee)
+        //    fsm.SwitchState(fsm.fleeState);
         else if (fsm.executingState == ExecutingCowState.GetHunted)
             fsm.SwitchState(fsm.getHuntedState);
     }

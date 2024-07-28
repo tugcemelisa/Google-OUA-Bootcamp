@@ -84,7 +84,6 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
         Debug.Log("WOLF COUNT IS: " + circleWolves.Count);
         if (circleWolves.Count <= 0) return;
         int randomIndex = Random.Range(0, circleWolves.Count);
-        if (randomIndex <= -1) return;
         var selectedWolf = circleWolves[randomIndex];
         Debug.Log(selectedWolf.name);
 

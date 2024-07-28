@@ -226,6 +226,28 @@ public class SheepController : AnimalBase
         Agent.SetDestination(herdPosition);
     }
 
+    public override void StartStraggle()
+    {
+        executingState = ExecutingSheepState.Flee;
+    }
+
+    public override void StartMoveToMeadow()
+    {
+        RejoinHerd();
+    }
+
+    public void RejoinHerd()
+    {
+        if (meadow != null)
+        {
+            //executingState = ExecutingSheepState.GoToMeadow;
+        }
+    }
+    public override void StartDanger()
+    {
+        //executingState = ExecutingSheepState.GetHunted;
+    }
+
     public void SettleInBarn()
     {
         RaycastHit hit;

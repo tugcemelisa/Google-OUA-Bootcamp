@@ -7,6 +7,7 @@ using UnityEngine.AI;
 enum PlayerStates
 {
     Default,
+    TakeAnimals,
     Milking,
     HoldingMilkPail,
     Selling,
@@ -22,12 +23,14 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     PlayerStates _executingState;
     IFarmAnimal _milkable;
     TorchController _torchController;
+    [SerializeField] private Transform pailAnchorTransform;
     [SerializeField] private Transform milkPailTransform;
     [SerializeField] private GameObject milkPailPrefab;
     [SerializeField] private ParticleSystem cutWoolEffect;
 
     private List<AnimalBase> _herd = new();
     [HideInInspector] public static Action<List<AnimalBase>> OnTranshumingStart;
+    [HideInInspector] public static Action OnHerdLeaveBarn;
 
     private void OnEnable()
     {
@@ -43,13 +46,16 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         _torchController = GetComponent<TorchController>();
         _animator = GetComponent<Animator>();
         _animator.runtimeAnimatorController = daytimeAnimator;
-        _executingState = PlayerStates.Default;
+        _executingState = PlayerStates.TakeAnimals;
     }
 
     private void Update()
     {
         switch (_executingState)
         {
+            case PlayerStates.TakeAnimals:
+                StartGrazing();
+                break;
             case PlayerStates.HoldingWool:
                 HoldWool();
                 break;
@@ -67,7 +73,27 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     public void TakeAnimals(List<AnimalBase> animals)
     {
         _herd.AddRange(animals);
+
+        int priority = 50;
+        for (int i = 0; i < _herd.Count; i++)
+        {
+            _herd[i].Agent.avoidancePriority = priority;
+            priority++;
+        }
         OnTranshumingStart.Invoke(_herd);
+    }
+
+    public void StartGrazing()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 5f))
+        {
+            if (hit.collider.CompareTag("Barn"))
+            {
+                _executingState = PlayerStates.Default;
+                OnHerdLeaveBarn.Invoke();
+            }
+        }
     }
 
     public void ScareAnimal(NavMeshAgent animalAgent)
@@ -107,8 +133,9 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     public void HoldMilkPail()
     {
         InputTrigger("Hold");
-        _holdingPail.transform.position = new Vector3(0, -0.12f, 0);
+        _holdingPail.transform.position = new Vector3(0, -0.5f, 0);
         _holdingPail.transform.SetParent(milkPailTransform, false);
+        _holdingPail.transform.GetChild(1).GetComponent<HingeJoint>().connectedBody = pailAnchorTransform.GetComponent<Rigidbody>();
     }
 
     private void SellRequest()
@@ -117,8 +144,8 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         {
             InputTrigger("FinishHolding");
             _holdingPail.transform.SetParent(null);
-            _holdingPail.GetComponent<Rigidbody>().useGravity = true;
-            _holdingPail.GetComponent<Rigidbody>().isKinematic = false;
+            //_holdingPail.GetComponent<Rigidbody>().useGravity = true;
+            //_holdingPail.GetComponent<Rigidbody>().isKinematic = false;
             _executingState = PlayerStates.Default;
         }
     }

@@ -16,6 +16,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     #endregion
 
     //public AnimalStates currentState;
+    public Transform meadow;
 
     protected Transform _playerTransform;
     protected IPlayer IPlayer;
@@ -32,6 +33,17 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     bool isAlive = true;
 
     float hitPoint = 10;
+
+    public void OnEnable()
+    {
+        PlayerSimulationController.OnHerdLeaveBarn += () => Invoke("StartMoveToMeadow", 3f);
+        GameModeManager.OnNightStart += StartDanger;
+    }
+    public void OnDisable()
+    {
+        PlayerSimulationController.OnHerdLeaveBarn -= () => Invoke("StartMoveToMeadow", 3f);
+        GameModeManager.OnNightStart -= StartDanger;
+    }
 
     public virtual void Start()
     {
@@ -59,6 +71,11 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
             }
         }
     }
+
+    public abstract void StartMoveToMeadow();
+
+    public abstract void StartStraggle();
+    public abstract void StartDanger();
 
     public void TakeDamage(float amount)
     {
