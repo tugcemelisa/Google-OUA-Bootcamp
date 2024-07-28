@@ -12,8 +12,12 @@ public class CowGoToMeadowState : CowStates
     {
         if(fsm.executingState == ExecutingCowState.GoToMeadow)
         {
-            if(fsm.Agent.destination == fsm.meadow.position)    // !!!!!!S
+            Debug.Log(fsm.Agent.destination + " remainingDistance: " + fsm.Agent.remainingDistance
+                + "\n meadow.position: " + fsm.meadow.position);
+            
+            if(fsm.Agent.hasPath && fsm.Agent.remainingDistance <= fsm.Agent.stoppingDistance)    // !!!!!!S
             {
+                Debug.Log("animal reached");
                 fsm.executingState = ExecutingCowState.Graze;
             }
         }
@@ -23,7 +27,7 @@ public class CowGoToMeadowState : CowStates
 
     public override void Interact(CowController fsm, KeyCode interactKey)
     {
-        
+        fsm.GetScared();
     }
 
     public override void ExitState(CowController fsm)
@@ -38,6 +42,4 @@ public class CowGoToMeadowState : CowStates
         else if (fsm.executingState == ExecutingCowState.GetHunted)
             fsm.SwitchState(fsm.getHuntedState);
     }
-
-    
 }

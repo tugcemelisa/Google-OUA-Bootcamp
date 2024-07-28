@@ -33,6 +33,7 @@ public class CowAnimationController : MonoBehaviour
         GameModeManager.OnNightStart += () => Animator.runtimeAnimatorController = nightAnimator;
 
         CowController.OnWalk += () => InputTrigger("Walk");
+        CowController.OnGetScared += () => InputTrigger("GetScared");
         CowController.OnGraze += () => InputTrigger("Graze");
         CowController.OnFlee += () => InputTrigger("Flee");
         CowController.OnIdle += () => InputTrigger("Idle");
@@ -44,6 +45,7 @@ public class CowAnimationController : MonoBehaviour
         GameModeManager.OnNightStart -= () => Animator.runtimeAnimatorController = nightAnimator;
 
         CowController.OnWalk -= () => InputTrigger("Walk");
+        CowController.OnGetScared -= () => InputTrigger("GetScared");
         CowController.OnGraze -= () => InputTrigger("Graze");
         CowController.OnFlee -= () => InputTrigger("Flee");
         CowController.OnIdle -= () => InputTrigger("Idle");
