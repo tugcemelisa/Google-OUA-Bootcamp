@@ -99,12 +99,7 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
 
     public void ScareAnimal(NavMeshAgent animalAgent)
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            InputTrigger("Scare");
-            animalAgent.acceleration = 16;
-            animalAgent.speed = 3;
-        }
+        InputTrigger("Scare");
     }
 
     Transform _milkingAnimal;

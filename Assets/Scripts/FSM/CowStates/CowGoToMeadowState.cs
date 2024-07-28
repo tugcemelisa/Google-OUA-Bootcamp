@@ -12,10 +12,7 @@ public class CowGoToMeadowState : CowStates
     {
         if(fsm.executingState == ExecutingCowState.GoToMeadow)
         {
-            Debug.Log(fsm.Agent.destination + " remainingDistance: " + fsm.Agent.remainingDistance
-                + "\n meadow.position: " + fsm.meadow.position);
-            
-            if(fsm.Agent.hasPath && fsm.Agent.remainingDistance <= fsm.Agent.stoppingDistance)    // !!!!!!S
+            if(fsm.Agent.hasPath && fsm.Agent.remainingDistance <= fsm.Agent.stoppingDistance)    
             {
                 Debug.Log("animal reached");
                 fsm.executingState = ExecutingCowState.Graze;

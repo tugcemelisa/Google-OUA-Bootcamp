@@ -119,23 +119,6 @@ public class CowController : AnimalBase
             NavMesh.SamplePosition(fleePosition, out hit, 5f, NavMesh.AllAreas);
             Agent.SetDestination(hit.position);
         }
-        
-
-        //if (NavMesh.SamplePosition(fleePosition, out hit, 1f, NavMesh.AllAreas))
-        //{
-        //if (IsValidDestination(fleePosition))
-        //    {
-        //        Agent.SetDestination(fleePosition);
-        //    }
-        //    else
-        //    {
-        //        FindAlternativeDestination();
-        //    }
-        //}
-        //else
-        //{
-        //    FindAlternativeDestination();
-        //}
     }
 
     private void FindAlternativeDestination()
@@ -176,8 +159,6 @@ public class CowController : AnimalBase
         distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
         if (distanceToPlayer < detectionRadius)
         {
-            GetScared();
-
             StartFlee();
         }
     }
@@ -188,8 +169,18 @@ public class CowController : AnimalBase
         if (IPlayer != null)
         {
             IPlayer.ScareAnimal(Agent);
+            Agent.acceleration = 16;
+            Agent.speed = 3;
             OnGetScared.Invoke();
+            StartCoroutine(ResetAnimalAfterTime(5f));
         }
+    }
+    private IEnumerator ResetAnimalAfterTime(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Agent.acceleration = acceleration;
+        Agent.speed = speed;
+        OnWalk.Invoke();
     }
 
     public Vector3 GetFleeDirection()
