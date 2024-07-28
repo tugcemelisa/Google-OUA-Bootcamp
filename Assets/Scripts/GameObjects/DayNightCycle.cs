@@ -5,19 +5,19 @@ public class DayNightCycle : MonoBehaviour
     public Light directionalLight; 
     public Gradient lightColor; 
     public AnimationCurve lightIntensity; 
-    public float dayDuration = 2f;
-    private float dayDurationAsSeconds;
+    public float dayDuration = 120f;
+    //private float dayDurationAsSeconds;
 
     private float time;
 
-    private void Start()
-    {
-        dayDurationAsSeconds *= 60;
-    }
+    //private void Start()
+    //{
+    //    dayDurationAsSeconds *= 60;
+    //}
 
     void Update()
     {
-        time += Time.deltaTime / dayDurationAsSeconds;
+        time += Time.deltaTime / dayDuration;
         if (time >= 1f)
         {
             time = 0f;

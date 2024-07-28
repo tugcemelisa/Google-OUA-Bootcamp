@@ -19,6 +19,7 @@ public enum ExecutingCowState
 
 public class CowController : AnimalBase
 {
+    [HideInInspector] public Action OnGetScared;
     #region FSM
     public ExecutingCowState executingState;
     public CowStates currentState;
@@ -175,15 +176,22 @@ public class CowController : AnimalBase
         distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
         if (distanceToPlayer < detectionRadius)
         {
-            IPlayer = _playerTransform.GetComponent<IPlayer>();
-            if (IPlayer != null)
-            {
-                IPlayer.ScareAnimal(Agent); 
-            }
+            GetScared();
 
             StartFlee();
         }
     }
+
+    public void GetScared()
+    {
+        IPlayer = _playerTransform.GetComponent<IPlayer>();
+        if (IPlayer != null)
+        {
+            IPlayer.ScareAnimal(Agent);
+            OnGetScared.Invoke();
+        }
+    }
+
     public Vector3 GetFleeDirection()
     {
         float distanceToShepherd = Vector3.Distance(transform.position, _playerTransform.position);
