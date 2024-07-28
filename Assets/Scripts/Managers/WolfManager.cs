@@ -72,6 +72,7 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
 
     IEnumerator WolfAttacks()
     {
+
         while (true)
         {
             yield return new WaitForSeconds(timeBetweenAttacks);
@@ -105,6 +106,10 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
         Debug.Log("Count: " + circleWolves.Count);
         if(circleWolves.Count == circleTargets.Length)
         {
+            foreach (var item in circleWolves)
+            {
+                item.SetState(WolfStates.RunInsideCircle);
+            }
             GameModeManager.Instance.executingGameMode = ExecutingGameMode.Night;
             StartCoroutine(WolfAttacks());
         }

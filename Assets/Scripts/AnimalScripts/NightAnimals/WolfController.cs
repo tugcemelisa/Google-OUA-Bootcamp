@@ -27,6 +27,8 @@ public class WolfController : Interactable
     [SerializeField] private Image fearUI;
     float fear = 0;
 
+    WolfStates state = WolfStates.None;
+
     private void Update()
     {
         Hunt();
@@ -90,7 +92,7 @@ public class WolfController : Interactable
             agent.isStopped = false;
             return;
         }
-  
+
         agent.SetDestination(target.position);
     }
 
@@ -130,11 +132,14 @@ public class WolfController : Interactable
 
     IEnumerator RunToTheCircle()
     {
-        while (Vector3.Distance(transform.position, target.position) > .5f)    // 0.15f    !!!!!
+        while (Vector3.Distance(transform.position, target.position) > agent.stoppingDistance)    // 0.15f    !!!!!
         {
             yield return new WaitForFixedUpdate();
         }
         agent.isStopped = true;
+        //
+        animator.SetTrigger("Idle");
+        //
         WolfManager.Instance.AddWolfToTheCircle(this, target);
     }
 
@@ -161,12 +166,28 @@ public class WolfController : Interactable
 
         //}
     }
+
+    public void SetState(WolfStates state)
+    {
+        this.state = state;
+
+        switch (state)
+        {
+            case WolfStates.RunInsideCircle:
+                animator.SetTrigger("Run");
+                break;
+            default:
+                break;
+        }
+    }
 }
 
-enum WolfStates
+public enum WolfStates
 {
+    None,
     TargetDetected,
     MoveToTarget,
     AttackToTarget,
     Flee,
+    RunInsideCircle,
 }
