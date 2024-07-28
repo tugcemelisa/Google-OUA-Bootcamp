@@ -2,14 +2,15 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 public enum ExecutingCowState
 {
+    WaitInBarn,
     MoveAround,
     Graze,
     Flee,
     FollowHerd,
+    GoToMeadow,
     GetHunted,
     Rest,
     GetMilked,
@@ -21,10 +22,12 @@ public class CowController : AnimalBase
     #region FSM
     public ExecutingCowState executingState;
     public CowStates currentState;
+    [HideInInspector] public CowWaitInBarnState waitInBarnState = new();
     [HideInInspector] public CowMoveAroundState moveAroundState = new();
     [HideInInspector] public CowGrazeState grazeState = new();
     [HideInInspector] public CowFleeState fleeState = new();
     [HideInInspector] public CowFollowHerdState followHerdState = new();
+    [HideInInspector] public CowGoToMeadowState goToMeadowState = new();
     [HideInInspector] public CowGetHuntedState getHuntedState = new();
     [HideInInspector] public CowRestState restState = new();
     [HideInInspector] public CowGetMilkedState getMilkedState = new();
@@ -40,16 +43,7 @@ public class CowController : AnimalBase
 
     private NavMeshHit hit;
 
-    private void OnEnable()
-    {
-        GameModeManager.OnNightStart += () => Invoke("StartDanger", 5f);
-    }
-    private void OnDisable()
-    {
-        GameModeManager.OnNightStart -= () => Invoke("StartDanger", 5f);
-    }
-
-    private void StartDanger()
+    public override void StartDanger()
     {
         executingState = ExecutingCowState.GetHunted;
     }
@@ -57,12 +51,9 @@ public class CowController : AnimalBase
     public override void Start()
     {
         base.Start();
-        executingState = ExecutingCowState.Graze;
-        currentState = grazeState;
+        executingState = ExecutingCowState.WaitInBarn;
+        currentState = waitInBarnState;
         currentState.EnterState(this);
-        //executingState = ExecutingCowState.DoNothing;
-        //currentState = doNothingState;
-        //currentState.EnterState(this);
     }
 
     private void Update()
@@ -92,15 +83,42 @@ public class CowController : AnimalBase
         }
     }
 
+    public override void StartStraggle()
+    {
+        if(executingState == ExecutingCowState.GoToMeadow)
+            executingState = ExecutingCowState.Flee;  
+    }
+    public void AvoidOtherCows()
+    {
+        Collider[] nearbyCows = Physics.OverlapSphere(transform.position, cowDetectionRadius);
+        foreach (Collider cow in nearbyCows)
+        {
+            if (cow.gameObject != this.gameObject && cow.CompareTag("Cow"))
+            {
+                Vector3 avoidDirection = (transform.position - cow.transform.position).normalized;
+                Vector3 avoidPosition = transform.position + avoidDirection * moveRadius;
+                Agent.SetDestination(avoidPosition);
+            }
+        }
+    }
+
     float distanceToPlayer;
     Vector3 fleeDirection;
     Vector3 fleePosition;
     public void StartFlee()
     {
-        fleeDirection = (transform.position - _playerTransform.position).normalized;
-        fleePosition = transform.position + fleeDirection * moveRadius;
-        NavMesh.SamplePosition(fleePosition, out hit, 5f, NavMesh.AllAreas);
-        Agent.SetDestination(hit.position);
+        if(meadow != null)
+        {
+            AvoidOtherCows();
+        }
+        else
+        {
+            fleeDirection = (transform.position - _playerTransform.position).normalized;
+            fleePosition = transform.position + fleeDirection * moveRadius;
+            NavMesh.SamplePosition(fleePosition, out hit, 5f, NavMesh.AllAreas);
+            Agent.SetDestination(hit.position);
+        }
+        
 
         //if (NavMesh.SamplePosition(fleePosition, out hit, 1f, NavMesh.AllAreas))
         //{
@@ -166,6 +184,15 @@ public class CowController : AnimalBase
             StartFlee();
         }
     }
+    public Vector3 GetFleeDirection()
+    {
+        float distanceToShepherd = Vector3.Distance(transform.position, _playerTransform.position);
+        if (distanceToShepherd < detectionRadius)
+        {
+            return (transform.position - _playerTransform.position).normalized;
+        }
+        return Vector3.zero;
+    }
     public void CheckDistanceToPlayer()
     {
         distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
@@ -220,9 +247,38 @@ public class CowController : AnimalBase
     }
     public void FollowHerd()
     {
+        Vector3 finalDirection = Vector3.zero;
+        Vector3 fleeDirection = GetFleeDirection();
         herdDirection /= neighborCount;
-        Vector3 herdPosition = transform.position + herdDirection.normalized * moveRadius;
+        if (fleeDirection != Vector3.zero)
+        {
+            finalDirection = fleeDirection + herdDirection;
+        }
+        else if (herdDirection != Vector3.zero)
+        {
+            finalDirection = herdDirection;
+        }
+        Vector3 herdPosition = transform.position + finalDirection.normalized * moveRadius;
         Agent.SetDestination(herdPosition);
+
+        Collider[] nearbyCows = Physics.OverlapSphere(transform.position, cowDetectionRadius);
+        if (nearbyCows.Length !>  0)
+        {
+            executingState = ExecutingCowState.Graze;
+        }
+    }
+
+    public override void StartMoveToMeadow()
+    {
+        RejoinHerd();
+    }
+
+    public void RejoinHerd()
+    {
+        if(meadow != null)
+        {
+            executingState = ExecutingCowState.GoToMeadow;
+        }
     }
 
     public void SettleInBarn()
@@ -271,7 +327,7 @@ public class CowController : AnimalBase
         Invoke("ChangeUIElement", duration);
     }
 
-    private Vector3 GetRandomPos(Vector3 center, float range)
+    public Vector3 GetRandomPos(Vector3 center, float range)
     {
         randomPoint = center + UnityEngine.Random.insideUnitSphere * range;
         NavMesh.SamplePosition(randomPoint, out hit, range, NavMesh.AllAreas);

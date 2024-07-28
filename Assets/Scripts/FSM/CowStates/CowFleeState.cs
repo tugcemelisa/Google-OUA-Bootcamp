@@ -38,10 +38,10 @@ public class CowFleeState : CowStates
             fsm.SwitchState(fsm.grazeState);
         else if(fsm.executingState == ExecutingCowState.FollowHerd)
             fsm.SwitchState(fsm.followHerdState);
-        else if(fsm.executingState == ExecutingCowState.Rest) 
-            fsm.SwitchState(fsm.restState);
         else if (fsm.executingState == ExecutingCowState.GetHunted)
             fsm.SwitchState(fsm.getHuntedState);
+        else if(fsm.executingState == ExecutingCowState.Rest) 
+            fsm.SwitchState(fsm.restState);
     }
 
     public override void Interact(CowController fsm, KeyCode interactKey)
