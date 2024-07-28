@@ -10,6 +10,8 @@ public class NPCQuestInteractable : NPCInteractable
     }
     executingState _executingState;
 
+    [HideInInspector] public static Action<List<ItemData>> OnNpcBuy;
+
     [SerializeField] List<ItemData> neededItems = new List<ItemData>();
 
     public override void Start()
@@ -25,7 +27,7 @@ public class NPCQuestInteractable : NPCInteractable
         {
             if ((int)keyCode == (int)InteractKeys.Bargain)
                 Bargain(interactorTransform);
-
+              
             else if ((int)keyCode == (int)InteractKeys.Talk)
             {
                 string itemList = "";
@@ -59,6 +61,7 @@ public class NPCQuestInteractable : NPCInteractable
     {
         if (playerHasNeededItems())
         {
+            OnNpcBuy.Invoke(neededItems);
             RemoveItemsInInventory();
             Talk(interactorTransform, IconType.Success, " The quest has been completed succesfully. \n" +
                 "Thank for seeling me those items and here is your money.");

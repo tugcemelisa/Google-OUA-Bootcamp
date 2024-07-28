@@ -31,14 +31,17 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     private List<AnimalBase> _herd = new();
     [HideInInspector] public static Action<List<AnimalBase>> OnTranshumingStart;
     [HideInInspector] public static Action OnHerdLeaveBarn;
+    [HideInInspector] public static Action<float> OnItemSell;
 
     private void OnEnable()
     {
         GameModeManager.OnNightStart += ActivatePlayerNightMode;
+        NPCQuestInteractable.OnNpcBuy += GainMoney;
     }
     private void OnDisable()
     {
         GameModeManager.OnNightStart -= ActivatePlayerNightMode;
+        NPCQuestInteractable.OnNpcBuy -= GainMoney;
     }
 
     private void Start()
@@ -188,6 +191,17 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
             InputTrigger("FinishHolding");
             _executingState = PlayerStates.Default;
         }
+    }
+
+    float totalAmount = 0;
+    public void GainMoney(List<ItemData> soldItems)
+    {
+        for (int i = 0; i < soldItems.Count; i++)
+        {
+            totalAmount += soldItems[i].Type.value * soldItems[i].count;
+        }
+
+        OnItemSell.Invoke(totalAmount);
     }
 
     private void ActivatePlayerNightMode()
