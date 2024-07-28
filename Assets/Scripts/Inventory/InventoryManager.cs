@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManager>
 {
@@ -10,12 +12,26 @@ public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManage
 
     [SerializeField]
     private Transform handTransform;
+    [SerializeField]
+    private Transform handParentTransform;
+
+    public static UnityEvent BeforeDayNightCycle = new UnityEvent();
+
+
+
 
     [SerializeField] private Animator animator;
 
     private void Start()
     {
         ShowInventory();
+
+        BeforeDayNightCycle.AddListener(InventoryClose);
+    }
+
+    private void OnDestroy()
+    {
+        BeforeDayNightCycle.RemoveListener(InventoryClose);
     }
 
     private void Update()
@@ -217,5 +233,18 @@ public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManage
         return KeyCode.None;
     }
 
+    public void InventoryClose()
+    {
+        handTransform.parent = null;
+
+        StartCoroutine(InventoryOpen());
+    }
+
+    IEnumerator InventoryOpen()
+    {
+        yield return new WaitForSeconds(1);
+
+        handParentTransform.parent = handParentTransform;
+    }
 
 }
