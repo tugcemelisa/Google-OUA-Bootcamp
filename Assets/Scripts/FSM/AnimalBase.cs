@@ -4,6 +4,19 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
+public enum ExecutingAnimalState
+{
+    WaitInBarn,
+    MoveAround,
+    Graze,
+    Flee,
+    FollowHerd,
+    GoToMeadow,
+    GetHunted,
+    Rest,
+    GetUsed,
+    DoNothing
+}
 public abstract class AnimalBase : Interactable, IFarmAnimal
 {
     #region Actions
@@ -17,13 +30,29 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     [HideInInspector] public Action OnDie;
     #endregion
 
+    #region FSM
+    public ExecutingAnimalState executingState;
+    public AnimalStates currentState;
+    [HideInInspector] public AnimalWaitInBarnState waitInBarnState = new();
+    [HideInInspector] public AnimalMoveAroundState moveAroundState = new();
+    [HideInInspector] public AnimalGrazeState grazeState = new();
+    [HideInInspector] public AnimalFleeState fleeState = new();
+    [HideInInspector] public AnimalFollowHerdState followHerdState = new();
+    [HideInInspector] public AnimalGoToMeadowState goToMeadowState = new();
+    [HideInInspector] public AnimalGetHuntedState getHuntedState = new();
+    [HideInInspector] public AnimalRestState restState = new();
+    [HideInInspector] public AnimalGetMilkedState getMilkedState = new();
+    [HideInInspector] public AnimalDoNothingState doNothingState = new();
+    #endregion
+
+    #region Variables..
     public Transform meadow;
 
     protected Transform _playerTransform;
     protected IPlayer IPlayer;
 
     [HideInInspector] public NavMeshAgent Agent;
-
+    private NavMeshHit hit;
     [HideInInspector] public float acceleration;
     [HideInInspector] public float speed;
 
@@ -33,8 +62,9 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
 
     public float grazeTime = 6f;
     [HideInInspector] public float _grazeTimer;
+    [HideInInspector] public float _herdHeartbeat;
+    [HideInInspector] public float _maxDuration = 1f;
 
-    private NavMeshHit hit;
 
     [Header("Hit Point")]
     [SerializeField] private float hitPointMaximum;
@@ -43,6 +73,8 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     bool isAlive = true;
 
     float hitPoint = 10;
+    #endregion
+
 
     public void OnEnable()
     {
@@ -64,6 +96,29 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
         speed = Agent.speed;
 
         hitPoint = hitPointMaximum;
+
+        executingState = ExecutingAnimalState.WaitInBarn;
+        currentState = waitInBarnState;
+        currentState.EnterState(this);
+    }
+
+    public void StartDanger()
+    {
+        executingState = ExecutingAnimalState.GetHunted;
+    }
+
+    public void CheckIfArrived()
+    {
+        if (Agent.remainingDistance <= Agent.stoppingDistance)
+        {
+            executingState = ExecutingAnimalState.Graze;
+        }
+    }
+
+    public void StartStraggle()
+    {
+        if (executingState == ExecutingAnimalState.GoToMeadow)
+            executingState = ExecutingAnimalState.Flee;
     }
 
     public void Flee()
@@ -114,7 +169,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
             IPlayer.ScareAnimal(Agent);
             Agent.acceleration = 16;
             Agent.speed = 3;
-            OnGetScared.Invoke();
+            OnGetScared?.Invoke();
             StartCoroutine(ResetAnimalAfterTime(5f));
         }
     }
@@ -136,12 +191,79 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
         return Vector3.zero;
     }
 
+    public void CheckDistanceToPlayer()
+    {
+        distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
+        if (distanceToPlayer < detectionRadius)
+        {
+            executingState = ExecutingAnimalState.Flee;
+        }
+    }
+
+    public void Graze()
+    {
+        _grazeTimer -= Time.deltaTime;
+        if (_grazeTimer <= 0f)
+        {
+            executingState = ExecutingAnimalState.MoveAround;
+        }
+    }
+
+    public abstract void FindNearestHerd();
+
+    protected float cowDetectionRadius = 4f;
+    protected Vector3 herdDirection;
+    protected int neighborCount;
+    public void FollowHerd()
+    {
+        Vector3 finalDirection = Vector3.zero;
+        Vector3 fleeDirection = GetFleeDirection();
+        herdDirection /= neighborCount;
+        if (fleeDirection != Vector3.zero)
+        {
+            finalDirection = fleeDirection + herdDirection;
+        }
+        else if (herdDirection != Vector3.zero)
+        {
+            finalDirection = herdDirection;
+        }
+        Vector3 herdPosition = transform.position + finalDirection.normalized * moveRadius;
+        Agent.SetDestination(herdPosition);
+
+        Collider[] nearbyCows = Physics.OverlapSphere(transform.position, cowDetectionRadius);
+        if (nearbyCows.Length! > 0)
+        {
+            executingState = ExecutingAnimalState.Graze;
+        }
+    }
+
     public void StartMoveToMeadow()
     {
         RejoinHerd();
     }
 
-    public abstract void RejoinHerd();
+    public void RejoinHerd()
+    {
+        if (meadow != null)
+        {
+            executingState = ExecutingAnimalState.GoToMeadow;
+        }
+    }
+
+    public void SettleInBarn()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 5f))
+        {
+            if (hit.collider.CompareTag("Barn"))
+            {
+                Agent.SetDestination(GetRandomPos(hit.transform.position + Vector3.back * 2, 1.55f));
+                executingState = ExecutingAnimalState.Rest;
+            }
+        }
+    }
+
+    public abstract void GetUsed(KeyCode interactKey);
 
     public Vector3 GetRandomPos(Vector3 center, float range)
     {
@@ -151,7 +273,12 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
         return hit.position;
     }
 
-    public abstract void StandIdle(float duration);
+    public void StandIdle(float duration)
+    {
+        executingState = ExecutingAnimalState.DoNothing;
+
+        Invoke("ChangeUIElement", duration);
+    }
 
     public void ChangeUIElement()
     {
@@ -166,9 +293,6 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
             }
         }
     }
-
-    public abstract void StartStraggle();
-    public abstract void StartDanger();
 
     public void TakeDamage(float amount)
     {
@@ -201,5 +325,14 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
         isAlive = false;
 
         hitPointUI.fillAmount = 0;
+    }
+
+    public void SwitchState(AnimalStates nextState)
+    {
+        if (currentState != nextState)
+        {
+            currentState = nextState;
+            currentState.EnterState(this);
+        }
     }
 }

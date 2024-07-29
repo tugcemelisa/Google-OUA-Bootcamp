@@ -5,9 +5,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CowRestState : CowStates
+public class AnimalRestState : AnimalStates
 {
-    public override void EnterState(CowController fsm)
+    public override void EnterState(AnimalBase fsm)
     {
         //Debug.Log("REST " + fsm.gameObject.name);
 
@@ -22,9 +22,9 @@ public class CowRestState : CowStates
         //}
     }
 
-    public override void UpdateState(CowController fsm)
+    public override void UpdateState(AnimalBase fsm)
     {
-        if (fsm.executingState == ExecutingCowState.Rest)
+        if (fsm.executingState == ExecutingAnimalState.Rest)
         {
             stuckCheckIntervalTimer -= Time.deltaTime;
             if(stuckCheckIntervalTimer <= 0.0f)
@@ -37,16 +37,16 @@ public class CowRestState : CowStates
             {
                 fsm.Agent.SetDestination(fsm.transform.position);
                 fsm.OnIdle.Invoke();
-                fsm.executingState = ExecutingCowState.GetMilked;
+                fsm.executingState = ExecutingAnimalState.GetUsed;
             } 
         }
         else
             ExitState(fsm);
     }
 
-    public override void ExitState(CowController fsm)
+    public override void ExitState(AnimalBase fsm)
     {
-        if (fsm.executingState == ExecutingCowState.GetMilked)
+        if (fsm.executingState == ExecutingAnimalState.GetUsed)
             fsm.SwitchState(fsm.getMilkedState);
     }
 
@@ -81,7 +81,7 @@ public class CowRestState : CowStates
         lastPosition = agent.transform.position;
     }
 
-    public override void Interact(CowController fsm, KeyCode interactKey)
+    public override void Interact(AnimalBase fsm, KeyCode interactKey)
     {
         
     }

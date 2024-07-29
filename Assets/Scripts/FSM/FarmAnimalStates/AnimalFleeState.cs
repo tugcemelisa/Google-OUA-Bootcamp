@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class CowFleeState : CowStates
+public class AnimalFleeState : AnimalStates
 {
-    public override void EnterState(CowController fsm)
+    public override void EnterState(AnimalBase fsm)
     {
         //Debug.Log("FLEE " + fsm.gameObject.name);
         fsm._herdHeartbeat = fsm._maxDuration;
@@ -11,9 +11,9 @@ public class CowFleeState : CowStates
         Debug.Log("walk in flee " + fsm.Agent.pathEndPosition);
     }
 
-    public override void UpdateState(CowController fsm)
+    public override void UpdateState(AnimalBase fsm)
     {
-        if (fsm.executingState == ExecutingCowState.Flee)
+        if (fsm.executingState == ExecutingAnimalState.Flee)
         {
             fsm.Flee();
             //fsm.FindNearestHerd();
@@ -29,19 +29,19 @@ public class CowFleeState : CowStates
             ExitState(fsm);
     }
 
-    public override void ExitState(CowController fsm)
+    public override void ExitState(AnimalBase fsm)
     {
-        if (fsm.executingState == ExecutingCowState.Graze)
+        if (fsm.executingState == ExecutingAnimalState.Graze)
             fsm.SwitchState(fsm.grazeState);
-        else if(fsm.executingState == ExecutingCowState.FollowHerd)
+        else if(fsm.executingState == ExecutingAnimalState.FollowHerd)
             fsm.SwitchState(fsm.followHerdState);
-        else if (fsm.executingState == ExecutingCowState.GetHunted)
+        else if (fsm.executingState == ExecutingAnimalState.GetHunted)
             fsm.SwitchState(fsm.getHuntedState);
-        else if(fsm.executingState == ExecutingCowState.Rest) 
+        else if(fsm.executingState == ExecutingAnimalState.Rest) 
             fsm.SwitchState(fsm.restState);
     }
 
-    public override void Interact(CowController fsm, KeyCode interactKey)
+    public override void Interact(AnimalBase fsm, KeyCode interactKey)
     {
         fsm.GetScared();
     }

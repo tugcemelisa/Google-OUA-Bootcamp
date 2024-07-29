@@ -1,17 +1,17 @@
 using UnityEngine;
 
-public class CowFollowHerdState : CowStates
+public class AnimalFollowHerdState : AnimalStates
 {
-    public override void EnterState(CowController fsm)
+    public override void EnterState(AnimalBase fsm)
     {
         //Debug.Log("FOLLOW HERD " + fsm.gameObject.name);
         //fsm.OnWalk.Invoke();
         fsm.FollowHerd();
     }
 
-    public override void UpdateState(CowController fsm)
+    public override void UpdateState(AnimalBase fsm)
     {
-        if (fsm.executingState == ExecutingCowState.FollowHerd)
+        if (fsm.executingState == ExecutingAnimalState.FollowHerd)
         {
             fsm.CheckIfArrived();
             fsm.FollowHerd();
@@ -23,21 +23,21 @@ public class CowFollowHerdState : CowStates
             ExitState(fsm);
     }
 
-    public override void ExitState(CowController fsm)
+    public override void ExitState(AnimalBase fsm)
     {
-        if (fsm.executingState == ExecutingCowState.Rest)
+        if (fsm.executingState == ExecutingAnimalState.Rest)
             fsm.SwitchState(fsm.restState);
-        else if (fsm.executingState == ExecutingCowState.Graze)
+        else if (fsm.executingState == ExecutingAnimalState.Graze)
             fsm.SwitchState(fsm.grazeState);
-        else if (fsm.executingState == ExecutingCowState.GoToMeadow)
+        else if (fsm.executingState == ExecutingAnimalState.GoToMeadow)
             fsm.SwitchState(fsm.goToMeadowState);
         //else if (fsm.executingState == ExecutingCowState.Flee)
         //    fsm.SwitchState(fsm.fleeState);
-        else if (fsm.executingState == ExecutingCowState.GetHunted)
+        else if (fsm.executingState == ExecutingAnimalState.GetHunted)
             fsm.SwitchState(fsm.getHuntedState);
     }
 
-    public override void Interact(CowController fsm, KeyCode interactKey)
+    public override void Interact(AnimalBase fsm, KeyCode interactKey)
     {
         
     }

@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-public class CowGrazeState : CowStates
+public class AnimalGrazeState : AnimalStates
 {
-    public override void EnterState(CowController fsm)
+    public override void EnterState(AnimalBase fsm)
     {
         //Debug.Log("GRAZE " + fsm.gameObject.name + "\n " + fsm._grazeTimer);
         ChooseAnim(fsm);
@@ -11,9 +11,9 @@ public class CowGrazeState : CowStates
         fsm._grazeTimer = fsm.grazeTime;
     }
 
-    public override void UpdateState(CowController fsm)
+    public override void UpdateState(AnimalBase fsm)
     {
-        if (fsm.executingState == ExecutingCowState.Graze)
+        if (fsm.executingState == ExecutingAnimalState.Graze)
         {
             fsm.Graze();
             fsm.CheckDistanceToPlayer();
@@ -22,17 +22,17 @@ public class CowGrazeState : CowStates
             ExitState(fsm);
     }
 
-    public override void ExitState(CowController fsm)
+    public override void ExitState(AnimalBase fsm)
     {
-        if (fsm.executingState == ExecutingCowState.MoveAround)
+        if (fsm.executingState == ExecutingAnimalState.MoveAround)
             fsm.SwitchState(fsm.moveAroundState);
-        else if (fsm.executingState == ExecutingCowState.Flee)
+        else if (fsm.executingState == ExecutingAnimalState.Flee)
             fsm.SwitchState(fsm.fleeState);
-        else if (fsm.executingState == ExecutingCowState.GetHunted)
+        else if (fsm.executingState == ExecutingAnimalState.GetHunted)
             fsm.SwitchState(fsm.getHuntedState);
     }
 
-    private void ChooseAnim(CowController fsm)
+    private void ChooseAnim(AnimalBase fsm)
     {
         int stateIndex = UnityEngine.Random.Range(0, 2);
         if(stateIndex ==  0)
@@ -41,7 +41,7 @@ public class CowGrazeState : CowStates
             fsm.OnIdle.Invoke();
     }
 
-    public override void Interact(CowController fsm, KeyCode interactKey)
+    public override void Interact(AnimalBase fsm, KeyCode interactKey)
     {
         
     }

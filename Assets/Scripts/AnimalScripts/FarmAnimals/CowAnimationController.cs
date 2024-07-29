@@ -17,12 +17,12 @@ public class CowAnimationController : MonoBehaviour
         }
     }
 
-    CowController cowController;
-    CowController CowController { 
+    AnimalBase cowController;
+    AnimalBase CowController { 
         get 
         {
             if (cowController == null)
-                return cowController = GetComponentInParent<CowController>();
+                return cowController = GetComponentInParent<AnimalBase>();
             else
                 return cowController; 
         } 

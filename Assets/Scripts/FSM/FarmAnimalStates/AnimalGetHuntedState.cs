@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class CowGetHuntedState : CowStates
+public class AnimalGetHuntedState : AnimalStates
 {
-    public override void EnterState(CowController fsm)
+    public override void EnterState(AnimalBase fsm)
     {
         fsm.OnWalk.Invoke();
         fsm.Agent.SetDestination(fsm.GetRandomPos(fsm.meadow.position, 5f));
     }
 
-    public override void UpdateState(CowController fsm)
+    public override void UpdateState(AnimalBase fsm)
     {
-        if (fsm.executingState == ExecutingCowState.GetHunted)
+        if (fsm.executingState == ExecutingAnimalState.GetHunted)
         {
             if (fsm.Agent.remainingDistance <= 3.60f)
             {
@@ -18,24 +18,24 @@ public class CowGetHuntedState : CowStates
                 fsm.gameObject.GetComponent<Collider>().enabled = false;    // !!!!!
                 fsm.Agent.SetDestination(fsm.transform.position);
                 fsm.OnIdle.Invoke();
-                fsm.executingState = ExecutingCowState.DoNothing;
+                fsm.executingState = ExecutingAnimalState.DoNothing;
             }
         }
         else
             GetHunted(fsm);
     }
 
-    public override void Interact(CowController fsm, KeyCode interactKey)
+    public override void Interact(AnimalBase fsm, KeyCode interactKey)
     {
         
     }
 
-    public override void ExitState(CowController fsm)
+    public override void ExitState(AnimalBase fsm)
     {
         
     }
 
-    private void GetHunted(CowController fsm)
+    private void GetHunted(AnimalBase fsm)
     {
         fsm.Agent.SetDestination(fsm.transform.position);   //!!!!!!!!!!!!
     }
