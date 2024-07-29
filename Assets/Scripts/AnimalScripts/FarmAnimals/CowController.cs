@@ -19,7 +19,6 @@ public enum ExecutingCowState
 
 public class CowController : AnimalBase
 {
-    [HideInInspector] public Action OnGetScared;
     #region FSM
     public ExecutingCowState executingState;
     public CowStates currentState;
@@ -35,19 +34,6 @@ public class CowController : AnimalBase
     [HideInInspector] public CowDoNothingState doNothingState = new();
     #endregion
 
-    private Vector3 randomPoint;
-    public float detectionRadius = 4f;
-    public float moveRadius = 15f;
-
-    public float grazeTime = 6f;
-    [HideInInspector] public float _grazeTimer;
-
-    private NavMeshHit hit;
-
-    public override void StartDanger()
-    {
-        executingState = ExecutingCowState.GetHunted;
-    }
 
     public override void Start()
     {
@@ -67,15 +53,11 @@ public class CowController : AnimalBase
         currentState.Interact(this, interactKey);
     }
 
-    public void StartMove()
+    public override void StartDanger()
     {
-        if (_playerTransform != null)
-        {
-            OnWalk.Invoke();
-            Agent.SetDestination(GetRandomPos(_playerTransform.position, 7f));
-        }
-
+        executingState = ExecutingCowState.GetHunted;
     }
+
     public void CheckIfArrived()
     {
         if (Agent.remainingDistance <= Agent.stoppingDistance)
@@ -89,7 +71,8 @@ public class CowController : AnimalBase
         if(executingState == ExecutingCowState.GoToMeadow)
             executingState = ExecutingCowState.Flee;  
     }
-    public void AvoidOtherCows()
+
+    public  override void AvoidOtherAnimals()
     {
         Collider[] nearbyCows = Physics.OverlapSphere(transform.position, cowDetectionRadius);
         foreach (Collider cow in nearbyCows)
@@ -103,95 +86,6 @@ public class CowController : AnimalBase
         }
     }
 
-    float distanceToPlayer;
-    Vector3 fleeDirection;
-    Vector3 fleePosition;
-    public void StartFlee()
-    {
-        if(meadow != null)
-        {
-            AvoidOtherCows();
-        }
-        else
-        {
-            fleeDirection = (transform.position - _playerTransform.position).normalized;
-            fleePosition = transform.position + fleeDirection * moveRadius;
-            NavMesh.SamplePosition(fleePosition, out hit, 5f, NavMesh.AllAreas);
-            Agent.SetDestination(hit.position);
-        }
-    }
-
-    private void FindAlternativeDestination()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * 15f;
-            randomDirection += _playerTransform.position;
-            NavMeshHit navHit;
-            if (NavMesh.SamplePosition(randomDirection, out navHit, 15f, NavMesh.AllAreas))
-            {
-                if (IsValidDestination(navHit.position))
-                {
-                    Agent.SetDestination(navHit.position);
-                    return;
-                }
-            }
-        }
-        Debug.Log("Suitable destination not found. Stopping agent.");
-        Agent.SetDestination(transform.position);
-    }
-    private bool IsValidDestination(Vector3 position)
-    {
-        NavMeshPath path = new NavMeshPath();
-        if (Agent.CalculatePath(position, path))
-        {
-            if (path.status == NavMeshPathStatus.PathComplete)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    public void Flee()
-    {
-        distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
-        if (distanceToPlayer < detectionRadius)
-        {
-            StartFlee();
-        }
-    }
-
-    public void GetScared()
-    {
-        IPlayer = _playerTransform.GetComponent<IPlayer>();
-        if (IPlayer != null)
-        {
-            IPlayer.ScareAnimal(Agent);
-            Agent.acceleration = 16;
-            Agent.speed = 3;
-            OnGetScared.Invoke();
-            StartCoroutine(ResetAnimalAfterTime(5f));
-        }
-    }
-    private IEnumerator ResetAnimalAfterTime(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        Agent.acceleration = acceleration;
-        Agent.speed = speed;
-        OnWalk.Invoke();
-    }
-
-    public Vector3 GetFleeDirection()
-    {
-        float distanceToShepherd = Vector3.Distance(transform.position, _playerTransform.position);
-        if (distanceToShepherd < detectionRadius)
-        {
-            return (transform.position - _playerTransform.position).normalized;
-        }
-        return Vector3.zero;
-    }
     public void CheckDistanceToPlayer()
     {
         distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
@@ -207,7 +101,6 @@ public class CowController : AnimalBase
         if (_grazeTimer <= 0f)
         {
             executingState = ExecutingCowState.MoveAround;
-            //_grazeTimer = grazeTime;
         }
     }
 
@@ -221,29 +114,27 @@ public class CowController : AnimalBase
     {
         _herdHeartbeat -= Time.deltaTime;
 
-        //if (_herdHeartbeat <= 0f)
-        //{
-            herdDirection = Vector3.zero;
-            neighborCount = 0;
+        herdDirection = Vector3.zero;
+        neighborCount = 0;
 
-            Collider[] nearbyCows = Physics.OverlapSphere(transform.position, cowDetectionRadius);
-            foreach (Collider cow in nearbyCows)
+        Collider[] nearbyCows = Physics.OverlapSphere(transform.position, cowDetectionRadius);
+        foreach (Collider cow in nearbyCows)
+        {
+            if (cow.gameObject != this.gameObject && cow.CompareTag("Cow"))
             {
-                if (cow.gameObject != this.gameObject && cow.CompareTag("Cow"))
-                {
-                    herdDirection += cow.transform.forward;
-                    neighborCount++;
-                }
+                herdDirection += cow.transform.forward;
+                neighborCount++;
             }
+        }
 
-            if (neighborCount > 0)
-            {
-                executingState = ExecutingCowState.FollowHerd;
-            }
+        if (neighborCount > 0)
+        {
+            executingState = ExecutingCowState.FollowHerd;
+        }
 
-            _herdHeartbeat = _maxDuration;
-        //}  
+        _herdHeartbeat = _maxDuration;
     }
+
     public void FollowHerd()
     {
         Vector3 finalDirection = Vector3.zero;
@@ -267,12 +158,7 @@ public class CowController : AnimalBase
         }
     }
 
-    public override void StartMoveToMeadow()
-    {
-        RejoinHerd();
-    }
-
-    public void RejoinHerd()
+    public override void RejoinHerd()
     {
         if(meadow != null)
         {
@@ -292,21 +178,6 @@ public class CowController : AnimalBase
             }
         }
     }
-    Vector3 GetRandomPositionInBarn(Vector3 barnPosition, Vector3 barnScale)
-    {
-        //Bounds barnBounds = new Bounds(barnPosition, barnScale);
-
-        Vector3 barnMin = barnPosition - (barnScale / 2);
-        Vector3 barnMax = barnPosition + (barnScale / 2);
-
-        Vector3 randomPosition = new Vector3(
-            UnityEngine.Random.Range(barnMin.x, barnMax.x),
-            barnPosition.y, 
-            UnityEngine.Random.Range(barnMin.z, barnMax.z)
-        );
-
-        return randomPosition;
-    }
 
     public void GetMilked(KeyCode interactKey)
     {
@@ -319,19 +190,12 @@ public class CowController : AnimalBase
             }
         }
     }
+
     public override void StandIdle(float duration)
     {
         executingState = ExecutingCowState.DoNothing;
 
         Invoke("ChangeUIElement", duration);
-    }
-
-    public Vector3 GetRandomPos(Vector3 center, float range)
-    {
-        randomPoint = center + UnityEngine.Random.insideUnitSphere * range;
-        NavMesh.SamplePosition(randomPoint, out hit, range, NavMesh.AllAreas);
-
-        return hit.position;
     }
 
     public void SwitchState(CowStates nextState)
