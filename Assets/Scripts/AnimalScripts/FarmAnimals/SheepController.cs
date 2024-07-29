@@ -33,14 +33,6 @@ public class SheepController : AnimalBase
     [HideInInspector] public SheepDoNothingState doNothingState = new();
     #endregion
 
-    private Vector3 randomPoint;
-    public float detectionRadius = 4f;
-    public float moveRadius = 10f;
-
-    public float grazeTime = 6f;
-    [HideInInspector] public float _grazeTimer;
-
-    private NavMeshHit hit;
 
     public override void Start()
     {
@@ -48,7 +40,6 @@ public class SheepController : AnimalBase
         executingState = ExecutingSheepState.MoveAround;
         currentState = moveAroundState;
         currentState.EnterState(this);
-        previousPosition = transform.position;
     }
 
     private void Update()
@@ -61,33 +52,6 @@ public class SheepController : AnimalBase
         currentState.Interact(this, interactKey);
     }
 
-    private Vector3 previousPosition;
-    private void HandleTurningAnimation()
-    {
-        Vector3 direction = transform.position - previousPosition;
-        if (direction != Vector3.zero)
-        {
-            float angle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
-            if (angle > 10f)
-            {
-                OnRightTurn.Invoke();
-            }
-            else if (angle < -10f)
-            {
-                OnLeftTurn.Invoke();
-            }
-        }
-    }
-
-    public void StartMove()
-    {
-        if (_playerTransform != null)
-        {
-            OnWalk.Invoke();
-            Agent.SetDestination(GetRandomPos(_playerTransform.position, 15f));
-        }
-
-    }
     public void CheckIfArrived()
     {
         if (Agent.remainingDistance <= Agent.stoppingDistance)
@@ -96,78 +60,6 @@ public class SheepController : AnimalBase
         }
     }
 
-    float distanceToPlayer;
-    Vector3 fleeDirection;
-    Vector3 fleePosition;
-    public void StartFlee()
-    {
-        fleeDirection = (transform.position - _playerTransform.position).normalized;
-        fleePosition = transform.position + fleeDirection * moveRadius;
-
-        if (NavMesh.SamplePosition(fleePosition, out hit, 1f, NavMesh.AllAreas))
-        {
-            if (IsValidDestination(hit.position))
-            {
-                Agent.SetDestination(hit.position);
-            }
-            else
-            {
-                FindAlternativeDestination();
-            }
-        }
-        else
-        {
-            FindAlternativeDestination();
-        }
-    }
-
-    private void FindAlternativeDestination()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * 15f;
-            randomDirection += _playerTransform.position;
-            NavMeshHit navHit;
-            if (NavMesh.SamplePosition(randomDirection, out navHit, 15f, NavMesh.AllAreas))
-            {
-                if (IsValidDestination(navHit.position))
-                {
-                    Agent.SetDestination(navHit.position);
-                    return;
-                }
-            }
-        }
-        Debug.Log("Suitable destination not found. Stopping agent.");
-        Agent.SetDestination(transform.position);
-    }
-    private bool IsValidDestination(Vector3 position)
-    {
-        NavMeshPath path = new NavMeshPath();
-        if (Agent.CalculatePath(position, path))
-        {
-            if (path.status == NavMeshPathStatus.PathComplete)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    public void Flee()
-    {
-        distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
-        if (distanceToPlayer < detectionRadius)
-        {
-            IPlayer = _playerTransform.GetComponent<IPlayer>();
-            if (IPlayer != null)
-            {
-                IPlayer.ScareAnimal(Agent);
-            }
-
-            StartFlee();
-        }
-    }
     public void CheckDistanceToPlayer()
     {
         distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
@@ -226,17 +118,26 @@ public class SheepController : AnimalBase
         Agent.SetDestination(herdPosition);
     }
 
+    public override void AvoidOtherAnimals()
+    {
+        Collider[] nearbyCows = Physics.OverlapSphere(transform.position, sheepDetectionRadius);
+        foreach (Collider cow in nearbyCows)
+        {
+            if (cow.gameObject != this.gameObject && cow.CompareTag("Sheep"))
+            {
+                Vector3 avoidDirection = (transform.position - cow.transform.position).normalized;
+                Vector3 avoidPosition = transform.position + avoidDirection * moveRadius;
+                Agent.SetDestination(avoidPosition);
+            }
+        }
+    }
+
     public override void StartStraggle()
     {
         executingState = ExecutingSheepState.Flee;
     }
 
-    public override void StartMoveToMeadow()
-    {
-        RejoinHerd();
-    }
-
-    public void RejoinHerd()
+    public override void RejoinHerd()
     {
         if (meadow != null)
         {
@@ -260,21 +161,6 @@ public class SheepController : AnimalBase
             }
         }
     }
-    Vector3 GetRandomPositionInBarn(Vector3 barnPosition, Vector3 barnScale)
-    {
-        //Bounds barnBounds = new Bounds(barnPosition, barnScale);
-
-        Vector3 barnMin = barnPosition - (barnScale / 2);
-        Vector3 barnMax = barnPosition + (barnScale / 2);
-
-        Vector3 randomPosition = new Vector3(
-            UnityEngine.Random.Range(barnMin.x, barnMax.x),
-            barnPosition.y,
-            UnityEngine.Random.Range(barnMin.z, barnMax.z)
-        );
-
-        return randomPosition;
-    }
 
     public void GetSheared(KeyCode interactKey)
     {
@@ -293,14 +179,6 @@ public class SheepController : AnimalBase
         executingState = ExecutingSheepState.DoNothing;
 
         Invoke("ChangeUIElement", duration);
-    }
-
-    private Vector3 GetRandomPos(Vector3 center, float range)
-    {
-        randomPoint = center + UnityEngine.Random.insideUnitSphere * range;
-        NavMesh.SamplePosition(randomPoint, out hit, range, NavMesh.AllAreas);
-
-        return hit.position;
     }
 
     public void SwitchState(SheepStates nextState)
