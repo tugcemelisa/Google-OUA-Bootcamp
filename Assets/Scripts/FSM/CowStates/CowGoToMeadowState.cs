@@ -14,7 +14,6 @@ public class CowGoToMeadowState : CowStates
         {
             if(fsm.Agent.hasPath && fsm.Agent.remainingDistance <= fsm.Agent.stoppingDistance)    
             {
-                Debug.Log("animal reached");
                 fsm.executingState = ExecutingCowState.Graze;
             }
         }

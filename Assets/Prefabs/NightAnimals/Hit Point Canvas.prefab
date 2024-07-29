@@ -159,6 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4285332092754937296}
+  - component: {fileID: 2747477951320576919}
   - component: {fileID: 3677049701649848748}
   - component: {fileID: 7009063969529896734}
   - component: {fileID: 3940446542057265512}
@@ -190,6 +191,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 5}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2747477951320576919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4880070814789148571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ad74127df9994fb070f6c5be2609b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!223 &3677049701649848748
 Canvas:
   m_ObjectHideFlags: 0
@@ -235,7 +248,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &3940446542057265512
 MonoBehaviour:
   m_ObjectHideFlags: 0
