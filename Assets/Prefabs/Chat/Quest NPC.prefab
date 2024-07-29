@@ -1131,6 +1131,7 @@ GameObject:
   - component: {fileID: 1146975969050891648}
   - component: {fileID: 6513787920569642224}
   - component: {fileID: 8322141323037747338}
+  - component: {fileID: 2456099959721234170}
   m_Layer: 0
   m_Name: Quest NPC
   m_TagString: NPC
@@ -1228,9 +1229,14 @@ MonoBehaviour:
   interactableUIElements:
   - {fileID: 6513787920569642224}
   - {fileID: 8322141323037747338}
-  animator: {fileID: 4641511975983712988}
+  - {fileID: 2456099959721234170}
   npcHeadLookAt: {fileID: 6384023711907825173}
-  textToSay: Quest NPC
+  textToSay: 'Quest NPC: '
+  neededItems:
+  - Type: {fileID: 11400000, guid: 424c1ef6f4e96fe4b9998b1f9ca2e36e, type: 2}
+    count: 3
+  - Type: {fileID: 11400000, guid: 8ab3c5c15706a8f40bb5fac681389d30, type: 2}
+    count: 1
 --- !u!114 &6513787920569642224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1247,6 +1253,7 @@ MonoBehaviour:
   interactableText: Press E to Talk
   interactIcon: {fileID: 21300000, guid: 2969d90b86698124696637a6df64a112, type: 3}
   interactKey: 101
+  activateWhenDisable: {fileID: 0}
 --- !u!114 &8322141323037747338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1263,6 +1270,24 @@ MonoBehaviour:
   interactableText: Press R to Make a Deal
   interactIcon: {fileID: 21300000, guid: 5f7e61db94bfb334fb692c52d151dee2, type: 3}
   interactKey: 114
+  activateWhenDisable: {fileID: 2456099959721234170}
+--- !u!114 &2456099959721234170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2804725138709221427}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a91f95decbca94cbbd46a359e3b93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OptionName: After Deal
+  interactableText: Already finished
+  interactIcon: {fileID: 21300000, guid: 2969d90b86698124696637a6df64a112, type: 3}
+  interactKey: 0
+  activateWhenDisable: {fileID: 0}
 --- !u!1 &2968922523991346038
 GameObject:
   m_ObjectHideFlags: 0

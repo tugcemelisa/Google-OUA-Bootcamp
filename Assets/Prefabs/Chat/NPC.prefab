@@ -825,6 +825,7 @@ GameObject:
   - component: {fileID: 5166038728871341275}
   - component: {fileID: 4788097468674801857}
   - component: {fileID: 5626302115326599515}
+  - component: {fileID: 3485017884163156297}
   m_Layer: 0
   m_Name: NPC
   m_TagString: NPC
@@ -860,10 +861,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8bf1bd7f2650e84fb6fd6026a55437c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableUIElements: []
-  animator: {fileID: 4807975370456083134}
+  interactableUIElements:
+  - {fileID: 3485017884163156297}
   npcHeadLookAt: {fileID: 5166038728871341275}
-  textToSay: Dialog NPC
+  textToSay: 'Normal Dialog NPC: Talk'
 --- !u!114 &5166038728871341275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,6 +924,23 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &3485017884163156297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3205795784057887986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a91f95decbca94cbbd46a359e3b93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OptionName: Normal Dialog
+  interactableText: Press E to Talk
+  interactIcon: {fileID: 21300000, guid: 2969d90b86698124696637a6df64a112, type: 3}
+  interactKey: 101
+  activateWhenDisable: {fileID: 0}
 --- !u!1 &3255256454523610059
 GameObject:
   m_ObjectHideFlags: 0

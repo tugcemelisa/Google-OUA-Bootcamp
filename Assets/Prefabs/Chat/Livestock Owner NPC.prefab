@@ -2578,9 +2578,8 @@ MonoBehaviour:
   textToSay: Hello World
   herdAnimals:
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   AmountToBePaid: 20
+  player: {fileID: 0}
 --- !u!114 &3423107336166616085
 MonoBehaviour:
   m_ObjectHideFlags: 0
