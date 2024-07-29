@@ -23,7 +23,7 @@ TagManager:
   - Wolf
   - 
   - 
-  - 
+  - OnlyMiniMap
   - 
   - 
   - 
@@ -51,6 +51,9 @@ TagManager:
     locked: 0
   - name: Dialog
     uniqueID: 1430905217
+    locked: 0
+  - name: MiniMap
+    uniqueID: 307030007
     locked: 0
   m_RenderingLayers:
   - Default
