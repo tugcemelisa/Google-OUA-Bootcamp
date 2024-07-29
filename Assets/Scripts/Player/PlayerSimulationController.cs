@@ -231,5 +231,10 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     {
         InputTrigger("FinishScare");
     }
+
+    public void SitToTheGround()
+    {
+        InputTrigger("IdleToSit");
+    }
     #endregion
 }

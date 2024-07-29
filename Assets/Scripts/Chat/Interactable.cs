@@ -17,5 +17,6 @@ public enum InteractKeys
     Talk = KeyCode.E,
     InteractAnimals = KeyCode.T,
     Accept = KeyCode.Y,
+    Sit = KeyCode.E,
     NONE = KeyCode.None
 }
