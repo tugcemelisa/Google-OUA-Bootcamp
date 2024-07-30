@@ -29,22 +29,22 @@ public class SheepAnimationController : MonoBehaviour
     private void OnEnable()
     {
         SheepController.OnWalk += () => InputTrigger("Walk");
+        SheepController.OnGetScared += () => InputTrigger("GetScared");
         SheepController.OnGraze += () => InputTrigger("Graze");
         SheepController.OnRun += () => InputTrigger("Run");
         SheepController.OnIdle += () => InputTrigger("Idle");
         SheepController.OnSit += () => InputTrigger("Sit");
-        SheepController.OnLeftTurn += () => InputTrigger("TurnL");
-        SheepController.OnLeftTurn += () => InputTrigger("TurnR");
+        SheepController.OnDie += () => InputTrigger("Dead");
     }
     private void OnDisable()
     {
         SheepController.OnWalk -= () => InputTrigger("Walk");
+        SheepController.OnGetScared -= () => InputTrigger("GetScared");
         SheepController.OnGraze -= () => InputTrigger("Graze");
         SheepController.OnRun -= () => InputTrigger("Run");
         SheepController.OnIdle -= () => InputTrigger("Idle");
         SheepController.OnSit -= () => InputTrigger("Sit");
-        SheepController.OnLeftTurn -= () => InputTrigger("TurnL");
-        SheepController.OnLeftTurn -= () => InputTrigger("TurnR");
+        SheepController.OnDie -= () => InputTrigger("Dead");
     }
 
     private void InputTrigger(string trigger)

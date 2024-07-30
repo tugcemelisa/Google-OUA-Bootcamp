@@ -5,6 +5,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
 {
+    [HideInInspector] public static Action OnHuntOver;
     [Header("Targets")]
     //[SerializeField] Transform[] attackableTargets;
     private List<Transform> attackableTargets = new();
@@ -125,6 +126,12 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
         var selectedGettingOutTransform = findClosestTransform(gettingOutTransforms, wolf.transform.position);
         wolf.transform.parent = selectedGettingOutTransform;
         wolf.AssignNewTarget(selectedGettingOutTransform, false);
+
+        if(circleWolves.Count <= 0)
+        {
+            OnHuntOver.Invoke();
+            Debug.Log("NIGHT END");
+        }
     }
 
     Transform findClosestTransform(Transform[] transforms, Vector3 pos)

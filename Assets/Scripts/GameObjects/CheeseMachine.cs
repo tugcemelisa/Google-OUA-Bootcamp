@@ -20,10 +20,10 @@ public class CheeseMachine : Interactable
         if(expectedCheeseCount > 0)
         {
             Debug.Log(expectedCheeseCount);
+            InventoryManager.Instance.RemoveItem(milk.Type, expectedCheeseCount);
 
             yield return new WaitForSeconds(duration * expectedCheeseCount);
 
-            InventoryManager.Instance.RemoveItem(milk.Type, expectedCheeseCount);
 
             for (int i = 0; i < expectedCheeseCount; i++)
             {

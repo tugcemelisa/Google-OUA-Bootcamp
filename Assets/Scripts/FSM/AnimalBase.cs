@@ -364,7 +364,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
         }
         else
         {
-            OnHurt.Invoke();
+            OnHurt?.Invoke();
             UpdateHitPointUI();
         }
     }
@@ -376,7 +376,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
 
     void Die()
     {
-        OnDie.Invoke();
+        OnDie?.Invoke();
         isAlive = false;
         GetComponent<Collider>().enabled = true;
         GetComponent<Collider>().isTrigger = true;
