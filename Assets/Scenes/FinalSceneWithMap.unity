@@ -1426,6 +1426,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8723d79c44c4ecd4bac665172bc475e1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1325830621}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8723d79c44c4ecd4bac665172bc475e1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1325830623}
   m_SourcePrefab: {fileID: 100100000, guid: 8723d79c44c4ecd4bac665172bc475e1, type: 3}
 --- !u!4 &374216509 stripped
 Transform:
@@ -2294,6 +2297,97 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534232534}
   m_CullTransparentMesh: 1
+--- !u!1 &600377542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 600377543}
+  - component: {fileID: 600377546}
+  - component: {fileID: 600377545}
+  - component: {fileID: 600377544}
+  m_Layer: 0
+  m_Name: Interactable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &600377543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600377542}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.25, z: 1.444}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7465891848200100380}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &600377544
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600377542}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 2.1689942, z: 0.5}
+  m_Center: {x: 0, y: 1.7003615, z: 0}
+--- !u!114 &600377545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600377542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a91f95decbca94cbbd46a359e3b93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OptionName: Pet
+  interactableText: Press T to Pet
+  interactIcon: {fileID: 21300000, guid: 2969d90b86698124696637a6df64a112, type: 3}
+  interactKey: 116
+  activateWhenDisable: {fileID: 0}
+--- !u!114 &600377546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600377542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4932459ef8353443bedaee928ba7668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableUIElements:
+  - {fileID: 600377545}
+  agent: {fileID: 2369366072473949640}
+  player: {fileID: 1938664395}
+  aiAnim: {fileID: 830559620532707588}
+  pettingDelay: 15
+  playerPos: {fileID: 1649349453}
 --- !u!4 &602766260 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5465940246521907071, guid: 8723d79c44c4ecd4bac665172bc475e1, type: 3}
@@ -4331,6 +4425,8 @@ MonoBehaviour:
   layerToGiveFear:
     serializedVersion: 2
     m_Bits: 128
+  pettingAnimationTime: 3
+  gatheringAnimationTime: 2.5
 --- !u!114 &1325830613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4597,6 +4693,18 @@ MonoBehaviour:
   - {fileID: 1035436611}
   - {fileID: 1473738674}
   - {fileID: 1131080316}
+--- !u!114 &1325830623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325830608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84aadf7960f438b41b138d1b7e2289e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1326914855 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2563496969622287784, guid: 8723d79c44c4ecd4bac665172bc475e1, type: 3}
@@ -15596,6 +15704,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 942269873}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1649349452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1649349453}
+  m_Layer: 0
+  m_Name: PlayerPetPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1649349453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649349452}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.01, y: -0.016126547, z: 3.04}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7465891848200100380}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1665484051
 GameObject:
@@ -30445,23 +30584,6 @@ Transform:
   - {fileID: 1583817109937975396}
   m_Father: {fileID: 4432962272860022734}
   m_LocalEulerAnglesHint: {x: -23.76454, y: 179.99983, z: -179.99998}
---- !u!114 &1256448168652370681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7843016246793846950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4932459ef8353443bedaee928ba7668, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactableUIElements:
-  - {fileID: 6319448049608765701}
-  agent: {fileID: 2369366072473949640}
-  player: {fileID: 1938664395}
-  aiAnim: {fileID: 830559620532707588}
 --- !u!4 &1256623001673882281
 Transform:
   m_ObjectHideFlags: 0
@@ -44425,23 +44547,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &6319448049608765701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7843016246793846950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4a91f95decbca94cbbd46a359e3b93f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OptionName: Pet
-  interactableText: Press T to Pet
-  interactIcon: {fileID: 21300000, guid: 2969d90b86698124696637a6df64a112, type: 3}
-  interactKey: 116
-  activateWhenDisable: {fileID: 0}
 --- !u!1 &6320562188580124233
 GameObject:
   m_ObjectHideFlags: 0
@@ -47696,9 +47801,11 @@ Transform:
   m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 600377543}
   - {fileID: 1385884188831337386}
   - {fileID: 6047643284292927865}
   - {fileID: 7379564652108482662}
+  - {fileID: 1649349453}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7469312928095087514
@@ -48434,8 +48541,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7465891848200100380}
-  - component: {fileID: 6319448049608765701}
-  - component: {fileID: 1256448168652370681}
   - component: {fileID: 2369366072473949640}
   - component: {fileID: 830559620532707588}
   - component: {fileID: 3833974909463485820}
@@ -48463,12 +48568,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.8422935, z: 3.472534}
-  m_Center: {x: 0, y: 2.048878, z: 0.6656831}
+  m_Size: {x: 1.2477678, y: 3.3010511, z: 3.8964531}
+  m_Center: {x: -0.040860858, y: 1.6386791, z: 0.19765104}
 --- !u!4 &7854222103531384706
 Transform:
   m_ObjectHideFlags: 0

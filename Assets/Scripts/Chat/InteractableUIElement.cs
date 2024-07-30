@@ -26,8 +26,13 @@ public class InteractableUIElement : MonoBehaviour
 
     public InteractKeys InteractKey { get => interactKey; }
 
-    public void EnableIt()
+    public void EnableIt(float time)
     {
-        this.gameObject.SetActive(true);
+        Invoke("Enable", time);
+    }
+
+    void Enable()
+    {
+        this.enabled = true;
     }
 }

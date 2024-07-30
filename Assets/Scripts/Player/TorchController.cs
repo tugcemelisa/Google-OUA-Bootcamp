@@ -11,8 +11,11 @@ public class TorchController : MonoBehaviour
     [SerializeField] float fearPerAttack = 5f;
 
     [SerializeField] Transform torchHead;
-    [SerializeField] float fearAttackRadius=3f;
+    [SerializeField] float fearAttackRadius = 3f;
     [SerializeField] LayerMask layerToGiveFear;
+
+    [SerializeField] float pettingAnimationTime = 3f;
+    [SerializeField] float gatheringAnimationTime = 2.5f;
 
     private void OnEnable()
     {
@@ -46,13 +49,16 @@ public class TorchController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            StarterAssets.InputController.Instance.DisableInputs();
             animator.SetTrigger("Gather");
         }
     }
 
-    public void Pet()
+    public void Pet(Transform dog)
     {
+        StarterAssets.InputController.Instance.DisableInputs();
         animator.SetTrigger("Petting");
+        transform.LookAt(dog);
     }
 
     private void Attack()
@@ -63,7 +69,7 @@ public class TorchController : MonoBehaviour
 
     private void GiveFear()
     {
-        var rayCastHits = Physics.SphereCastAll(torchHead.position, fearAttackRadius,-Vector3.up, layerToGiveFear);
+        var rayCastHits = Physics.SphereCastAll(torchHead.position, fearAttackRadius, -Vector3.up, layerToGiveFear);
 
         foreach (var hit in rayCastHits)
         {
@@ -74,7 +80,7 @@ public class TorchController : MonoBehaviour
                 Debug.Log(name + " scares " + wolf.name + " TORCHCONTROLLER");
             }
         }
-       
+
     }
 
     private void OnDrawGizmos()

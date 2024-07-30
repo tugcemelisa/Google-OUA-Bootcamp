@@ -8,6 +8,12 @@ public class DogController : Interactable
     [SerializeField] Animator aiAnim;
     Vector3 dest;
 
+    [SerializeField] float pettingDelay = 15f;
+    bool pettable = true;
+
+    [SerializeField] Transform playerPos;
+
+
     void Update()
     {
         dest = player.position;
@@ -24,13 +30,27 @@ public class DogController : Interactable
     TorchController Player;
     public override void Interact(Transform interactorTransform, KeyCode interactKey)
     {
-        if ((int)interactKey == (int)InteractKeys.InteractAnimals)
+        if (pettable && (int)interactKey == (int)InteractKeys.InteractAnimals)
         {
             Player = player.GetComponentInParent<TorchController>();
             if (Player != null)
             {
-                Player.Pet();
+                Player.transform.position = playerPos.position;
+                Player.Pet(transform);
+
+                InteractableUIElements[0].Disable(false);
+                PlayerInteractableUI.Instance.UpdateUIElements();
+
+                pettable = false;
+                Invoke("EnablePetting", pettingDelay);
+
             }
         }
+    }
+
+    void EnablePetting()
+    {
+        pettable = true;
+        InteractableUIElements[0].EnableIt(0);
     }
 }
