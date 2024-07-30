@@ -14,7 +14,7 @@ public class InventorySlot : MonoBehaviour
     [SerializeField] GameObject selectedIcon;
 
     ItemMonoBehaviour item;
-    int count = 0;
+    [HideInInspector] public int count = 0;
 
     [SerializeField] KeyCode keyCode;
     [SerializeField] TextMeshProUGUI slotKeycodeText;

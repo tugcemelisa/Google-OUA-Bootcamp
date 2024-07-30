@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManager>
 {
-    [SerializeField] private List<InventorySlot> slots;
+    /*[SerializeField]*/ public List<InventorySlot> slots;
 
     [SerializeField] private InventorySlot selectedSlot;
 
@@ -105,7 +105,7 @@ public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManage
         }
     }
 
-    private void RemoveItem(ItemType itemType, int count)
+    public void RemoveItem(ItemType itemType, int count)
     {
         int countToBeRemoved = count;
         foreach (InventorySlot slot in slots)
@@ -136,7 +136,7 @@ public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManage
         }
     }
 
-    private bool HasItem(ItemType itemType, int count)
+    public bool HasItem(ItemType itemType, int count)
     {
         int existCount = 0;
         foreach (InventorySlot slot in slots)
