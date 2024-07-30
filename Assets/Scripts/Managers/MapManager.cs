@@ -15,13 +15,15 @@ public class MapManager : MonoBehaviourSingletonPersistent<MapManager>
 
     [SerializeField] PlayerSimulationController player;
 
+    [SerializeField] GameObject playerMapIcon;
+
     bool isOpen = false;
 
     private void Start()
     {
+        minimapCameraOffset = miniMapCamera.transform.position;
         OpenMap(false);
 
-        minimapCameraOffset = miniMapCamera.transform.position;
     }
 
     private void Update()
@@ -35,7 +37,7 @@ public class MapManager : MonoBehaviourSingletonPersistent<MapManager>
 
     public void OpenMap(bool set)
     {
-        StartCoroutine(UpdateCamera());
+        StartCoroutine(UpdateCamera(!set));
 
 
         map.SetActive(set);
@@ -45,9 +47,10 @@ public class MapManager : MonoBehaviourSingletonPersistent<MapManager>
         Cursor.lockState = set ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
-    IEnumerator UpdateCamera()
+    IEnumerator UpdateCamera(bool isCenter)
     {
-        miniMapCamera.transform.position = minimapCameraOffset + player.transform.position;
+        miniMapCamera.transform.position = isCenter? minimapCameraOffset + player.transform.position : minimapCameraOffset;
+        playerMapIcon.transform.position = player.transform.position + Vector3.up;
 
         miniMapCamera.gameObject.SetActive(true);
         yield return new WaitForEndOfFrame();
