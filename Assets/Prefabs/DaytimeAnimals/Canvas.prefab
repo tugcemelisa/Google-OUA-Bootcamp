@@ -1477,6 +1477,7 @@ MonoBehaviour:
   countText: {fileID: 2449780975270841008}
   itemNameText: {fileID: 719038324503949862}
   selectedIcon: {fileID: 3403419203521605316}
+  count: 0
   keyCode: 55
   slotKeycodeText: {fileID: 3408855528582855368}
 --- !u!1 &1574681275488915717
@@ -1621,6 +1622,7 @@ MonoBehaviour:
   countText: {fileID: 1832080938603133539}
   itemNameText: {fileID: 4179326578810796893}
   selectedIcon: {fileID: 1346946370075929223}
+  count: 0
   keyCode: 52
   slotKeycodeText: {fileID: 2182489098649891464}
 --- !u!1 &1752553955599598221
@@ -3029,6 +3031,7 @@ MonoBehaviour:
   countText: {fileID: 7556393556079347988}
   itemNameText: {fileID: 5230882955673459184}
   selectedIcon: {fileID: 907894979189390308}
+  count: 0
   keyCode: 54
   slotKeycodeText: {fileID: 5216276509035861}
 --- !u!1 &4052739643022809813
@@ -5757,6 +5760,7 @@ MonoBehaviour:
   countText: {fileID: 1898821345872687998}
   itemNameText: {fileID: 1235991827278952643}
   selectedIcon: {fileID: 8050588617994149749}
+  count: 0
   keyCode: 50
   slotKeycodeText: {fileID: 3917746760035103986}
 --- !u!1 &6871578437456300559
@@ -5901,6 +5905,7 @@ MonoBehaviour:
   countText: {fileID: 3059290870562298290}
   itemNameText: {fileID: 8319978673838906417}
   selectedIcon: {fileID: 1752553955599598221}
+  count: 0
   keyCode: 49
   slotKeycodeText: {fileID: 3074721506118770348}
 --- !u!1 &7060736767194511138
@@ -6356,6 +6361,7 @@ MonoBehaviour:
   countText: {fileID: 9208926250247623170}
   itemNameText: {fileID: 8388453399836263909}
   selectedIcon: {fileID: 7060736767194511138}
+  count: 0
   keyCode: 53
   slotKeycodeText: {fileID: 4351267574306537959}
 --- !u!1 &7870896074941396352
@@ -6713,6 +6719,7 @@ MonoBehaviour:
   countText: {fileID: 1149207295362811232}
   itemNameText: {fileID: 3789499415252213807}
   selectedIcon: {fileID: 1147116659575354002}
+  count: 0
   keyCode: 51
   slotKeycodeText: {fileID: 3810045709381315524}
 --- !u!1 &8426319346133570547

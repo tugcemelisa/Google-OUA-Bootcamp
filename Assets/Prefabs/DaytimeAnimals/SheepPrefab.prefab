@@ -3711,7 +3711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3295150760926203521, guid: 1f40dab149d690e428f586aff1701d91, type: 3}
       propertyPath: itemData.count
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8702759894803844633, guid: 1f40dab149d690e428f586aff1701d91, type: 3}
       propertyPath: m_Name
