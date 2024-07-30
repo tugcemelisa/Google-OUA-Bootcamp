@@ -1,8 +1,13 @@
+using Cinemachine;
 using UnityEngine;
 
 public class SittingArea : Interactable
 {
+
     [SerializeField] PlayerSimulationController player;
+    [SerializeField] CinemachineVirtualCamera virtualCamera;
+
+    [SerializeField] float forwardingTime = 7f;
     public override void Interact(Transform interactorTransform, KeyCode interactKey)
     {
         if (interactKey == (KeyCode)InteractKeys.Sit)
@@ -23,17 +28,21 @@ public class SittingArea : Interactable
 
     void SitDown()
     {
-        print("sit");
         player.SitToTheGround();
+        virtualCamera.Priority = 100;
+        TimePass();
     }
 
     void TimePass()
     {
-
+        
+        //TimeManager.Instance.PassTimeUntilDark();
+        Invoke("StandUp", forwardingTime);
     }
 
     void StandUp()
     {
-
+        player.SitToTheGround();
+        virtualCamera.Priority = 1;
     }
 }
