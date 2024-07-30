@@ -11,7 +11,7 @@ public class AnimalDeadState : AnimalStates
 
     public override void ExitState(AnimalBase fsm)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void Interact(AnimalBase fsm, KeyCode interactKey)
@@ -21,10 +21,10 @@ public class AnimalDeadState : AnimalStates
 
     public override void UpdateState(AnimalBase fsm)
     {
-        if (fsm.executingState == ExecutingAnimalState.Dead)
-        {
+        //if (fsm.executingState == ExecutingAnimalState.Dead)
+        //{
 
-        }
-        else ExitState(fsm);
+        //}
+        //else ExitState(fsm);
     }
 }
