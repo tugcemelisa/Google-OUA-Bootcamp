@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 1233888992542719750}
   - component: {fileID: 2831138414027143438}
   - component: {fileID: 6504178523769766505}
+  - component: {fileID: 5012755598317741145}
   m_Layer: 0
   m_Name: SheepPrefab
   m_TagString: Sheep
@@ -132,6 +133,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5132632900186997289}
+  - {fileID: 2616333772961704270}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3108349528359345705
@@ -151,6 +153,9 @@ MonoBehaviour:
   interactIcon: {fileID: 21300000, guid: 2969d90b86698124696637a6df64a112, type: 3}
   interactKey: 116
   activateWhenDisable: {fileID: 6778879774404823308}
+  activateEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6778879774404823308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +173,9 @@ MonoBehaviour:
   interactIcon: {fileID: 21300000, guid: 2969d90b86698124696637a6df64a112, type: 3}
   interactKey: 0
   activateWhenDisable: {fileID: 1400916442791782276}
+  activateEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1400916442791782276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +193,9 @@ MonoBehaviour:
   interactIcon: {fileID: 21300000, guid: eca5871199eee2f45a82dba549343126, type: 3}
   interactKey: 116
   activateWhenDisable: {fileID: 0}
+  activateEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1233888992542719750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,17 +212,22 @@ MonoBehaviour:
   - {fileID: 3108349528359345705}
   - {fileID: 6778879774404823308}
   - {fileID: 1400916442791782276}
+  executingState: 0
+  meadow: {fileID: 0}
   Agent: {fileID: 0}
   acceleration: 0
   speed: 0
-  executingState: 0
   detectionRadius: 2
   moveRadius: 10
   grazeTime: 5
   _grazeTimer: 0
-  sheepDetectionRadius: 2
   _herdHeartbeat: 0
   _maxDuration: 0.4
+  hitPointMaximum: 0
+  hitPointUI: {fileID: 0}
+  item: {fileID: 719575680594517414}
+  deadInteractable: {fileID: 0}
+  sheepDetectionRadius: 2
 --- !u!195 &2831138414027143438
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -255,6 +271,26 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.48410463, y: 1.2063583, z: 1.4901006}
   m_Center: {x: 0, y: 0.60317916, z: 0.24505031}
+--- !u!114 &5012755598317741145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327558593952929264}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a91f95decbca94cbbd46a359e3b93f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OptionName: Collect Meat
+  interactableText: Press "E" to collect Meat
+  interactIcon: {fileID: 1658037526, guid: 246b5f0b52f1ade4ba680691fbc471e7, type: 3}
+  interactKey: 101
+  activateWhenDisable: {fileID: 0}
+  activateEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &342896673133170256
 GameObject:
   m_ObjectHideFlags: 0
@@ -3637,3 +3673,84 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.034993008, y: 0.0533064, z: -0.002636984}
     m_Extent: {x: 0.24673258, y: 0.2996272, z: 0.21245067}
   m_DirtyAABB: 0
+--- !u!1001 &2613997001066795815
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 414006044344925063}
+    m_Modifications:
+    - target: {fileID: 2777195038161513, guid: 1f40dab149d690e428f586aff1701d91, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2777195038161513, guid: 1f40dab149d690e428f586aff1701d91, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2777195038161513, guid: 1f40dab149d690e428f586aff1701d91, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2777195038161513, guid: 1f40dab149d690e428f586aff1701d91, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2777195038161513, guid: 1f40dab149d690e428f586aff1701d91, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2777195038161513, guid: 1f40dab149d690e428f586aff1701d91, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2777195038161513, guid: 1f40dab149d690e428f586aff1701d91, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2777195038161513, guid: 1f40dab149d690e428f586aff1701d91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2777195038161513, guid: 1f40dab149d690e428f586aff1701d91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2777195038161513, guid: 1f40dab149d690e428f586aff1701d91, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3295150760926203521, guid: 1f40dab149d690e428f586aff1701d91, type: 3}
+      propertyPath: itemData.count
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702759894803844633, guid: 1f40dab149d690e428f586aff1701d91, type: 3}
+      propertyPath: m_Name
+      value: sheepMeat
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702759894803844633, guid: 1f40dab149d690e428f586aff1701d91, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1f40dab149d690e428f586aff1701d91, type: 3}
+--- !u!114 &719575680594517414 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3295150760926203521, guid: 1f40dab149d690e428f586aff1701d91, type: 3}
+  m_PrefabInstance: {fileID: 2613997001066795815}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61bb17f7fce84554b868d70199c067cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2616333772961704270 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2777195038161513, guid: 1f40dab149d690e428f586aff1701d91, type: 3}
+  m_PrefabInstance: {fileID: 2613997001066795815}
+  m_PrefabAsset: {fileID: 0}

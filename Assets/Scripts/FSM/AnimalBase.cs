@@ -15,7 +15,8 @@ public enum ExecutingAnimalState
     GetHunted,
     Rest,
     GetUsed,
-    DoNothing
+    DoNothing,
+    Dead
 }
 public abstract class AnimalBase : Interactable, IFarmAnimal
 {
@@ -43,6 +44,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     [HideInInspector] public AnimalRestState restState = new();
     [HideInInspector] public AnimalGetMilkedState getMilkedState = new();
     [HideInInspector] public AnimalDoNothingState doNothingState = new();
+    [HideInInspector] public AnimalDeadState deadState = new();
     #endregion
 
     #region Variables..
@@ -75,6 +77,45 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     float hitPoint = 10;
     #endregion
 
+    #region Item
+
+    [SerializeField] ItemMonoBehaviour item;
+    [SerializeField] InteractableUIElement deadInteractable;
+
+    public void SpawnItem()
+    {
+        if (item.ItemData.count < 0)
+        {
+            return;
+        }
+        item.transform.parent = null;
+        item.transform.position += Vector3.up * 3;
+        item.gameObject.SetActive(true);
+
+        // Fade out animation needed
+        this.gameObject.SetActive(false);
+    }
+
+    void DecreaseItemCount()
+    {
+        if (item.ItemData.count < 0)
+        {
+            return;
+        }
+
+        item.ItemData.count -= 1;
+    }
+
+    public void ShowDeadInteractable()
+    {
+        foreach (var interactableUI in InteractableUIElements)
+        {
+            interactableUI.enabled = false;
+        }
+        deadInteractable.enabled= true;
+    }
+
+    #endregion
 
     public void OnEnable()
     {
@@ -294,9 +335,18 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
         }
     }
 
+    [ContextMenu("Execute Take Damage Manually in editor")]
+    void ManuelDamage()
+    {
+        TakeDamage(5);
+    }
     public void TakeDamage(float amount)
     {
-        if (!isAlive) return;
+        if (!isAlive)
+        {
+            DecreaseItemCount();
+            return;
+        }
         hitPoint -= amount;
         CheckIsDead();
     }
@@ -323,8 +373,13 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     {
         OnDie.Invoke();
         isAlive = false;
+        GetComponent<Collider>().enabled = true;
+        GetComponent<Collider>().isTrigger = true;
+        Agent.enabled = false;
 
         hitPointUI.fillAmount = 0;
+
+        executingState = ExecutingAnimalState.Dead;
     }
 
     public void SwitchState(AnimalStates nextState)

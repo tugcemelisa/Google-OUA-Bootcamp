@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class InteractableUIElement : MonoBehaviour
@@ -11,6 +12,8 @@ public class InteractableUIElement : MonoBehaviour
     //[SerializeField] IconType interactIconType;
 
     [SerializeField] InteractableUIElement activateWhenDisable;
+
+    [SerializeField] UnityEvent activateEvent;
 
     public void Disable(bool shouldActivateOtherOne)
     {
@@ -24,4 +27,9 @@ public class InteractableUIElement : MonoBehaviour
     //public IconType InteractIconType { get => interactIconType; set => interactIconType = value; }
 
     public InteractKeys InteractKey { get => interactKey; }
+
+    public void EnableIt()
+    {
+        this.gameObject.SetActive(true);
+    }
 }
