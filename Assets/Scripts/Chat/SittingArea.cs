@@ -1,8 +1,10 @@
 using Cinemachine;
+using System;
 using UnityEngine;
 
 public class SittingArea : Interactable
 {
+    [HideInInspector] public static Action OnPlayerSit;
 
     [SerializeField] PlayerSimulationController player;
     [SerializeField] CinemachineVirtualCamera virtualCamera;
@@ -30,6 +32,7 @@ public class SittingArea : Interactable
     {
         player.SitToTheGround();
         virtualCamera.Priority = 100;
+        OnPlayerSit?.Invoke();
         TimePass();
     }
 
