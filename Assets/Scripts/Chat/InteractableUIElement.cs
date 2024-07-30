@@ -13,8 +13,6 @@ public class InteractableUIElement : MonoBehaviour
 
     [SerializeField] InteractableUIElement activateWhenDisable;
 
-    [SerializeField] UnityEvent activateEvent;
-
     public void Disable(bool shouldActivateOtherOne)
     {
         if (activateWhenDisable)

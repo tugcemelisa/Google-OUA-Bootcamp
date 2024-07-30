@@ -92,14 +92,19 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
         item.transform.position += Vector3.up * 3;
         item.gameObject.SetActive(true);
 
+        FadeOutTheBody();
+    }
+
+    void FadeOutTheBody()
+    {
         // Fade out animation needed
         this.gameObject.SetActive(false);
     }
-
     void DecreaseItemCount()
     {
         if (item.ItemData.count < 0)
         {
+            FadeOutTheBody();
             return;
         }
 
