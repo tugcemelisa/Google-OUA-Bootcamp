@@ -58,6 +58,7 @@ public class PlayerInteract : MonoBehaviourSingletonPersistent<PlayerInteract>
                 closestDistance = distance;
             }
         }
+        closestInteractable.gameObject.GetComponent<INpc>()?.Talk();
         return closestInteractable;
     }
 }
