@@ -6,12 +6,12 @@ using UnityEngine.AI;
 public enum NpcState
 {
     WalkAround,
-    Interact,
     Wait
 }
 
 public class NpcController : MonoBehaviour, INpc
 {
+    PlayerInteract playerInteract;
     public NpcState executingState;
     private NavMeshAgent Agent;
     private NavMeshHit hit;
@@ -27,6 +27,7 @@ public class NpcController : MonoBehaviour, INpc
         animator = GetComponentInChildren<Animator>();
         _barn = GameObject.FindWithTag("Barn").GetComponent<Transform>();
         _player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        playerInteract = _player.GetComponent<PlayerInteract>();
         executingState = NpcState.WalkAround;
     }
 
@@ -37,9 +38,6 @@ public class NpcController : MonoBehaviour, INpc
             case NpcState.WalkAround:
                 MoveAround();
                 break;
-            //case NpcState.Interact:
-            //    Talk();
-            //    break;
             case NpcState.Wait:
                 Wait();
                 break;
@@ -57,17 +55,21 @@ public class NpcController : MonoBehaviour, INpc
 
     public void Talk()
     {
-        RotateToPlayer();
-        executingState = NpcState.Wait;
-        animator.SetTrigger("Talk");
+        if(executingState != NpcState.Wait)
+        {
+            RotateToPlayer();
+            executingState = NpcState.Wait;
+            animator.SetTrigger("Idle");
+        }
     }
 
     private void Wait()
     {
         Agent.SetDestination(transform.position);
-        var cols = Physics.OverlapSphere(transform.position, 3f);
-        if (cols.Any(x => x != _player))
+        
+        if (playerInteract.GetInteractable() == null)
         {
+            Debug.Log(name+ " dont wait");
             executingState = NpcState.WalkAround;
         }
     }
@@ -82,7 +84,7 @@ public class NpcController : MonoBehaviour, INpc
 
     public void RotateToPlayer()
     {
-        Vector3 direction = (_barn.position + new Vector3(-0.5f, 0, 0) - transform.position).normalized;
+        Vector3 direction = (transform.position - _player.position).normalized;
         Vector3 targetEulerAngles = Quaternion.LookRotation(direction).eulerAngles;
         transform.DORotate(targetEulerAngles, 2);
     }

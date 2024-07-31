@@ -40,6 +40,7 @@ public class PlayerInteract : MonoBehaviourSingletonPersistent<PlayerInteract>
             if (interactable != null)
             {
                 interactables.Add(interactable);
+                interactable.gameObject.GetComponent<INpc>()?.Talk();
             }
         }
 
@@ -58,7 +59,7 @@ public class PlayerInteract : MonoBehaviourSingletonPersistent<PlayerInteract>
                 closestDistance = distance;
             }
         }
-        closestInteractable.gameObject.GetComponent<INpc>()?.Talk();
+
         return closestInteractable;
     }
 }

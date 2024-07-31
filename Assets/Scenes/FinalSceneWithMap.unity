@@ -2845,7 +2845,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5533386723016206390, guid: 35b5c89d99f55834ab8d3cf73493850e, type: 3}
   m_PrefabInstance: {fileID: 634583975708378825}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &792413840
+--- !u!114 &792413848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4434,6 +4434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactRange: 1.5
   interactor: {fileID: 1938664395}
+  canPlayerInteract: 0
 --- !u!114 &1325830612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4771,7 +4772,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6499911316938173428, guid: 3205f7c387830a744bde535ff88a924b, type: 3}
   m_PrefabInstance: {fileID: 4604526922703873392}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1361259717
+--- !u!114 &1361259725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29010,7 +29011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7417626650226069267, guid: 35b5c89d99f55834ab8d3cf73493850e, type: 3}
       propertyPath: m_Speed
-      value: 1.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7417626650226069267, guid: 35b5c89d99f55834ab8d3cf73493850e, type: 3}
       propertyPath: m_BaseOffset
@@ -29018,7 +29019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7417626650226069267, guid: 35b5c89d99f55834ab8d3cf73493850e, type: 3}
       propertyPath: m_AngularSpeed
-      value: 60
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8216654883534262700, guid: 35b5c89d99f55834ab8d3cf73493850e, type: 3}
       propertyPath: m_Name
@@ -29030,7 +29031,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8216654883534262700, guid: 35b5c89d99f55834ab8d3cf73493850e, type: 3}
       insertIndex: 1
-      addedObject: {fileID: 792413840}
+      addedObject: {fileID: 792413848}
   m_SourcePrefab: {fileID: 100100000, guid: 35b5c89d99f55834ab8d3cf73493850e, type: 3}
 --- !u!1 &638629888391963668
 GameObject:
@@ -34370,7 +34371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4788097468674801857, guid: 1253d9052ccf4cd41855a7e02da33e0e, type: 3}
       propertyPath: m_Speed
-      value: 1.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4788097468674801857, guid: 1253d9052ccf4cd41855a7e02da33e0e, type: 3}
       propertyPath: m_BaseOffset
@@ -34378,7 +34379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4788097468674801857, guid: 1253d9052ccf4cd41855a7e02da33e0e, type: 3}
       propertyPath: m_AngularSpeed
-      value: 60
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 4927414674659696087, guid: 1253d9052ccf4cd41855a7e02da33e0e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -34430,14 +34431,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3205795784057887986, guid: 1253d9052ccf4cd41855a7e02da33e0e, type: 3}
       insertIndex: 1
-      addedObject: {fileID: 2519402149336656624}
+      addedObject: {fileID: 2519402149336656630}
   m_SourcePrefab: {fileID: 100100000, guid: 1253d9052ccf4cd41855a7e02da33e0e, type: 3}
 --- !u!4 &2519402149336656618 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4927414674659696087, guid: 1253d9052ccf4cd41855a7e02da33e0e, type: 3}
   m_PrefabInstance: {fileID: 2519402149336656611}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2519402149336656624
+--- !u!114 &2519402149336656630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -39584,7 +39585,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 699203245569171692, guid: 3205f7c387830a744bde535ff88a924b, type: 3}
       propertyPath: m_Speed
-      value: 1.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 699203245569171692, guid: 3205f7c387830a744bde535ff88a924b, type: 3}
       propertyPath: m_BaseOffset
@@ -39592,7 +39593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 699203245569171692, guid: 3205f7c387830a744bde535ff88a924b, type: 3}
       propertyPath: m_AngularSpeed
-      value: 60
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 1146975969050891648, guid: 3205f7c387830a744bde535ff88a924b, type: 3}
       propertyPath: _barn
@@ -39648,7 +39649,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2804725138709221427, guid: 3205f7c387830a744bde535ff88a924b, type: 3}
       insertIndex: 1
-      addedObject: {fileID: 1361259717}
+      addedObject: {fileID: 1361259725}
   m_SourcePrefab: {fileID: 100100000, guid: 3205f7c387830a744bde535ff88a924b, type: 3}
 --- !u!1 &4605604218288084677
 GameObject:
@@ -48666,7 +48667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &7843016246793846951
 BoxCollider:
   m_ObjectHideFlags: 0
