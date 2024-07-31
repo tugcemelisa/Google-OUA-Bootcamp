@@ -89,9 +89,6 @@ MonoBehaviour:
   interactIcon: {fileID: 21300000, guid: eca5871199eee2f45a82dba549343126, type: 3}
   interactKey: 116
   activateWhenDisable: {fileID: 0}
-  activateEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &2124993031074205096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,9 +106,6 @@ MonoBehaviour:
   interactIcon: {fileID: 21300000, guid: 2969d90b86698124696637a6df64a112, type: 3}
   interactKey: 116
   activateWhenDisable: {fileID: 8573862606286282273}
-  activateEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &3021928274363226354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,9 +123,6 @@ MonoBehaviour:
   interactIcon: {fileID: 21300000, guid: 2969d90b86698124696637a6df64a112, type: 3}
   interactKey: 116
   activateWhenDisable: {fileID: 2124993031074205096}
-  activateEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &6403496312350503280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +142,7 @@ MonoBehaviour:
   - {fileID: 8932284577969242456}
   executingState: 0
   meadow: {fileID: 0}
+  home: {fileID: 0}
   Agent: {fileID: 0}
   acceleration: 0
   speed: 0
@@ -221,12 +213,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OptionName: Collect Meat
   interactableText: Press "E" to collect Meat
-  interactIcon: {fileID: -408235640, guid: 246b5f0b52f1ade4ba680691fbc471e7, type: 3}
+  interactIcon: {fileID: 21300000, guid: 67d4b2c3dad84eb44aad1f7b62c5d81f, type: 3}
   interactKey: 101
   activateWhenDisable: {fileID: 0}
-  activateEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &930354666154316163
 GameObject:
   m_ObjectHideFlags: 0

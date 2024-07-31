@@ -9,6 +9,8 @@ public class NPCHeadLookAt : MonoBehaviour
 
     private bool isLookAtPosition = false;
 
+    [SerializeField] float lookingTime = 5f;
+
     private void Start()
     {
         lookAt = headLookAtTransform;
@@ -28,5 +30,11 @@ public class NPCHeadLookAt : MonoBehaviour
         isLookAtPosition = true;
         this.lookAt = LookAt;
         headLookAtTransform.transform.position = LookAt.position;
+        Invoke("CloseLookingUp", lookingTime);
+    }
+
+    void CloseLookingUp()
+    {
+        isLookAtPosition = false;
     }
 }

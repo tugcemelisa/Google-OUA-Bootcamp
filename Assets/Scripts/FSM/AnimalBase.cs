@@ -379,11 +379,11 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
 
     void Die()
     {
-        OnDie?.Invoke();
+        //OnDie?.Invoke();
         isAlive = false;
         GetComponent<Collider>().enabled = true;
         GetComponent<Collider>().isTrigger = true;
-        Agent.enabled = false;
+        //Agent.enabled = false;
 
         hitPointUI.fillAmount = 0;
 

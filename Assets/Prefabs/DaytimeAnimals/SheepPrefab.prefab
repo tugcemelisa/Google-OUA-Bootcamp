@@ -278,7 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OptionName: Collect Meat
   interactableText: Press "E" to collect Meat
-  interactIcon: {fileID: 1658037526, guid: 246b5f0b52f1ade4ba680691fbc471e7, type: 3}
+  interactIcon: {fileID: 21300000, guid: 67d4b2c3dad84eb44aad1f7b62c5d81f, type: 3}
   interactKey: 101
   activateWhenDisable: {fileID: 0}
 --- !u!1 &342896673133170256

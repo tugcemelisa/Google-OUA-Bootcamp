@@ -14,23 +14,26 @@ public class DayNightCycle : MonoBehaviour
     public Gradient lightColor; 
     public AnimationCurve lightIntensity; 
     public float dayDuration = 120f;
+    [SerializeField] private float transitionDuration = 10f;
+    private float fixedDayDuration;
 
     private float time;
 
     private void OnEnable()
     {
         SittingArea.OnPlayerSit += StartTransitionToNight;
-        WolfManager.OnHuntOver += StartTransitionToNight;
+        WolfManager.OnHuntOver += StartTransitionToDay;
     }
     private void OnDisable()
     {
         SittingArea.OnPlayerSit -= StartTransitionToNight;
-        WolfManager.OnHuntOver -= StartTransitionToNight;
+        WolfManager.OnHuntOver -= StartTransitionToDay;
     }
 
     private void Start()
     {
         executingState = CycleState.Normal;
+        fixedDayDuration = dayDuration;
     }
 
     void Update()
@@ -44,6 +47,9 @@ public class DayNightCycle : MonoBehaviour
                 break;
             case CycleState.TransitionToNight:
                 DoNightTransition();
+                break;
+            case CycleState.TransitionToDay:
+                DoDayTransition();
                 break;
         }
 
@@ -59,8 +65,13 @@ public class DayNightCycle : MonoBehaviour
 
     private void StartTransitionToNight()
     {
-        dayDuration /= 36f;
+        dayDuration = transitionDuration;
         executingState = CycleState.TransitionToNight;
+    }
+    private void StartTransitionToDay()
+    {
+        dayDuration = transitionDuration;
+        executingState = CycleState.TransitionToDay;
     }
 
     private void DoNormalCycle()
@@ -75,7 +86,16 @@ public class DayNightCycle : MonoBehaviour
     {
         if (time >= 0.5f)
         {
-            dayDuration = 360f;
+            dayDuration = fixedDayDuration;
+            executingState = CycleState.Normal;
+        }
+    }
+
+    private void DoDayTransition()
+    {
+        if (time >= 1f)
+        {
+            time = 0f;
             executingState = CycleState.Normal;
         }
     }
