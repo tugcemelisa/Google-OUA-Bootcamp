@@ -158,7 +158,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
 
     public void CheckIfArrived()
     {
-        if (Agent.remainingDistance <= Agent.stoppingDistance)
+        if (Agent.hasPath && Agent.remainingDistance <= Agent.stoppingDistance)
         {
             executingState = ExecutingAnimalState.Graze;
         }
@@ -195,7 +195,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
 
     public void StartFlee()
     {
-        if (meadow != null)
+        if (meadow != null && executingState == ExecutingAnimalState.GoToMeadow)
         {
             AvoidOtherAnimals();
         }

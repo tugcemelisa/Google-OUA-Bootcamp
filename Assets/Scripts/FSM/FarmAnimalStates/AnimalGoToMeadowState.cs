@@ -12,7 +12,7 @@ public class AnimalGoToMeadowState : AnimalStates
     {
         if(fsm.executingState == ExecutingAnimalState.GoToMeadow)
         {
-            if(fsm.Agent.hasPath && fsm.Agent.remainingDistance <= fsm.Agent.stoppingDistance)    
+            if(fsm.Agent.hasPath && fsm.Agent.remainingDistance <= 3.60f)    
             {
                 fsm.executingState = ExecutingAnimalState.Graze;
             }

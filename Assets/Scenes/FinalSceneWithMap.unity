@@ -4434,7 +4434,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactRange: 1.5
   interactor: {fileID: 1938664395}
-  canPlayerInteract: 0
 --- !u!114 &1325830612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26671,6 +26670,7 @@ GameObject:
   - component: {fileID: 2097685991}
   - component: {fileID: 2097685993}
   - component: {fileID: 2097685994}
+  - component: {fileID: 2097685995}
   m_Layer: 0
   m_Name: '>>>>Managers<<<<'
   m_TagString: Untagged
@@ -26833,6 +26833,20 @@ MonoBehaviour:
   menuCam: {fileID: 1237491185}
   normalCam: {fileID: 2003537536651705976}
   playerAnimator: {fileID: 1325830620}
+--- !u!114 &2097685995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097685988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdaacbbae613e04ca086a4b37fca6cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prompt: Act as a villager greets the shepherd of the village that so many people
+    likes.
 --- !u!1 &2100059187
 GameObject:
   m_ObjectHideFlags: 3
@@ -28941,6 +28955,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 471565088}
     m_Modifications:
+    - target: {fileID: 509120202717132767, guid: 35b5c89d99f55834ab8d3cf73493850e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2937020821899816060, guid: 35b5c89d99f55834ab8d3cf73493850e, type: 3}
       propertyPath: _barn
       value: 
@@ -28969,6 +28987,18 @@ PrefabInstance:
       propertyPath: 'herdAnimals.Array.data[3]'
       value: 
       objectReference: {fileID: 1787265968}
+    - target: {fileID: 3991541004907025301, guid: 35b5c89d99f55834ab8d3cf73493850e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991541004907025301, guid: 35b5c89d99f55834ab8d3cf73493850e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991541004907025301, guid: 35b5c89d99f55834ab8d3cf73493850e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5533386723016206390, guid: 35b5c89d99f55834ab8d3cf73493850e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.72
@@ -29019,7 +29049,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7417626650226069267, guid: 35b5c89d99f55834ab8d3cf73493850e, type: 3}
       propertyPath: m_AngularSpeed
-      value: 80
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 7900152544810901245, guid: 35b5c89d99f55834ab8d3cf73493850e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8216654883534262700, guid: 35b5c89d99f55834ab8d3cf73493850e, type: 3}
       propertyPath: m_Name
@@ -34365,6 +34399,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 471565088}
     m_Modifications:
+    - target: {fileID: 1037850937157046839, guid: 1253d9052ccf4cd41855a7e02da33e0e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169024743618495784, guid: 1253d9052ccf4cd41855a7e02da33e0e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169024743618495784, guid: 1253d9052ccf4cd41855a7e02da33e0e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169024743618495784, guid: 1253d9052ccf4cd41855a7e02da33e0e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3205795784057887986, guid: 1253d9052ccf4cd41855a7e02da33e0e, type: 3}
       propertyPath: m_Name
       value: NPC
@@ -34379,7 +34429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4788097468674801857, guid: 1253d9052ccf4cd41855a7e02da33e0e, type: 3}
       propertyPath: m_AngularSpeed
-      value: 80
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4927414674659696087, guid: 1253d9052ccf4cd41855a7e02da33e0e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -34420,6 +34470,10 @@ PrefabInstance:
     - target: {fileID: 4927414674659696087, guid: 1253d9052ccf4cd41855a7e02da33e0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5166038728871341275, guid: 1253d9052ccf4cd41855a7e02da33e0e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7171325233735900931, guid: 1253d9052ccf4cd41855a7e02da33e0e, type: 3}
       propertyPath: _barn
@@ -39593,7 +39647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 699203245569171692, guid: 3205f7c387830a744bde535ff88a924b, type: 3}
       propertyPath: m_AngularSpeed
-      value: 80
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 1146975969050891648, guid: 3205f7c387830a744bde535ff88a924b, type: 3}
       propertyPath: _barn
@@ -39602,6 +39656,26 @@ PrefabInstance:
     - target: {fileID: 2804725138709221427, guid: 3205f7c387830a744bde535ff88a924b, type: 3}
       propertyPath: m_Name
       value: Quest NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993470931176933400, guid: 3205f7c387830a744bde535ff88a924b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254083162465810083, guid: 3205f7c387830a744bde535ff88a924b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254083162465810083, guid: 3205f7c387830a744bde535ff88a924b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5254083162465810083, guid: 3205f7c387830a744bde535ff88a924b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6384023711907825173, guid: 3205f7c387830a744bde535ff88a924b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6499911316938173428, guid: 3205f7c387830a744bde535ff88a924b, type: 3}
       propertyPath: m_LocalPosition.x

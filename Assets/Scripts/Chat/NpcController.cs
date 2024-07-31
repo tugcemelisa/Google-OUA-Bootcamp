@@ -8,7 +8,6 @@ public enum NpcState
     WalkAround,
     Wait
 }
-
 public class NpcController : MonoBehaviour, INpc
 {
     PlayerInteract playerInteract;
@@ -69,7 +68,6 @@ public class NpcController : MonoBehaviour, INpc
         
         if (playerInteract.GetInteractable() == null)
         {
-            Debug.Log(name+ " dont wait");
             executingState = NpcState.WalkAround;
         }
     }
@@ -84,7 +82,7 @@ public class NpcController : MonoBehaviour, INpc
 
     public void RotateToPlayer()
     {
-        Vector3 direction = (transform.position - _player.position).normalized;
+        Vector3 direction = (_player.position - transform.position).normalized;
         Vector3 targetEulerAngles = Quaternion.LookRotation(direction).eulerAngles;
         transform.DORotate(targetEulerAngles, 2);
     }
