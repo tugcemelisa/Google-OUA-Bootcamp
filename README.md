@@ -9,8 +9,7 @@ Unity Takım 65
 - ***Zeynep Kefalı*** - 2D and UI
 - ***Bahadır Şahin*** - Product Owner and Scrum Master
 
-- ## Oyun İsmi
-Code: FarmeR
+- ## Oyun İsmi: Meadow Monarch
 
 ## Product Backlog URL
 https://miro.com/app/board/uXjVK2F2-WQ=/
