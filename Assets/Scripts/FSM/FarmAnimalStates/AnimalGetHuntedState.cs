@@ -18,15 +18,12 @@ public class AnimalGetHuntedState : AnimalStates
                 fsm.gameObject.GetComponent<Collider>().enabled = false;    // !!!!!
                 fsm.Agent.SetDestination(fsm.transform.position);
                 fsm.OnIdle.Invoke();
-                fsm.executingState = ExecutingAnimalState.DoNothing;
+                //fsm.executingState = ExecutingAnimalState.DoNothing;
             }
         }
-        else if (fsm.executingState == ExecutingAnimalState.Dead)
-        {
-            fsm.SwitchState(fsm.deadState);
-        }
         else
-            GetHunted(fsm);
+            //GetHunted(fsm);
+            ExitState(fsm);
     }
 
     public override void Interact(AnimalBase fsm, KeyCode interactKey)
@@ -36,7 +33,11 @@ public class AnimalGetHuntedState : AnimalStates
 
     public override void ExitState(AnimalBase fsm)
     {
-
+        fsm.meadow = fsm.home;
+        if (fsm.executingState == ExecutingAnimalState.Dead)
+            fsm.SwitchState(fsm.deadState);
+        else if (fsm.executingState == ExecutingAnimalState.GoToMeadow)
+            fsm.SwitchState(fsm.goToMeadowState);
     }
 
     private void GetHunted(AnimalBase fsm)

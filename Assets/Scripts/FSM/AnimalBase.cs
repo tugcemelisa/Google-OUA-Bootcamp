@@ -49,6 +49,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
 
     #region Variables..
     public Transform meadow;
+    public Transform home;
 
     protected Transform _playerTransform;
     protected IPlayer IPlayer;
@@ -126,11 +127,13 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     {
         PlayerSimulationController.OnHerdLeaveBarn += () => Invoke("StartMoveToMeadow", 3f);
         GameModeManager.OnNightStart += StartDanger;
+        WolfManager.OnHuntOver += () => executingState = ExecutingAnimalState.GoToMeadow;
     }
     public void OnDisable()
     {
         PlayerSimulationController.OnHerdLeaveBarn -= () => Invoke("StartMoveToMeadow", 3f);
         GameModeManager.OnNightStart -= StartDanger;
+        WolfManager.OnHuntOver -= () => executingState = ExecutingAnimalState.GoToMeadow;
     }
 
     public virtual void Start()

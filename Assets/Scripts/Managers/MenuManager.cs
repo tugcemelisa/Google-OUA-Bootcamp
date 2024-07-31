@@ -1,5 +1,6 @@
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MenuManager : MonoBehaviourSingletonPersistent<MenuManager>
 {
@@ -20,8 +21,6 @@ public class MenuManager : MonoBehaviourSingletonPersistent<MenuManager>
     private void Start()
     {
         SetMenuActive(isOpen);
-
-
     }
 
     private void Update()
@@ -46,6 +45,11 @@ public class MenuManager : MonoBehaviourSingletonPersistent<MenuManager>
         normalCam.Priority = !set ? 15 : 10;
 
         playerAnimator.SetTrigger("IdleToSit");
+
+        if (isOpen)
+        {
+            StarterAssets.InputController.Instance.DisableInputs();
+        }
 
     }
 

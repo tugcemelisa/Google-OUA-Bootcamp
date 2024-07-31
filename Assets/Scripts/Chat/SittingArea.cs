@@ -30,6 +30,8 @@ public class SittingArea : Interactable
 
     void SitDown()
     {
+        StarterAssets.InputController.Instance.DisableInputs();
+
         player.SitToTheGround();
         virtualCamera.Priority = 100;
         OnPlayerSit?.Invoke();
