@@ -13,7 +13,6 @@ public class DogController : Interactable
 
     [SerializeField] Transform playerPos;
 
-
     void Update()
     {
         dest = player.position;
@@ -44,6 +43,10 @@ public class DogController : Interactable
                 pettable = false;
                 Invoke("EnablePetting", pettingDelay);
 
+
+                agent.isStopped = true;
+                Invoke("Resume", 5);
+
             }
         }
     }
@@ -52,5 +55,10 @@ public class DogController : Interactable
     {
         pettable = true;
         InteractableUIElements[0].EnableIt(0);
+    }
+
+    void Resume()
+    {
+        agent.isStopped = false;
     }
 }
