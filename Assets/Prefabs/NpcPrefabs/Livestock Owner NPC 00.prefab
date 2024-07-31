@@ -2018,9 +2018,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableUIElements:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1646696925594471156}
+  - {fileID: 8516399132421354496}
+  - {fileID: 6523317524657145332}
   npcHeadLookAt: {fileID: 0}
   textToSay: Hello World
   herdAnimals:
@@ -2044,6 +2044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rig: {fileID: 2654591599606112912}
   headLookAtTransform: {fileID: 6209557701500407288}
+  lookingTime: 5
 --- !u!195 &798678192766315
 NavMeshAgent:
   m_ObjectHideFlags: 0
