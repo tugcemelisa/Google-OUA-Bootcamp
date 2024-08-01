@@ -115,6 +115,8 @@ public class SoundData
     public VoiceType VoiceType;
     public string Name;
     public AudioClip Clip;
+
+    public float volumeMultiplier = 1f;
 }
 
 [Serializable]
@@ -123,4 +125,6 @@ public class AmbientSoundData
     public AmbientSoundType VoiceType;
     public string Name;
     public AudioClip Clip;
+
+    public float volumeMultiplier = 1f;
 }

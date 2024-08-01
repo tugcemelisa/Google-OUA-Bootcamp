@@ -74,6 +74,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     [SerializeField] private Image hitPointUI;
 
     bool isAlive = true;
+    bool isBodyExist = true;
 
     float hitPoint = 10;
     #endregion
@@ -98,6 +99,9 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
 
     void FadeOutTheBody()
     {
+        if (!isBodyExist) { return; }
+
+        isBodyExist = false;
         // Particle and Sound
         ParticleManager.Instance.PlayParticle(ParticleType.Disappear, null, transform.position);
 
@@ -121,7 +125,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
         {
             interactableUI.enabled = false;
         }
-        deadInteractable.enabled= true;
+        deadInteractable.enabled = true;
     }
 
     #endregion
