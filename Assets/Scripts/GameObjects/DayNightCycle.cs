@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 enum CycleState
@@ -18,6 +19,7 @@ public class DayNightCycle : MonoBehaviour
     private float fixedDayDuration;
 
     private float time;
+    private float blendTime;
 
     private void OnEnable()
     {
@@ -33,12 +35,15 @@ public class DayNightCycle : MonoBehaviour
     private void Start()
     {
         executingState = CycleState.Normal;
+        SetSkybox(daySkybox, nightSkybox);
+        RenderSettings.skybox.SetFloat("_Blend", 0);
         fixedDayDuration = dayDuration;
     }
 
     void Update()
     {
         time += Time.deltaTime / dayDuration;
+        blendTime += Time.deltaTime*2 / dayDuration;
 
         switch (executingState)
         {
@@ -54,6 +59,7 @@ public class DayNightCycle : MonoBehaviour
         }
 
         UpdateLighting(time);
+        LerpSkybox();
     }
 
     void UpdateLighting(float timePercent)
@@ -78,6 +84,8 @@ public class DayNightCycle : MonoBehaviour
     {
         if (time >= 1f)
         {
+            SetSkybox(daySkybox, nightSkybox);
+            blendTime = 0f;
             time = 0f;
         }
     }
@@ -87,6 +95,10 @@ public class DayNightCycle : MonoBehaviour
         if (time >= 0.5f)
         {
             dayDuration = fixedDayDuration;
+            SetSkybox(nightSkybox, daySkybox);
+            blendTime = 0f;
+            //skyboxTime = -1;
+            //RenderSettings.skybox.SetTexture("_Cubemap1", nightSkybox);
             executingState = CycleState.Normal;
         }
     }
@@ -95,8 +107,28 @@ public class DayNightCycle : MonoBehaviour
     {
         if (time >= 1f)
         {
+            dayDuration = fixedDayDuration;
+            SetSkybox(daySkybox, nightSkybox);
+            blendTime = 0f;
             time = 0f;
             executingState = CycleState.Normal;
         }
+    }
+
+    [SerializeField] private Cubemap daySkybox;
+    [SerializeField] private Cubemap nightSkybox;
+
+    //    RenderSettings.skybox.SetTexture("_Cubemap1", b);
+    //}
+
+    private void LerpSkybox()
+    {
+        RenderSettings.skybox.SetFloat("_Blend", blendTime);
+    }
+
+    private void SetSkybox(Cubemap a, Cubemap b)
+    {
+        RenderSettings.skybox.SetTexture("_Cubemap1", a);
+        RenderSettings.skybox.SetTexture("_Cubemap2", b);
     }
 }
