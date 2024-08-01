@@ -109,6 +109,8 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     Transform _usingAnimal;
     public void Milk(Transform milkingAnimal)
     {
+        StarterAssets.InputController.Instance.DisableInputs();
+
         _usingAnimal = milkingAnimal;
         _milkable = _usingAnimal.GetComponent<IFarmAnimal>();
         InputTrigger("Crouch");
@@ -125,9 +127,10 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         yield return new WaitForSeconds(3.5f);
 
         InputTrigger("FinishCrouching");
-        _holdingPail = Instantiate(milkPailPrefab, transform.position + new Vector3(-2f, 0, 0), Quaternion.identity);
+        _holdingPail = Instantiate(milkPailPrefab, transform.position + new Vector3(0, 0, 1.5f), Quaternion.identity);
         //HoldMilkPail();
         //_executingState = PlayerStates.HoldingMilkPail;
+        StarterAssets.InputController.Instance.EnableInputs();
     }
 
     GameObject _holdingPail;
@@ -162,6 +165,8 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
 
     public void Shear(Transform sheepTransform)
     {
+        StarterAssets.InputController.Instance.DisableInputs();
+
         if (_executingState == PlayerStates.Default)
         {
             _executingState = PlayerStates.Shear;
@@ -185,6 +190,7 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         InputTrigger("FinishCrouching");
         cutWoolEffect.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         _executingState = PlayerStates.HoldingWool;
+        StarterAssets.InputController.Instance.EnableInputs();
     }
     private void HoldWool()
     {
