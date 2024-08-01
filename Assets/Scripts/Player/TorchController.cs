@@ -63,6 +63,10 @@ public class TorchController : MonoBehaviour
     {
         animator.SetTrigger("Attack");
         GiveFear();
+
+        //Sound
+        VoiceType type = UnityEngine.Random.Range(0, 10) > 5f ? VoiceType.TorchAttack : VoiceType.TorchAttack2;
+        SoundManager.Instance.PlaySound(type, transform, transform.position);
     }
 
     private void GiveFear()
@@ -76,6 +80,10 @@ public class TorchController : MonoBehaviour
             {
                 wolf.AddFear(fearPerAttack);
                 Debug.Log(name + " scares " + wolf.name + " TORCHCONTROLLER");
+
+
+                //Sound
+                SoundManager.Instance.PlaySound(VoiceType.WolfHurt, wolf.transform, wolf.transform.position);
             }
         }
 

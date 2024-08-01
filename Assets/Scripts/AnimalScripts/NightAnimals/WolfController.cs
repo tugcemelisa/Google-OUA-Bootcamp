@@ -107,9 +107,9 @@ public class WolfController : Interactable
 
     public void GiveDamage()
     {
-        var cow = target.GetComponent<AnimalBase>();
-        if (cow) cow.TakeDamage(attackDamage);
-        Debug.Log(name + "wolf damage cow..");
+        var animal = target.GetComponent<AnimalBase>();
+        if (animal) animal.TakeDamage(attackDamage);
+        Debug.Log(name + "wolf damage animal..");
     }
 
     public void AssignNewTarget(Transform target, bool isDamageable)
@@ -156,6 +156,9 @@ public class WolfController : Interactable
         {
             // TO UPDATE
             WolfManager.Instance.RunAway(this);
+
+            //Sound
+            SoundManager.Instance.PlaySound(VoiceType.WolfScaried, transform, transform.position);
         }
     }
 

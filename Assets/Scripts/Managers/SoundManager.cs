@@ -4,12 +4,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using static UnityEditor.PlayerSettings;
 
 public class SoundManager : MonoBehaviourSingletonPersistent<SoundManager>
 {
     [Range(0f, 1f)]
     [SerializeField] float soundVolume = .5f;
+    [Range(0f, 1f)]
+    [SerializeField] float ambientSoundVolume = .5f;
     [SerializeField] List<SoundData> sounds;
+    [SerializeField] List<AmbientSoundData> ambientSounds;
+
+    [SerializeField] AudioSource ambientAudioSource;
 
     [SerializeField] AudioSource[] sources;
     Queue<AudioSource> audioSources;
@@ -20,6 +26,20 @@ public class SoundManager : MonoBehaviourSingletonPersistent<SoundManager>
         foreach (var source in sources)
         {
             audioSources.Enqueue(source);
+        }
+    }
+
+    public void ChangeAmbientSound(VoiceType voice)
+    {
+        ambientAudioSource.volume = soundVolume;
+        foreach (var sound in sounds)
+        {
+            if (sound.VoiceType == voice)
+            {
+                ambientAudioSource.clip = sound.Clip;
+                ambientAudioSource.Play();
+                break;
+            }
         }
     }
 
@@ -43,6 +63,7 @@ public class SoundManager : MonoBehaviourSingletonPersistent<SoundManager>
                 audioSource.clip = sound.Clip;
                 audioSource.Play();
                 StartCoroutine(VoiceFinished(audioSource, sound.Clip.length + .1f));
+                break;
             }
         }
     }
@@ -53,8 +74,24 @@ public class SoundManager : MonoBehaviourSingletonPersistent<SoundManager>
 
         audioSources.Enqueue(source);
     }
+
+    public void SetAmbientSoundLevel(float volume)
+    {
+        ambientSoundVolume = volume;
+        ambientAudioSource.volume = volume;
+    }
+
+    public void SetNormalSoundLevel(float volume)
+    {
+        soundVolume = volume;
+    }
 }
 
+public enum AmbientSoundType
+{
+    NormalVillage,
+    NightAmbient,
+}
 
 public enum VoiceType
 {
@@ -71,12 +108,22 @@ public enum VoiceType
     TorchAttack2,
     WolfHowling,
     WolfScaried,
+    WolfHurt,
+
 }
 
 [Serializable]
 public class SoundData
 {
     public VoiceType VoiceType;
+    public string Name;
+    public AudioClip Clip;
+}
+
+[Serializable]
+public class AmbientSoundData
+{
+    public AmbientSoundType VoiceType;
     public string Name;
     public AudioClip Clip;
 }

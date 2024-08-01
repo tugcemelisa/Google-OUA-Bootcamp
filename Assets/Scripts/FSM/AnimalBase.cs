@@ -360,6 +360,9 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
         }
         hitPoint -= amount;
         CheckIsDead();
+
+        //Particle
+        ParticleManager.Instance.SpawParticle(ParticleType.BloodSpill, transform, transform.position + Vector3.up);
     }
 
     private void CheckIsDead()
