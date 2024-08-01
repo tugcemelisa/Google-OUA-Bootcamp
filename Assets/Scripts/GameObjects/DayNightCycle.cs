@@ -98,7 +98,6 @@ public class DayNightCycle : MonoBehaviour
             SetSkybox(nightSkybox, daySkybox);
             blendTime = 0f;
             //skyboxTime = -1;
-            //RenderSettings.skybox.SetTexture("_Cubemap1", nightSkybox);
             executingState = CycleState.Normal;
         }
     }
@@ -117,9 +116,6 @@ public class DayNightCycle : MonoBehaviour
 
     [SerializeField] private Cubemap daySkybox;
     [SerializeField] private Cubemap nightSkybox;
-
-    //    RenderSettings.skybox.SetTexture("_Cubemap1", b);
-    //}
 
     private void LerpSkybox()
     {
