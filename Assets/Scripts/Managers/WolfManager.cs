@@ -142,7 +142,7 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
         if(circleWolves.Count <= 0)
         {
             wolfState = WolfState.AfterHunt;
-            Debug.Log("NIGHT END");
+            //Debug.Log("NIGHT END");
         }
     }
 
