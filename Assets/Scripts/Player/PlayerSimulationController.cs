@@ -63,7 +63,7 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
                 HoldWool();
                 break;
             case PlayerStates.HoldingMilkPail:
-                SellRequest(); 
+                SellRequest();
                 break;
             case PlayerStates.Fight:
                 _torchController.ControlAttack();
@@ -103,6 +103,8 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     public void ScareAnimal(NavMeshAgent animalAgent)
     {
         InputTrigger("Scare");
+
+        SoundManager.Instance.PlaySound(VoiceType.ShepherdYell, transform, transform.position);
     }
 
     Transform _milkingAnimal;
@@ -151,11 +153,11 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
 
     public void StartMilk()
     {
-        if(_executingState == PlayerStates.Default)
+        if (_executingState == PlayerStates.Default)
         {
-            _executingState = PlayerStates.Milking; 
+            _executingState = PlayerStates.Milking;
         }
-            
+
     }
 
     public void Shear(Transform sheepTransform)
