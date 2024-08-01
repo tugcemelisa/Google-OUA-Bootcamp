@@ -26,6 +26,7 @@ public class WolfController : Interactable
     [SerializeField] float maxFear = 10;
     [SerializeField] private Image fearUI;
     float fear = 0;
+    bool isFeared = false;
 
     WolfStates state = WolfStates.None;
 
@@ -158,8 +159,10 @@ public class WolfController : Interactable
 
     public void CheckFear()
     {
+        if(isFeared)  return; 
         if (fear >= maxFear)
         {
+            isFeared = true;
             // TO UPDATE
             WolfManager.Instance.RunAway(this);
 

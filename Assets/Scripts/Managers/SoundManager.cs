@@ -43,8 +43,7 @@ public class SoundManager : MonoBehaviourSingletonPersistent<SoundManager>
 
     public void PlaySound(VoiceType voice, Transform parent, Vector3 pos)
     {
-        var audioSource = audioSources.Dequeue();
-        if (audioSource == null)
+        if (audioSources.TryDequeue(out AudioSource audioSource))
         {
             print("Not enough audio sources");
             return;
