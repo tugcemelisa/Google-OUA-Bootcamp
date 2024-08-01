@@ -12,17 +12,15 @@ public class AnimalGetHuntedState : AnimalStates
     {
         if (fsm.executingState == ExecutingAnimalState.GetHunted)
         {
-            if (fsm.Agent.remainingDistance <= 3.60f)
+            if (fsm.Agent.hasPath && fsm.Agent.remainingDistance <= 3.60f)
             {
                 fsm.Agent.radius = 0.5f;
                 fsm.gameObject.GetComponent<Collider>().enabled = false;    // !!!!!
                 fsm.Agent.SetDestination(fsm.transform.position);
                 fsm.OnIdle.Invoke();
-                //fsm.executingState = ExecutingAnimalState.DoNothing;
             }
         }
         else
-            //GetHunted(fsm);
             ExitState(fsm);
     }
 
@@ -38,10 +36,5 @@ public class AnimalGetHuntedState : AnimalStates
             fsm.SwitchState(fsm.deadState);
         else if (fsm.executingState == ExecutingAnimalState.GoToMeadow)
             fsm.SwitchState(fsm.goToMeadowState);
-    }
-
-    private void GetHunted(AnimalBase fsm)
-    {
-        fsm.Agent.SetDestination(fsm.transform.position);   //!!!!!!!!!!!!
     }
 }

@@ -136,13 +136,14 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     {
         PlayerSimulationController.OnHerdLeaveBarn -= () => Invoke("StartMoveToMeadow", 3f);
         GameModeManager.OnNightStart -= StartDanger;
-        WolfManager.OnHuntOver -= () => executingState = ExecutingAnimalState.GoToMeadow;
+        WolfManager.OnHuntOver -= () => executingState = ExecutingAnimalState.GoToMeadow;   // moveAroundCenter......
     }
 
     public virtual void Start()
     {
         Agent = GetComponent<NavMeshAgent>();
         _playerTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        moveAroundCenter = _playerTransform;
 
         acceleration = Agent.acceleration;
         speed = Agent.speed;
@@ -182,12 +183,13 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
         }
     }
 
+    [HideInInspector] public Transform moveAroundCenter;
     public void StartMove()
     {
         if (_playerTransform != null)
         {
             OnWalk.Invoke();
-            Agent.SetDestination(GetRandomPos(_playerTransform.position, 7f));  // 15f
+            Agent.SetDestination(GetRandomPos(moveAroundCenter.position, 7f));  // 15f
         }
 
     }
@@ -299,6 +301,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
         if (meadow != null)
         {
             executingState = ExecutingAnimalState.GoToMeadow;
+            moveAroundCenter = meadow;
         }
     }
 
