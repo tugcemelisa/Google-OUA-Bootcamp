@@ -14,7 +14,7 @@ public class Chicken : MonoBehaviour
     public float wanderTimer = 5f;
     public float fleeRadius = 5f;
 
-    private Transform target;
+    public Transform target;
     private NavMeshAgent agent;
     private Animator animator;
     private float timer;
@@ -48,11 +48,13 @@ public class Chicken : MonoBehaviour
             agent.SetDestination(newPos);
             timer = 0;
         }
+    }
 
-        //animator.SetFloat("Speed", agent.velocity.magnitude);
-
-        if (Vector3.Distance(target.position, transform.position) < fleeRadius)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Chicken"))
         {
+            target = other.transform;
             Vector3 fleeDirection = (transform.position - target.position).normalized;
             Vector3 newFleePos = transform.position + fleeDirection * wanderRadius;
             agent.SetDestination(newFleePos);
