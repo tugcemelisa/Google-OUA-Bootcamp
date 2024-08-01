@@ -84,7 +84,7 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
             priority++;
         }
         OnTranshumingStart.Invoke(_herd);
-        _executingState = PlayerStates.TakeAnimals;
+        //_executingState = PlayerStates.TakeAnimals;
     }
 
     public void StartGrazing()
@@ -95,7 +95,7 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
             if (hit.collider.CompareTag("Barn"))
             {
                 _executingState = PlayerStates.Default;
-                OnHerdLeaveBarn.Invoke();
+                //OnHerdLeaveBarn.Invoke();
             }
         }
     }
