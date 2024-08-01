@@ -5327,6 +5327,7 @@ MonoBehaviour:
   milkPailTransform: {fileID: 960134252}
   milkPailPrefab: {fileID: 8204611749743162122, guid: 06edfb72a76b5274eb44d4fbfb0e2599, type: 3}
   cutWoolEffect: {fileID: 274583619}
+  woolPrefab: {fileID: 269614742913590059, guid: 53f63f3cdf8a62642885b15b34f1a2df, type: 3}
 --- !u!114 &1325830614
 MonoBehaviour:
   m_ObjectHideFlags: 0

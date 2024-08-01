@@ -175,7 +175,7 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         _usingAnimal = sheepTransform;
         _milkable = _usingAnimal.GetComponent<IFarmAnimal>();
         InputTrigger("Crouch");
-        InputTrigger("HoldingDown");
+        //InputTrigger("HoldingDown");
         Invoke("StartCuttingAnimation", 1.9f);
 
         if (_milkable != null)
@@ -184,11 +184,13 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         StartCoroutine(FinishShearing());
     }
 
+    [SerializeField] private GameObject woolPrefab;
     private IEnumerator FinishShearing()
     {
         yield return new WaitForSeconds(5.5f);
 
         InputTrigger("FinishCrouching");
+        _holdingPail = Instantiate(woolPrefab, transform.position + new Vector3(0, 0, 1.5f), Quaternion.identity);
         cutWoolEffect.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         _executingState = PlayerStates.HoldingWool;
         StarterAssets.InputController.Instance.EnableInputs();
