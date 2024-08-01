@@ -1100,11 +1100,11 @@ MonoBehaviour:
   - VoiceType: 12
     Name: Wolf scaried and runs
     Clip: {fileID: 8300000, guid: f7593d3df023c5a42a5c6d9ce5b64205, type: 3}
-    volunmeMultiplier: 1
+    volunmeMultiplier: 0.15
   - VoiceType: 13
     Name: Wolf take torch damage
     Clip: {fileID: 8300000, guid: 4cf27ccba20623641a75b6063f2669e4, type: 3}
-    volunmeMultiplier: 1
+    volunmeMultiplier: 0.15
   - VoiceType: 9
     Name: Toch Attack
     Clip: {fileID: 8300000, guid: c01e29ebb29dfee44a5899a0e4d036dc, type: 3}
@@ -1117,11 +1117,11 @@ MonoBehaviour:
   - VoiceType: 0
     Name: 
     Clip: {fileID: 8300000, guid: 90b7d7ac420f29d488405b24c5b4eb59, type: 3}
-    volunmeMultiplier: 0.25
+    volunmeMultiplier: 1
   - VoiceType: 1
     Name: 
     Clip: {fileID: 8300000, guid: 69d1fe9d57d7e85489e7ac327f67c7c5, type: 3}
-    volunmeMultiplier: 0.25
+    volunmeMultiplier: 1
   ambientAudioSource: {fileID: 0}
   sources:
   - {fileID: 5444725396291601621}
