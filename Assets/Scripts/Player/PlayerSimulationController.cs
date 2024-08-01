@@ -37,11 +37,13 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     {
         GameModeManager.OnNightStart += ActivatePlayerNightMode;
         NPCQuestInteractable.OnNpcBuy += GainMoney;
+        GoMeadowButton.OnGoingMeadowRequest += StartGrazing;
     }
     private void OnDisable()
     {
         GameModeManager.OnNightStart -= ActivatePlayerNightMode;
         NPCQuestInteractable.OnNpcBuy -= GainMoney;
+        GoMeadowButton.OnGoingMeadowRequest -= StartGrazing;
     }
 
     private void Start()
@@ -56,9 +58,8 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     {
         switch (_executingState)
         {
-            case PlayerStates.TakeAnimals:
-                StartGrazing();
-                break;
+            //case PlayerStates.TakeAnimals:
+            //    break;
             case PlayerStates.HoldingWool:
                 HoldWool();
                 break;
@@ -84,19 +85,15 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
             priority++;
         }
         OnTranshumingStart.Invoke(_herd);
-        //_executingState = PlayerStates.TakeAnimals;
+        _executingState = PlayerStates.TakeAnimals;
     }
 
     public void StartGrazing()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 5f))
+        if(_executingState == PlayerStates.TakeAnimals)
         {
-            if (hit.collider.CompareTag("Barn"))
-            {
-                _executingState = PlayerStates.Default;
-                //OnHerdLeaveBarn.Invoke();
-            }
+            OnHerdLeaveBarn.Invoke();
+            _executingState = PlayerStates.Default;
         }
     }
 
