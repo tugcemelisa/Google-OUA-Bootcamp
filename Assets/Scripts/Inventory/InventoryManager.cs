@@ -212,16 +212,17 @@ public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManage
 
     public void HoldItemAnimation(ItemMonoBehaviour item)
     {
-
-
         item.gameObject.SetActive(true);
         item.gameObject.GetComponent<Rigidbody>().isKinematic = true;
 
         if (item.ItemData.Type.HoldingType == HoldingType.HoldMiddle)
         {
-
+            animator.SetTrigger("HoldingDown");
         }
-        animator.SetTrigger("Hold");
+        else if (item.ItemData.Type.HoldingType == HoldingType.HoldLeft)
+        {
+            animator.SetTrigger("Hold");
+        }
     }
     public void RemoveItemAnimation()
     {

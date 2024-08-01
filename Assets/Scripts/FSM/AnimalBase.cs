@@ -396,7 +396,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
         hitPointUI.fillAmount = hitPoint / hitPointMaximum;
     }
 
-    void Die()
+    protected virtual void Die()
     {
         //OnDie?.Invoke();
         isAlive = false;
@@ -411,6 +411,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
 
         //Particle and Voice
         ParticleManager.Instance.PlayParticle(ParticleType.Die, null, transform.position);
+
     }
 
     public void SwitchState(AnimalStates nextState)

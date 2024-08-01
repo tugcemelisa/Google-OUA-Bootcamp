@@ -1125,6 +1125,14 @@ MonoBehaviour:
     Name: Sheep voice
     Clip: {fileID: 8300000, guid: e0641e98ec0bdfc498530b3aa8df36b6, type: 3}
     volunmeMultiplier: 1
+  - VoiceType: 14
+    Name: Sheep voice
+    Clip: {fileID: 8300000, guid: 40fbc45fd43264d43b33628841fd71cc, type: 3}
+    volunmeMultiplier: 1
+  - VoiceType: 15
+    Name: Sheep voice
+    Clip: {fileID: 8300000, guid: e0641e98ec0bdfc498530b3aa8df36b6, type: 3}
+    volunmeMultiplier: 1
   ambientSounds:
   - VoiceType: 0
     Name: 

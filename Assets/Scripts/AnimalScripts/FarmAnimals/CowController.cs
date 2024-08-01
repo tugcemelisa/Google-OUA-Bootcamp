@@ -70,4 +70,11 @@ public class CowController : AnimalBase
     {
         GetMilked(interactKey);
     }
+
+    protected override void Die()
+    {
+        base.Die();
+
+        SoundManager.Instance.PlaySound(VoiceType.CowNormal, transform, transform.position);
+    }
 }

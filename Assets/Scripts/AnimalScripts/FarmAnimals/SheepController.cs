@@ -17,6 +17,7 @@ public class SheepController : AnimalBase
     public override void Interact(Transform interactorTransform, KeyCode interactKey)
     {
         currentState.Interact(this, interactKey);
+        Scream();
     }
 
     public float sheepDetectionRadius = 2f;
@@ -77,5 +78,16 @@ public class SheepController : AnimalBase
     public override void GetUsed(KeyCode interactKey)
     {
         GetSheared(interactKey);
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+        Scream();
+    }
+
+    void Scream()
+    {
+        SoundManager.Instance.PlaySound(VoiceType.Sheep, transform, transform.position);
     }
 }
