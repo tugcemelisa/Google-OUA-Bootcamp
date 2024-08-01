@@ -68,6 +68,7 @@ public class InventorySlot : MonoBehaviour
 
     public void PunchScale(Transform tr)
     {
+        tr.transform.localScale = Vector3.one;
         tr.DOPunchScale(Vector3.one * 3, .5f);
     }
 
