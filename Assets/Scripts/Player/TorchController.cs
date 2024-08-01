@@ -14,8 +14,6 @@ public class TorchController : MonoBehaviour
     [SerializeField] float fearAttackRadius = 3f;
     [SerializeField] LayerMask layerToGiveFear;
 
-    [SerializeField] float pettingAnimationTime = 3f;
-    [SerializeField] float gatheringAnimationTime = 2.5f;
 
     private void OnEnable()
     {
