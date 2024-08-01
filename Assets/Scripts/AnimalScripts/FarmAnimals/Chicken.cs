@@ -49,7 +49,7 @@ public class Chicken : MonoBehaviour
             timer = 0;
         }
 
-        animator.SetFloat("Speed", agent.velocity.magnitude);
+        //animator.SetFloat("Speed", agent.velocity.magnitude);
 
         if (Vector3.Distance(target.position, transform.position) < fleeRadius)
         {
