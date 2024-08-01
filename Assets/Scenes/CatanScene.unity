@@ -9327,8 +9327,6 @@ MonoBehaviour:
   layerToGiveFear:
     serializedVersion: 2
     m_Bits: 128
-  pettingAnimationTime: 3
-  gatheringAnimationTime: 2.5
 --- !u!114 &1325830613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34640,6 +34638,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dayDuration: 120
+  transitionDuration: 10
+  daySkybox: {fileID: 0}
+  nightSkybox: {fileID: 0}
 --- !u!114 &2097685992
 MonoBehaviour:
   m_ObjectHideFlags: 0
