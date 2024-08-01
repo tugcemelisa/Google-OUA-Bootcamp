@@ -27,10 +27,10 @@ public class SoundManager : MonoBehaviourSingletonPersistent<SoundManager>
         }
     }
 
-    public void ChangeAmbientSound(VoiceType voice)
+    public void ChangeAmbientSound(AmbientSoundType voice)
     {
         ambientAudioSource.volume = soundVolume;
-        foreach (var sound in sounds)
+        foreach (var sound in ambientSounds)
         {
             if (sound.VoiceType == voice)
             {

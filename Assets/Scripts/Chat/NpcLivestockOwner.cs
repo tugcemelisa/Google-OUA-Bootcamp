@@ -53,6 +53,9 @@ public class NpcLivestockOwner : NPCInteractable
 
         GiveAnimals();
         _executingState = executingState.Wait;
+
+        //Sound
+        SoundManager.Instance.PlaySound(VoiceType.Success, null, transform.position);
     }
 
     public GameObject player;

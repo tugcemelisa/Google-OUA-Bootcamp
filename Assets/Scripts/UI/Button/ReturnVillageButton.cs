@@ -11,10 +11,27 @@ public class ReturnVillageButton : MonoBehaviour
     {
         button = GetComponent<Button>();
 
-        button.onClick.AddListener(() => OnReturnVillageRequest.Invoke());
+        button.onClick.AddListener(() =>
+        {
+            OnReturnVillageRequest.Invoke();
+
+            MapManager.Instance.OpenMap(false);
+
+            //Sound
+            SoundManager.Instance.ChangeAmbientSound(AmbientSoundType.NormalVillage);
+        });
+
     }
     private void OnDisable()
     {
-        button.onClick.RemoveListener(() => OnReturnVillageRequest.Invoke());
+        button.onClick.RemoveListener(() =>
+        {
+            OnReturnVillageRequest.Invoke();
+
+            MapManager.Instance.OpenMap(false);
+
+            //Sound
+            SoundManager.Instance.ChangeAmbientSound(AmbientSoundType.NormalVillage);
+        });
     }
 }

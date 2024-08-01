@@ -84,6 +84,10 @@ public class NPCQuestInteractable : NPCInteractable
 
             print("YOU GAINED MONEY");
             _executingState = executingState.Wait;
+
+            //Sound
+
+            SoundManager.Instance.PlaySound(VoiceType.Success, null, transform.position);
         }
         else
         {
