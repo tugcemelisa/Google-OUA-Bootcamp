@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParticleManager : MonoBehaviourSingleton<ParticleManager>
+public class ParticleManager : MonoBehaviourSingletonPersistent<ParticleManager>
 {
     [SerializeField] List<ParticleData> particles;
     public void SpawParticle(ParticleType particleType, Transform parent, Vector3 pos)
