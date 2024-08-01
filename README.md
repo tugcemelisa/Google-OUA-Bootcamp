@@ -3,7 +3,7 @@
 Unity Takım 65
 
 ## Takım Üyeleri
-- ***Muhammed Sefa Karataş *** - Developer
+- ***Muhammed Sefa Karataş*** - Developer
 - ***Beyzanur Özen*** - Developer and Level Designer
 - ***Melisa tuğçe Haspolat*** - 3D
 - ***Zeynep Kefalı*** - 2D and UI
@@ -108,9 +108,38 @@ https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/15c372cb-5c9b
 - Ayın 28'ine kadar Level Design hariç tüm işlerin biritilmesi kararlaştırıldı. 28 Temmuz-1 Ağustos arasında Level Design yapılacak ve 1 Ağustos'ta proje bitirilecek
 
 ## SPRİNT 3
-- 3. Sprint Puanı olarak hedefimiz 160 Puan. 2. Sprint'ten kalan 50 Puan da 3. Sprint'te tamamlamayı hedefliyoruz. TOPLAM: 210 Puan
-- Bu sprint'te hedefimiz oyunumuzun Q&A'sini yapıp creative materyallerini yapmak olacak. 2. Sprint'ten kalan 3D modelleme ve Level Design işleri bu sprint'te tamamlanacak.
-![OUA Unity 65 (2)](https://github.com/user-attachments/assets/e57191c6-3d8c-4cc6-85fb-7e9b02cceb75)
-![OUA Unity 65 (3)](https://github.com/user-attachments/assets/45a59128-d3de-44b0-bc74-6fb9f25003a4)
 
+
+- 3. Sprint Puanı olarak hedefimiz 160 Puan. 2. Sprint'ten kalan 50 Puan da 3. Sprint'te tamamlamayı hedefliyoruz. TOPLAM: 210 Puan
+- 3. Sprint'te tamamladığımız Puan: 210. AI İmplementasyonu'nu direkt ChatGPT veya Gemini gibi metinsel AI kullanmak yerine 3D animasyon ve ses efektleri oluşturabilen yapay zekaları kullandık.
+- Bu sprint'te oyunumuzun Q&A'sini yapıp creative materyallerini yaptık. 2. Sprint'ten kalan 3D modelleme ve Level Design işleri bu sprint'te tamamlandı.
+
+![OUA Unity 65 (3)](https://github.com/user-attachments/assets/15a59616-c63e-4e4d-892f-cbcc31dd6848)
+![OUA Unity 65 (4)](https://github.com/user-attachments/assets/3dd88844-b1fc-486b-878d-fa4017d7df76)
+![OUA Unity 65 (5)](https://github.com/user-attachments/assets/2dd5f8f3-f769-4c50-b722-935593f08379)
+
+## Sprint 3 Toplantı Notları
+https://docs.google.com/document/d/1mZp6CSDwYcwkymt_h7y5vC6phQNhz2JBaWzmgE8BrLI/edit#heading=h.pgwkylp9uqu2
+
+## Sprint 3 Ekran Görüntüleri
+![Ekran görüntüsü 2024-07-31 232502](https://github.com/user-attachments/assets/31b8901e-e09e-42c4-9108-c8c34cae6443)
+![Ekran görüntüsü 2024-07-29 232131](https://github.com/user-attachments/assets/818ff0e2-25ff-4b11-b7ff-c433c71dc43d)
+![WhatsApp Görsel 2024-07-31 saat 21 14 43_000acc2f](https://github.com/user-attachments/assets/d333e4ab-8d5f-4b4e-878c-b423f4b0c5a3)
+![WhatsApp Görsel 2024-07-31 saat 21 11 06_19868e6b](https://github.com/user-attachments/assets/1687a2eb-109e-414f-ad98-6040974b958a)
+![WhatsApp Görsel 2024-08-01 saat 00 45 08_18698305](https://github.com/user-attachments/assets/f6c15cf2-f594-4cea-8ec3-6d2c561f3aa5)
+
+## Build Öncesi Video
+https://youtu.be/BxP0133UrHI
+
+
+## Sprint Review
+- Rollerde değişim yok
+- Sprint 2'de gecikme yaşanılan konular bu sprint'te bitirildi
+- Level Design yapıldı.
+- AI olarak ChatGPT ve Gemini gibi metinsel AI yerine DeepMotion ile 3D animasyon, ve ElevenLabs ile ses efektleri oluşturuldu ve oyun içinde kullanıldı.
+
+## Sprint Retrorespective
+- Rollerde değişim olmadı
+- 3D kısmında gecikmeler oldu ama diğer işlevler tam zamanında halloldu
+- Ayın 2'sinde oyun build alınıp proje yollanacak.
 
