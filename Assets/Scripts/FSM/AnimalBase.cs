@@ -99,7 +99,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     void FadeOutTheBody()
     {
         // Particle and Sound
-        ParticleManager.Instance.SpawParticle(ParticleType.Disappear, null, transform.position);
+        ParticleManager.Instance.PlayParticle(ParticleType.Disappear, null, transform.position);
 
 
         this.gameObject.SetActive(false);
@@ -365,7 +365,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
         CheckIsDead();
 
         //Particle
-        ParticleManager.Instance.SpawParticle(ParticleType.BloodSpill, transform, transform.position + Vector3.up);
+        ParticleManager.Instance.PlayParticle(ParticleType.BloodSpill, transform, transform.position + Vector3.up);
     }
 
     private void CheckIsDead()
@@ -400,7 +400,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
 
 
         //Particle and Voice
-        ParticleManager.Instance.SpawParticle(ParticleType.Die, null, transform.position);
+        ParticleManager.Instance.PlayParticle(ParticleType.Die, null, transform.position);
     }
 
     public void SwitchState(AnimalStates nextState)

@@ -4,7 +4,7 @@ using UnityEngine;
 public class ParticleManager : MonoBehaviourSingletonPersistent<ParticleManager>
 {
     [SerializeField] List<ParticleData> particles;
-    public void SpawParticle(ParticleType particleType, Transform parent, Vector3 pos)
+    public void PlayParticle(ParticleType particleType, Transform parent, Vector3 pos)
     {
         foreach (var particle in particles)
         {
