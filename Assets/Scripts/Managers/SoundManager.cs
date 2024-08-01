@@ -106,7 +106,8 @@ public enum VoiceType
     WolfHowling,
     WolfScaried,
     WolfHurt,
-
+    MachineIndustrial,
+    MAchineNormal
 }
 
 [Serializable]

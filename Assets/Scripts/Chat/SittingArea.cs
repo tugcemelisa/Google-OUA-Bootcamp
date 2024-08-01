@@ -55,5 +55,6 @@ public class SittingArea : Interactable
 
         //Sound
         SoundManager.Instance.ChangeAmbientSound(AmbientSoundType.NightAmbient);
+        SoundManager.Instance.PlaySound(VoiceType.WolfHowling,transform,transform.position);
     }
 }

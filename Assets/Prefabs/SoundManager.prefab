@@ -1113,6 +1113,18 @@ MonoBehaviour:
     Name: Toch Attack
     Clip: {fileID: 8300000, guid: eb9bfc31375413b449d0269ab7478fa0, type: 3}
     volunmeMultiplier: 1
+  - VoiceType: 2
+    Name: Success
+    Clip: {fileID: 8300000, guid: 9fd356cc3a11425489d4fc78ca393cd6, type: 3}
+    volunmeMultiplier: 1
+  - VoiceType: 4
+    Name: Cow voice
+    Clip: {fileID: 8300000, guid: 7a1ea8abe7cd0d74bbc4ea55294b91bd, type: 3}
+    volunmeMultiplier: 1
+  - VoiceType: 6
+    Name: Sheep voice
+    Clip: {fileID: 8300000, guid: e0641e98ec0bdfc498530b3aa8df36b6, type: 3}
+    volunmeMultiplier: 1
   ambientSounds:
   - VoiceType: 0
     Name: 
@@ -1120,7 +1132,7 @@ MonoBehaviour:
     volunmeMultiplier: 1
   - VoiceType: 1
     Name: 
-    Clip: {fileID: 8300000, guid: 69d1fe9d57d7e85489e7ac327f67c7c5, type: 3}
+    Clip: {fileID: 8300000, guid: cda1916379bb2db4e92750336bac991c, type: 3}
     volunmeMultiplier: 1
   ambientAudioSource: {fileID: 0}
   sources:
@@ -1179,7 +1191,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

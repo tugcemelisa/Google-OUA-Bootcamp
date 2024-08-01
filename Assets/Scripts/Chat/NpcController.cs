@@ -84,9 +84,9 @@ public class NpcController : MonoBehaviour, INpc
 
     public void RotateToPlayer()
     {
-        if (_marketplace != null)
+        if (_player != null)
         {
-            Vector3 direction = (_marketplace.position - transform.position).normalized;
+            Vector3 direction = (_player.position - transform.position).normalized;
             Vector3 targetEulerAngles = Quaternion.LookRotation(direction).eulerAngles;
             transform.DORotate(targetEulerAngles, 2);
         }  
