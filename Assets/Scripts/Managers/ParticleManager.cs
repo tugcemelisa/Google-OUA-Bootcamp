@@ -20,9 +20,12 @@ public class ParticleManager : MonoBehaviourSingleton<ParticleManager>
 
 public enum ParticleType
 {
+    Die,
+    Disappear,
     BloodSpill,
     Fog,
     Bite,
+    MachineWorking,
 
 }
 
