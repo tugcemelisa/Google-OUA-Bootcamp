@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,11 +19,6 @@ public class MenuManager : MonoBehaviourSingletonPersistent<MenuManager>
 
     bool isOpen = true;
 
-    private void Start()
-    {
-        SetMenuActive(isOpen);
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -31,8 +27,6 @@ public class MenuManager : MonoBehaviourSingletonPersistent<MenuManager>
             SetMenuActive(isOpen);
         }
     }
-
-
 
     public void SetMenuActive(bool set)
     {
@@ -53,5 +47,10 @@ public class MenuManager : MonoBehaviourSingletonPersistent<MenuManager>
 
     }
 
-
+    public void StartMenu()
+    {
+        menuCanvas.SetActive(true);
+        otherCanvas.SetActive(true);
+        SetMenuActive(true);
+    }
 }
