@@ -9,8 +9,11 @@ public class TorchHead : MonoBehaviour
     {
         var wolf = other.GetComponent<WolfController>();
         if (wolf)
+        {
             wolf.AddFear(Time.deltaTime * fearPerSecond);
-        //Debug.Log(name + " scares " + wolf.name);
+            Debug.Log(name + " scares " + wolf.name);
+
+        }
     }
 
 }

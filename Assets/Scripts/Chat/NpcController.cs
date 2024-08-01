@@ -16,7 +16,7 @@ public class NpcController : MonoBehaviour, INpc
     private NavMeshHit hit;
     Animator animator;
 
-    public Transform _barn;
+    public Transform _marketplace;
     private Transform _player;
     private Vector3 randomPoint;
 
@@ -24,7 +24,6 @@ public class NpcController : MonoBehaviour, INpc
     {
         Agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
-        _barn = GameObject.FindWithTag("Barn").GetComponent<Transform>();
         _player = GameObject.FindWithTag("Player").GetComponent<Transform>();
         playerInteract = _player.GetComponent<PlayerInteract>();
         executingState = NpcState.WalkAround;
@@ -47,8 +46,11 @@ public class NpcController : MonoBehaviour, INpc
     {
         if (!Agent.hasPath)
         {
-            Agent.SetDestination(GetRandomPos(_player.position, 15f));
-            animator.SetTrigger("Walk");
+            if(_marketplace != null)
+            {
+                Agent.SetDestination(GetRandomPos(_marketplace.position, 15f));
+                animator.SetTrigger("Walk");
+            }
         }
     }
 
@@ -82,8 +84,11 @@ public class NpcController : MonoBehaviour, INpc
 
     public void RotateToPlayer()
     {
-        Vector3 direction = (_player.position - transform.position).normalized;
-        Vector3 targetEulerAngles = Quaternion.LookRotation(direction).eulerAngles;
-        transform.DORotate(targetEulerAngles, 2);
+        if (_player != null)
+        {
+            Vector3 direction = (_player.position - transform.position).normalized;
+            Vector3 targetEulerAngles = Quaternion.LookRotation(direction).eulerAngles;
+            transform.DORotate(targetEulerAngles, 2);
+        }  
     }
 }

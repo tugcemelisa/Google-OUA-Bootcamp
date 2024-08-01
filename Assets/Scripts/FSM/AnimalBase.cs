@@ -42,7 +42,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     [HideInInspector] public AnimalGoToMeadowState goToMeadowState = new();
     [HideInInspector] public AnimalGetHuntedState getHuntedState = new();
     [HideInInspector] public AnimalRestState restState = new();
-    [HideInInspector] public AnimalGetMilkedState getMilkedState = new();
+    [HideInInspector] public AnimalGetUsedState getUsedState = new();
     [HideInInspector] public AnimalDoNothingState doNothingState = new();
     [HideInInspector] public AnimalDeadState deadState = new();
     #endregion
@@ -74,6 +74,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     [SerializeField] private Image hitPointUI;
 
     bool isAlive = true;
+    bool isBodyExist = true;
 
     float hitPoint = 10;
     #endregion
@@ -98,8 +99,11 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
 
     void FadeOutTheBody()
     {
+        if (!isBodyExist) { return; }
+
+        isBodyExist = false;
         // Particle and Sound
-        ParticleManager.Instance.SpawParticle(ParticleType.Disappear, null, transform.position);
+        ParticleManager.Instance.PlayParticle(ParticleType.Disappear, null, transform.position);
 
 
         this.gameObject.SetActive(false);
@@ -121,7 +125,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
         {
             interactableUI.enabled = false;
         }
-        deadInteractable.enabled= true;
+        deadInteractable.enabled = true;
     }
 
     #endregion
@@ -130,33 +134,40 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     {
         PlayerSimulationController.OnHerdLeaveBarn += () => Invoke("StartMoveToMeadow", 3f);
         GameModeManager.OnNightStart += StartDanger;
-        WolfManager.OnHuntOver += () => executingState = ExecutingAnimalState.GoToMeadow;
+        WolfManager.OnHuntOver += ReturnVillage;
     }
     public void OnDisable()
     {
         PlayerSimulationController.OnHerdLeaveBarn -= () => Invoke("StartMoveToMeadow", 3f);
         GameModeManager.OnNightStart -= StartDanger;
-        WolfManager.OnHuntOver -= () => executingState = ExecutingAnimalState.GoToMeadow;
+        WolfManager.OnHuntOver -= ReturnVillage;   // moveAroundCenter......
     }
 
     public virtual void Start()
     {
         Agent = GetComponent<NavMeshAgent>();
         _playerTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        moveAroundCenter = _playerTransform;
 
         acceleration = Agent.acceleration;
         speed = Agent.speed;
 
         hitPoint = hitPointMaximum;
 
-        executingState = ExecutingAnimalState.WaitInBarn;
-        currentState = waitInBarnState;
+        executingState = ExecutingAnimalState.GetUsed;
+        currentState = getUsedState;
         currentState.EnterState(this);
     }
 
     public void StartDanger()
     {
         executingState = ExecutingAnimalState.GetHunted;
+    }
+
+    private void ReturnVillage()
+    {
+        executingState = ExecutingAnimalState.GoToMeadow;
+        gameObject.GetComponent<Collider>().enabled = true;
     }
 
     public void CheckIfArrived()
@@ -182,12 +193,13 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
         }
     }
 
+    [HideInInspector] public Transform moveAroundCenter;
     public void StartMove()
     {
         if (_playerTransform != null)
         {
             OnWalk.Invoke();
-            Agent.SetDestination(GetRandomPos(_playerTransform.position, 7f));  // 15f
+            Agent.SetDestination(GetRandomPos(moveAroundCenter.position, 7f));  // 15f
         }
 
     }
@@ -299,6 +311,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
         if (meadow != null)
         {
             executingState = ExecutingAnimalState.GoToMeadow;
+            moveAroundCenter = meadow;
         }
     }
 
@@ -360,6 +373,9 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
         }
         hitPoint -= amount;
         CheckIsDead();
+
+        //Particle
+        ParticleManager.Instance.PlayParticle(ParticleType.BloodSpill, transform, transform.position + Vector3.up);
     }
 
     private void CheckIsDead()
@@ -394,7 +410,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
 
 
         //Particle and Voice
-        ParticleManager.Instance.SpawParticle(ParticleType.Die, null, transform.position);
+        ParticleManager.Instance.PlayParticle(ParticleType.Die, null, transform.position);
     }
 
     public void SwitchState(AnimalStates nextState)

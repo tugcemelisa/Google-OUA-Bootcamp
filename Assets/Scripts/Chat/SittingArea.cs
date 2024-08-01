@@ -49,5 +49,12 @@ public class SittingArea : Interactable
     {
         player.SitToTheGround();
         virtualCamera.Priority = 1;
+
+        InventoryManager.BeforeDayNightCycle.Invoke();
+        GameModeManager.OnNightStart.Invoke();
+
+        //Sound
+        SoundManager.Instance.ChangeAmbientSound(AmbientSoundType.NightAmbient);
+        SoundManager.Instance.PlaySound(VoiceType.WolfHowling,transform,transform.position);
     }
 }

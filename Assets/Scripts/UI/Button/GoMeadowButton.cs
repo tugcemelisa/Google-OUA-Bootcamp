@@ -11,10 +11,18 @@ public class GoMeadowButton : MonoBehaviour
     {
         button = GetComponent<Button>();
 
-        button.onClick.AddListener(() => OnGoingMeadowRequest.Invoke());
+        button.onClick.AddListener(() =>
+        {
+            OnGoingMeadowRequest.Invoke();
+            MapManager.Instance.OpenMap(false);
+        });
     }
     private void OnDisable()
     {
-        button.onClick.RemoveListener(() => OnGoingMeadowRequest.Invoke());
+        button.onClick.RemoveListener(() =>
+        {
+            OnGoingMeadowRequest.Invoke();
+            MapManager.Instance.OpenMap(false);
+        });
     }
 }

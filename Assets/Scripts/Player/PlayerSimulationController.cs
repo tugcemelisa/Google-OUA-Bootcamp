@@ -38,12 +38,14 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         GameModeManager.OnNightStart += ActivatePlayerNightMode;
         NPCQuestInteractable.OnNpcBuy += GainMoney;
         GoMeadowButton.OnGoingMeadowRequest += StartGrazing;
+        WolfManager.OnHuntOver += () => _animator.runtimeAnimatorController = daytimeAnimator; 
     }
     private void OnDisable()
     {
         GameModeManager.OnNightStart -= ActivatePlayerNightMode;
         NPCQuestInteractable.OnNpcBuy -= GainMoney;
         GoMeadowButton.OnGoingMeadowRequest -= StartGrazing;
+        WolfManager.OnHuntOver -= () => _animator.runtimeAnimatorController = daytimeAnimator; 
     }
 
     private void Start()
@@ -104,13 +106,15 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         SoundManager.Instance.PlaySound(VoiceType.ShepherdYell, transform, transform.position);
     }
 
-    Transform _milkingAnimal;
+    Transform _usingAnimal;
     public void Milk(Transform milkingAnimal)
     {
-        _milkingAnimal = milkingAnimal;
-        _milkable = _milkingAnimal.GetComponent<IFarmAnimal>();
+        StarterAssets.InputController.Instance.DisableInputs();
+
+        _usingAnimal = milkingAnimal;
+        _milkable = _usingAnimal.GetComponent<IFarmAnimal>();
         InputTrigger("Crouch");
-        _holdingPail = Instantiate(milkPailPrefab, _milkingAnimal.position + new Vector3(0.3f, 0, 0), Quaternion.identity);
+        //_holdingPail = Instantiate(milkPailPrefab, _usingAnimal.position + new Vector3(0.3f, 0, 0), Quaternion.identity);
 
         if (_milkable != null)
             _milkable.StandIdle(3.5f);
@@ -123,8 +127,10 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         yield return new WaitForSeconds(3.5f);
 
         InputTrigger("FinishCrouching");
-        HoldMilkPail();
-        _executingState = PlayerStates.HoldingMilkPail;
+        _holdingPail = Instantiate(milkPailPrefab, transform.position + new Vector3(0, 0, 1.5f), Quaternion.identity);
+        //HoldMilkPail();
+        //_executingState = PlayerStates.HoldingMilkPail;
+        StarterAssets.InputController.Instance.EnableInputs();
     }
 
     GameObject _holdingPail;
@@ -159,13 +165,15 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
 
     public void Shear(Transform sheepTransform)
     {
+        StarterAssets.InputController.Instance.DisableInputs();
+
         if (_executingState == PlayerStates.Default)
         {
             _executingState = PlayerStates.Shear;
         }
 
-        _milkingAnimal = sheepTransform;
-        _milkable = _milkingAnimal.GetComponent<IFarmAnimal>();
+        _usingAnimal = sheepTransform;
+        _milkable = _usingAnimal.GetComponent<IFarmAnimal>();
         InputTrigger("Crouch");
         InputTrigger("HoldingDown");
 
@@ -182,6 +190,7 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         InputTrigger("FinishCrouching");
         cutWoolEffect.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         _executingState = PlayerStates.HoldingWool;
+        StarterAssets.InputController.Instance.EnableInputs();
     }
     private void HoldWool()
     {

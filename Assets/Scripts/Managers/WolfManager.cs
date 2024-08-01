@@ -33,13 +33,13 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
     {
         wolfState = WolfState.BeforeHunt;
 
-        GameModeManager.OnNightStart += () => Invoke("StartAttack", 2f);
+        GameModeManager.OnNightStart += () => Invoke("StartAttack", 5f);
         PlayerSimulationController.OnTranshumingStart += UpdateAttackableList;
         ReturnVillageButton.OnReturnVillageRequest += StartReturn;
     }
     private void OnDisable()
     {
-        GameModeManager.OnNightStart -= () => Invoke("StartAttack", 2f);
+        GameModeManager.OnNightStart -= () => Invoke("StartAttack", 5f);
         PlayerSimulationController.OnTranshumingStart -= UpdateAttackableList;
         ReturnVillageButton.OnReturnVillageRequest -= StartReturn;
     }
@@ -142,7 +142,7 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
         if(circleWolves.Count <= 0)
         {
             wolfState = WolfState.AfterHunt;
-            Debug.Log("NIGHT END");
+            //Debug.Log("NIGHT END");
         }
     }
 

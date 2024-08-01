@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="New Item Type", menuName = "Item/Create New Item Type")]
+[CreateAssetMenu(fileName = "New Item Type", menuName = "Item/Create New Item Type")]
 public class ItemType
     : ScriptableObject
 {
@@ -9,4 +9,11 @@ public class ItemType
     public float value;
     public Sprite icon;
     public bool isHoldable = true;
+    public HoldingType HoldingType = HoldingType.HoldMiddle;
+}
+
+public enum HoldingType
+{
+    HoldLeft,
+    HoldMiddle
 }

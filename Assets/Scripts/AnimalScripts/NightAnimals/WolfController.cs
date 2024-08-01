@@ -26,8 +26,11 @@ public class WolfController : Interactable
     [SerializeField] float maxFear = 10;
     [SerializeField] private Image fearUI;
     float fear = 0;
+    bool isFeared = false;
 
     WolfStates state = WolfStates.None;
+
+    public NavMeshAgent Agent { get => agent; }
 
     private void Update()
     {
@@ -40,7 +43,7 @@ public class WolfController : Interactable
         {
             if (isTargetInAttackRange())
             {
-                agent.isStopped = true;
+                Agent.isStopped = true;
                 isMoving = false;
 
                 if (isTargetAttackable && !isAttacking)
@@ -63,7 +66,7 @@ public class WolfController : Interactable
 
     bool isTargetInAttackRange()
     {
-        return (target.position - transform.position).magnitude < attackRange;
+        return HorizontalDistance(target.position, transform.position) < attackRange;
     }
 
     void Attack()
@@ -89,11 +92,11 @@ public class WolfController : Interactable
         {
             animator.SetTrigger("Run");
             isMoving = true;
-            agent.isStopped = false;
+            Agent.isStopped = false;
             return;
         }
 
-        agent.SetDestination(target.position);
+        Agent.SetDestination(target.position);
     }
 
     public void RotateToPrey()
@@ -107,9 +110,9 @@ public class WolfController : Interactable
 
     public void GiveDamage()
     {
-        var cow = target.GetComponent<AnimalBase>();
-        if (cow) cow.TakeDamage(attackDamage);
-        Debug.Log(name + "wolf damage cow..");
+        var animal = target.GetComponent<AnimalBase>();
+        if (animal) animal.TakeDamage(attackDamage);
+        Debug.Log(name + "wolf damage animal..");
     }
 
     public void AssignNewTarget(Transform target, bool isDamageable)
@@ -132,15 +135,21 @@ public class WolfController : Interactable
 
     IEnumerator RunToTheCircle()
     {
-        while (Vector3.Distance(transform.position, target.position) > agent.stoppingDistance)    // 0.15f    !!!!!
+        while (HorizontalDistance(transform.position, target.position) > Agent.stoppingDistance)    // 0.15f    !!!!!
         {
             yield return new WaitForFixedUpdate();
         }
-        agent.isStopped = true;
+        Agent.isStopped = true;
         //
         animator.SetTrigger("Idle");
         //
         WolfManager.Instance.AddWolfToTheCircle(this, target);
+    }
+
+    float HorizontalDistance(Vector3 start, Vector3 end)
+    {
+        start.y = end.y;
+        return Vector3.Distance(start, end);
     }
 
     public void AddFear(float amount)
@@ -152,10 +161,15 @@ public class WolfController : Interactable
 
     public void CheckFear()
     {
+        if (isFeared) return;
         if (fear >= maxFear)
         {
+            isFeared = true;
             // TO UPDATE
             WolfManager.Instance.RunAway(this);
+
+            //Sound
+            SoundManager.Instance.PlaySound(VoiceType.WolfScaried, transform, transform.position);
         }
     }
 
