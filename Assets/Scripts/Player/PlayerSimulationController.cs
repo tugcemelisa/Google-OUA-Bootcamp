@@ -176,6 +176,7 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         _milkable = _usingAnimal.GetComponent<IFarmAnimal>();
         InputTrigger("Crouch");
         InputTrigger("HoldingDown");
+        Invoke("StartCuttingAnimation", 1.9f);
 
         if (_milkable != null)
             _milkable.StandIdle(5.5f);
