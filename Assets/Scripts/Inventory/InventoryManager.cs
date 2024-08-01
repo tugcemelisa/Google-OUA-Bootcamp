@@ -6,7 +6,8 @@ using UnityEngine.Events;
 
 public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManager>
 {
-    /*[SerializeField]*/ public List<InventorySlot> slots;
+    /*[SerializeField]*/
+    public List<InventorySlot> slots;
 
     [SerializeField] private InventorySlot selectedSlot;
 
@@ -202,7 +203,7 @@ public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManage
         else
         {
             IGameModeChanger = other.GetComponent<IGameModeChanger>();
-            if(IGameModeChanger != null)
+            if (IGameModeChanger != null)
             {
                 IGameModeChanger.ChangeGameMode();
             }
@@ -211,9 +212,15 @@ public class InventoryManager : MonoBehaviourSingletonPersistent<InventoryManage
 
     public void HoldItemAnimation(ItemMonoBehaviour item)
     {
+
+
         item.gameObject.SetActive(true);
         item.gameObject.GetComponent<Rigidbody>().isKinematic = true;
 
+        if (item.ItemData.Type.HoldingType == HoldingType.HoldMiddle)
+        {
+
+        }
         animator.SetTrigger("Hold");
     }
     public void RemoveItemAnimation()

@@ -5325,7 +5325,7 @@ MonoBehaviour:
   nightAnimator: {fileID: 9100000, guid: 74576c22528371f47abe40d9b5bda845, type: 2}
   pailAnchorTransform: {fileID: 1615391879}
   milkPailTransform: {fileID: 960134252}
-  milkPailPrefab: {fileID: 5987044780153269663, guid: 5b5662403b556a54dace9848698096cb, type: 3}
+  milkPailPrefab: {fileID: 8204611749743162122, guid: 06edfb72a76b5274eb44d4fbfb0e2599, type: 3}
   cutWoolEffect: {fileID: 274583619}
 --- !u!114 &1325830614
 MonoBehaviour:

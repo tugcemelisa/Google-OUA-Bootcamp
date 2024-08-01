@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4055632782266402428}
   - component: {fileID: 4004353314684647648}
   m_Layer: 0
-  m_Name: Wool
+  m_Name: Knit
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData:
-    Type: {fileID: 11400000, guid: 16c395f47ffdfaa469cd2cd485415fea, type: 2}
+    Type: {fileID: 11400000, guid: 606bb2d0cb1116745b6ef60c1cbe6232, type: 2}
     count: 1
 --- !u!136 &4004353314684647648
 CapsuleCollider:

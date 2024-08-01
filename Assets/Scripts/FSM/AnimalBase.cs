@@ -154,8 +154,8 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
 
         hitPoint = hitPointMaximum;
 
-        executingState = ExecutingAnimalState.WaitInBarn;
-        currentState = waitInBarnState;
+        executingState = ExecutingAnimalState.GetUsed;
+        currentState = getUsedState;
         currentState.EnterState(this);
     }
 
