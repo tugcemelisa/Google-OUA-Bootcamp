@@ -1,16 +1,18 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GoMeadowButton : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    Button button;
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        button = GetComponent<Button>();
+
+        button.onClick.AddListener(() => PlayerSimulationController.OnHerdLeaveBarn.Invoke());
+    }
+    private void OnDisable()
+    {
+        button.onClick.RemoveListener(() => PlayerSimulationController.OnHerdLeaveBarn.Invoke());
     }
 }
