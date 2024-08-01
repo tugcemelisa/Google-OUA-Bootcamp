@@ -5,6 +5,12 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
 {
+    enum WolfState
+    {
+        BeforeHunt,
+        AfterHunt
+    }
+    WolfState wolfState;
     [HideInInspector] public static Action OnHuntOver;
     [Header("Targets")]
     //[SerializeField] Transform[] attackableTargets;
@@ -25,13 +31,17 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
 
     private void OnEnable()
     {
+        wolfState = WolfState.BeforeHunt;
+
         GameModeManager.OnNightStart += () => Invoke("StartAttack", 2f);
         PlayerSimulationController.OnTranshumingStart += UpdateAttackableList;
+        ReturnVillageButton.OnReturnVillageRequest += StartReturn;
     }
     private void OnDisable()
     {
         GameModeManager.OnNightStart -= () => Invoke("StartAttack", 2f);
         PlayerSimulationController.OnTranshumingStart -= UpdateAttackableList;
+        ReturnVillageButton.OnReturnVillageRequest -= StartReturn;
     }
 
     private void UpdateAttackableList(List<AnimalBase> animalsToAttack)
@@ -118,6 +128,8 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
 
     public void RunAway(WolfController wolf)
     {
+        //if (circleWolves.Count <= 0) return;
+
         if (normalWolves.Contains(wolf))
             normalWolves.Remove(wolf);
         if (circleWolves.Contains(wolf))
@@ -129,7 +141,7 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
 
         if(circleWolves.Count <= 0)
         {
-            //OnHuntOver.Invoke();
+            wolfState = WolfState.AfterHunt;
             Debug.Log("NIGHT END");
         }
     }
@@ -150,5 +162,15 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
         }
 
         return closestOne;
+    }
+
+    private void StartReturn()
+    {
+        if(wolfState == WolfState.AfterHunt)
+        {
+            OnHuntOver?.Invoke();
+            wolfState = WolfState.BeforeHunt;
+        }
+        Debug.Log(wolfState.ToString());
     }
 }

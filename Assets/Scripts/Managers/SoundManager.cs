@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class SoundManager : MonoBehaviourSingleton<SoundManager>
+public class SoundManager : MonoBehaviourSingletonPersistent<SoundManager>
 {
     [Range(0f, 1f)]
     [SerializeField] float soundVolume = .5f;

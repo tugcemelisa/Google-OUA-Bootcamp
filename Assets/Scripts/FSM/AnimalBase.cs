@@ -98,7 +98,10 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
 
     void FadeOutTheBody()
     {
-        // Fade out animation needed
+        // Particle and Sound
+        ParticleManager.Instance.SpawParticle(ParticleType.Disappear, null, transform.position);
+
+
         this.gameObject.SetActive(false);
     }
     void DecreaseItemCount()
@@ -388,6 +391,10 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
         hitPointUI.fillAmount = 0;
 
         executingState = ExecutingAnimalState.Dead;
+
+
+        //Particle and Voice
+        ParticleManager.Instance.SpawParticle(ParticleType.Die, null, transform.position);
     }
 
     public void SwitchState(AnimalStates nextState)
