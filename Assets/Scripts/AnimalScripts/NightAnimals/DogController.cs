@@ -16,7 +16,13 @@ public class DogController : Interactable
     void Update()
     {
         dest = player.position;
-        agent.destination = dest;
+        if (Vector3.Distance(dest, transform.position) > agent.stoppingDistance)
+        {
+            agent.destination = dest;
+        }else
+        {
+            agent.destination = transform.position;
+        }
 
         float speed = agent.velocity.magnitude;
         if (speed > 0)

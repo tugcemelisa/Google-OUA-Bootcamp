@@ -49,12 +49,12 @@ public class SoundManager : MonoBehaviourSingletonPersistent<SoundManager>
             return;
         }
 
-        audioSource.volume = soundVolume;
+
         foreach (var sound in sounds)
         {
             if (sound.VoiceType == voice)
             {
-
+                audioSource.volume = soundVolume * sound.volunmeMultiplier;
                 audioSource.transform.parent = parent;
                 audioSource.transform.position = pos;
                 audioSource.clip = sound.Clip;
@@ -116,7 +116,7 @@ public class SoundData
     public string Name;
     public AudioClip Clip;
 
-    public float volumeMultiplier = 1f;
+    public float volunmeMultiplier = 1f;
 }
 
 [Serializable]
@@ -126,5 +126,5 @@ public class AmbientSoundData
     public string Name;
     public AudioClip Clip;
 
-    public float volumeMultiplier = 1f;
+    public float volunmeMultiplier = 1f;
 }

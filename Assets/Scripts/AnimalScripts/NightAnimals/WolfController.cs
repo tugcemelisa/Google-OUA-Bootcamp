@@ -30,6 +30,8 @@ public class WolfController : Interactable
 
     WolfStates state = WolfStates.None;
 
+    public NavMeshAgent Agent { get => agent; }
+
     private void Update()
     {
         Hunt();
@@ -41,7 +43,7 @@ public class WolfController : Interactable
         {
             if (isTargetInAttackRange())
             {
-                agent.isStopped = true;
+                Agent.isStopped = true;
                 isMoving = false;
 
                 if (isTargetAttackable && !isAttacking)
@@ -64,7 +66,7 @@ public class WolfController : Interactable
 
     bool isTargetInAttackRange()
     {
-        return (target.position - transform.position).magnitude < attackRange;
+        return HorizontalDistance(target.position, transform.position) < attackRange;
     }
 
     void Attack()
@@ -90,11 +92,11 @@ public class WolfController : Interactable
         {
             animator.SetTrigger("Run");
             isMoving = true;
-            agent.isStopped = false;
+            Agent.isStopped = false;
             return;
         }
 
-        agent.SetDestination(target.position);
+        Agent.SetDestination(target.position);
     }
 
     public void RotateToPrey()
@@ -133,11 +135,11 @@ public class WolfController : Interactable
 
     IEnumerator RunToTheCircle()
     {
-        while (HorizontalDistance(transform.position, target.position) > agent.stoppingDistance)    // 0.15f    !!!!!
+        while (HorizontalDistance(transform.position, target.position) > Agent.stoppingDistance)    // 0.15f    !!!!!
         {
             yield return new WaitForFixedUpdate();
         }
-        agent.isStopped = true;
+        Agent.isStopped = true;
         //
         animator.SetTrigger("Idle");
         //
@@ -159,7 +161,7 @@ public class WolfController : Interactable
 
     public void CheckFear()
     {
-        if(isFeared)  return; 
+        if (isFeared) return;
         if (fear >= maxFear)
         {
             isFeared = true;
