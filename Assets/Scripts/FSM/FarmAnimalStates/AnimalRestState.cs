@@ -47,7 +47,7 @@ public class AnimalRestState : AnimalStates
     public override void ExitState(AnimalBase fsm)
     {
         if (fsm.executingState == ExecutingAnimalState.GetUsed)
-            fsm.SwitchState(fsm.getMilkedState);
+            fsm.SwitchState(fsm.getUsedState);
     }
 
 

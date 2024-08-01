@@ -49,5 +49,8 @@ public class SittingArea : Interactable
     {
         player.SitToTheGround();
         virtualCamera.Priority = 1;
+
+        InventoryManager.BeforeDayNightCycle.Invoke();
+        GameModeManager.OnNightStart.Invoke();
     }
 }

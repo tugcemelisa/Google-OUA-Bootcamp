@@ -104,13 +104,13 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         SoundManager.Instance.PlaySound(VoiceType.ShepherdYell, transform, transform.position);
     }
 
-    Transform _milkingAnimal;
+    Transform _usingAnimal;
     public void Milk(Transform milkingAnimal)
     {
-        _milkingAnimal = milkingAnimal;
-        _milkable = _milkingAnimal.GetComponent<IFarmAnimal>();
+        _usingAnimal = milkingAnimal;
+        _milkable = _usingAnimal.GetComponent<IFarmAnimal>();
         InputTrigger("Crouch");
-        _holdingPail = Instantiate(milkPailPrefab, _milkingAnimal.position + new Vector3(0.3f, 0, 0), Quaternion.identity);
+        //_holdingPail = Instantiate(milkPailPrefab, _usingAnimal.position + new Vector3(0.3f, 0, 0), Quaternion.identity);
 
         if (_milkable != null)
             _milkable.StandIdle(3.5f);
@@ -123,8 +123,9 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         yield return new WaitForSeconds(3.5f);
 
         InputTrigger("FinishCrouching");
-        HoldMilkPail();
-        _executingState = PlayerStates.HoldingMilkPail;
+        _holdingPail = Instantiate(milkPailPrefab, transform.position + new Vector3(-2f, 0, 0), Quaternion.identity);
+        //HoldMilkPail();
+        //_executingState = PlayerStates.HoldingMilkPail;
     }
 
     GameObject _holdingPail;
@@ -164,8 +165,8 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
             _executingState = PlayerStates.Shear;
         }
 
-        _milkingAnimal = sheepTransform;
-        _milkable = _milkingAnimal.GetComponent<IFarmAnimal>();
+        _usingAnimal = sheepTransform;
+        _milkable = _usingAnimal.GetComponent<IFarmAnimal>();
         InputTrigger("Crouch");
         InputTrigger("HoldingDown");
 

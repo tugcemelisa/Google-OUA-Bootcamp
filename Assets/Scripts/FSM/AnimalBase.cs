@@ -42,7 +42,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     [HideInInspector] public AnimalGoToMeadowState goToMeadowState = new();
     [HideInInspector] public AnimalGetHuntedState getHuntedState = new();
     [HideInInspector] public AnimalRestState restState = new();
-    [HideInInspector] public AnimalGetMilkedState getMilkedState = new();
+    [HideInInspector] public AnimalGetUsedState getUsedState = new();
     [HideInInspector] public AnimalDoNothingState doNothingState = new();
     [HideInInspector] public AnimalDeadState deadState = new();
     #endregion

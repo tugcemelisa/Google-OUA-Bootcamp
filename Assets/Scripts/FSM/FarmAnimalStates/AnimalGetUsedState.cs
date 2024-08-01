@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AnimalGetMilkedState : AnimalStates
+public class AnimalGetUsedState : AnimalStates
 {
     public override void EnterState(AnimalBase fsm)
     {
