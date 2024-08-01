@@ -82,6 +82,11 @@ public class DayNightCycle : MonoBehaviour
 
     private void DoNormalCycle()
     {
+        if (blendTime >= 1f)
+        {
+            SetSkybox(nightSkybox, daySkybox);
+            blendTime = 0f;
+        }
         if (time >= 1f)
         {
             SetSkybox(daySkybox, nightSkybox);
@@ -97,7 +102,6 @@ public class DayNightCycle : MonoBehaviour
             dayDuration = fixedDayDuration;
             SetSkybox(nightSkybox, daySkybox);
             blendTime = 0f;
-            //skyboxTime = -1;
             executingState = CycleState.Normal;
         }
     }
