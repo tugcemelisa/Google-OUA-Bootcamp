@@ -45,13 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles:
-  - pacticleType: 0
+  - pacticleType: 2
     Name: Blood spilling
     prefab: {fileID: 0}
-  - pacticleType: 1
+  - pacticleType: 3
     Name: Puff
     prefab: {fileID: 0}
-  - pacticleType: 2
+  - pacticleType: 4
     Name: Wolf Bite
     prefab: {fileID: 0}
   - pacticleType: 0
