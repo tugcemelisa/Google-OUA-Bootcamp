@@ -132,7 +132,7 @@ public class WolfController : Interactable
 
     IEnumerator RunToTheCircle()
     {
-        while (Vector3.Distance(transform.position, target.position) > agent.stoppingDistance)    // 0.15f    !!!!!
+        while (HorizontalDistance(transform.position, target.position) > agent.stoppingDistance)    // 0.15f    !!!!!
         {
             yield return new WaitForFixedUpdate();
         }
@@ -141,6 +141,12 @@ public class WolfController : Interactable
         animator.SetTrigger("Idle");
         //
         WolfManager.Instance.AddWolfToTheCircle(this, target);
+    }
+
+    float HorizontalDistance(Vector3 start, Vector3 end)
+    {
+        start.y = end.y;
+        return Vector3.Distance(start, end);
     }
 
     public void AddFear(float amount)
