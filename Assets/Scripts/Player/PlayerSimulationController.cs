@@ -38,12 +38,14 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         GameModeManager.OnNightStart += ActivatePlayerNightMode;
         NPCQuestInteractable.OnNpcBuy += GainMoney;
         GoMeadowButton.OnGoingMeadowRequest += StartGrazing;
+        WolfManager.OnHuntOver += () => _animator.runtimeAnimatorController = daytimeAnimator; 
     }
     private void OnDisable()
     {
         GameModeManager.OnNightStart -= ActivatePlayerNightMode;
         NPCQuestInteractable.OnNpcBuy -= GainMoney;
         GoMeadowButton.OnGoingMeadowRequest -= StartGrazing;
+        WolfManager.OnHuntOver -= () => _animator.runtimeAnimatorController = daytimeAnimator; 
     }
 
     private void Start()

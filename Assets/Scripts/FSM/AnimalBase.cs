@@ -134,13 +134,13 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     {
         PlayerSimulationController.OnHerdLeaveBarn += () => Invoke("StartMoveToMeadow", 3f);
         GameModeManager.OnNightStart += StartDanger;
-        WolfManager.OnHuntOver += () => executingState = ExecutingAnimalState.GoToMeadow;
+        WolfManager.OnHuntOver += ReturnVillage;
     }
     public void OnDisable()
     {
         PlayerSimulationController.OnHerdLeaveBarn -= () => Invoke("StartMoveToMeadow", 3f);
         GameModeManager.OnNightStart -= StartDanger;
-        WolfManager.OnHuntOver -= () => executingState = ExecutingAnimalState.GoToMeadow;   // moveAroundCenter......
+        WolfManager.OnHuntOver -= ReturnVillage;   // moveAroundCenter......
     }
 
     public virtual void Start()
@@ -162,6 +162,12 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     public void StartDanger()
     {
         executingState = ExecutingAnimalState.GetHunted;
+    }
+
+    private void ReturnVillage()
+    {
+        executingState = ExecutingAnimalState.GoToMeadow;
+        gameObject.GetComponent<Collider>().enabled = true;
     }
 
     public void CheckIfArrived()
