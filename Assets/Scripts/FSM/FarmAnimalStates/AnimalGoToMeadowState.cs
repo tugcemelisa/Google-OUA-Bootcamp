@@ -36,7 +36,8 @@ public class AnimalGoToMeadowState : AnimalStates
         }  
         else if (fsm.executingState == ExecutingAnimalState.Graze)
         {
-            HelperController.Instance.ShowHelper(HelpType.REstPanel);
+            if(AnimalManager.Instance.Meadow != AnimalManager.Instance.Home)
+                HelperController.Instance.ShowHelper(HelpType.REstPanel);
             fsm.SwitchState(fsm.grazeState);
         }
         else if (fsm.executingState == ExecutingAnimalState.GetHunted)
