@@ -20,6 +20,9 @@ public class CheeseMachine : Interactable
     [SerializeField] private Transform startPosition;
     [SerializeField] private Transform endPosition;
 
+    [SerializeField]
+    private ParticleSystem particle;
+
     public override void Interact(Transform interactorTransform, KeyCode interactKey)
     {
         if (isMachineBusy)
@@ -41,6 +44,7 @@ public class CheeseMachine : Interactable
         InventoryManager.Instance.ShowInventory();
 
         SoundManager.Instance.PlaySound(VoiceType.MachineIndustrial, transform, transform.position);
+        particle.Play();
 
         milkObj.SetActive(true);
         milkObj.transform.position = startPosition.position;
@@ -56,6 +60,7 @@ public class CheeseMachine : Interactable
         }
 
         milkObj.SetActive(false);
+        particle.Stop();
 
         GameObject obj = Instantiate(cheesePrefab, outputSpawnPos.position, Quaternion.identity);
 
