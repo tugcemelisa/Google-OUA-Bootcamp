@@ -127,7 +127,7 @@ MonoBehaviour:
   cheesePrefab: {fileID: 269614742913590059, guid: 9ca7b90609d364f4995c78bdfd4e915b, type: 3}
   workingDuration: 2.5
   outputSpawnPos: {fileID: 3777663128752991439}
-  throwingDir: {x: 0, y: 1, z: 0}
+  throwingDir: {x: 1, y: 1, z: 0}
   throwingPower: 5
   startPosition: {fileID: 3358921670541915605}
   endPosition: {fileID: 216482131750959474}
@@ -262,6 +262,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6075309688967687435}
     m_Modifications:
+    - target: {fileID: 114979979335704276, guid: e509867be4f82f246a95eca1ee5a2d61, type: 3}
+      propertyPath: clearBehavior
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8656522925563801548, guid: e509867be4f82f246a95eca1ee5a2d61, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.09700012

@@ -22,6 +22,7 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
     [Header("Wolves")]
     [SerializeField] List<WolfController> normalWolves = new List<WolfController>();
     List<WolfController> circleWolves = new List<WolfController>();
+    List<WolfController> scariedWolves = new List<WolfController>();
 
     [Header("Configurations")]
     [Range(0, 360)]
@@ -54,9 +55,13 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
 
     private void StartAttack()
     {
-        if(attackableTargets.Count >= 1)
+        if (attackableTargets.Count >= 1)
         {
             CircleWaveStart();
+        }
+        else
+        {
+            ChatBubble.Create(null, transform.position, IconType.Informative, "You have to bring some animals to the meadow");
         }
     }
 
@@ -115,7 +120,7 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
 
         circleWolves.Add(wolf);
         Debug.Log("Count: " + circleWolves.Count);
-        if(circleWolves.Count == circleTargets.Length)
+        if (circleWolves.Count == circleTargets.Length)
         {
             foreach (var item in circleWolves)
             {
@@ -139,7 +144,9 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
         wolf.transform.parent = selectedGettingOutTransform;
         wolf.AssignNewTarget(selectedGettingOutTransform, false);
 
-        if(circleWolves.Count <= 0)
+        scariedWolves.Add(wolf) ;
+
+        if (circleWolves.Count <= 0)
         {
             wolfState = WolfState.AfterHunt;
             //Debug.Log("NIGHT END");
@@ -166,7 +173,7 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
 
     private void StartReturn()
     {
-        if(wolfState == WolfState.AfterHunt)
+        if (wolfState == WolfState.AfterHunt)
         {
             OnHuntOver?.Invoke();
             wolfState = WolfState.BeforeHunt;
@@ -177,6 +184,17 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
 
     public void ResetWolfManagerFor(MeadowWolfManagerInfoHolder meadow)
     {
+        int i = 0;
+        foreach (var wolf in scariedWolves)
+        {
+            wolf.ResetWolf(meadow.SpawnPositionsForWolves[i]);
+        }
 
+        centerOfTheCircle = meadow.centerOfTheCircle;
+        circleTargets = meadow.circleTargets;
+        gettingOutTransforms = meadow.gettingOutTransforms;
+
+        //attackableTargets = new();
+        //UpdateAttackableList();
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine.AI;
 using System.Collections;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 public class WolfController : Interactable
 {
@@ -193,6 +194,20 @@ public class WolfController : Interactable
             default:
                 break;
         }
+    }
+
+    public void ResetWolf(Transform tr)
+    {
+        isMoving = false;
+        isAttacking = false;
+        isTargetAttackable = false;
+        fear = 0;
+        isFeared = false;
+
+        state = WolfStates.None;
+
+        transform.position = tr.position;
+        AddFear(0);
     }
 }
 
