@@ -7,6 +7,7 @@ public class AnimalGetUsedState : AnimalStates
         //Debug.Log("GET MILKED " + fsm.gameObject.name);
         //fsm.InteractableUIElements[0].interactableText = fsm.interactTXT;
         fsm.ChangeUIElement();
+        HelperController.Instance.ShowHelper(HelpType.FindClient);
     }
 
     public override void UpdateState(AnimalBase fsm)

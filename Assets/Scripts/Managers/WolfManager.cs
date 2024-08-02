@@ -176,9 +176,18 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
         if (wolfState == WolfState.AfterHunt)
         {
             OnHuntOver?.Invoke();
+            StartCoroutine(ShowHelpers());
             wolfState = WolfState.BeforeHunt;
         }
         Debug.Log(wolfState.ToString());
+    }
+    private IEnumerator ShowHelpers()
+    {
+        HelperController.Instance.ShowHelper(HelpType.CollectPanel);
+        yield return new WaitForSeconds(4f);
+        HelperController.Instance.ShowHelper(HelpType.ReturnPanel);
+        yield return new WaitForSeconds(60f);
+        HelperController.Instance.ShowHelper(HelpType.BarnPanel);
     }
 
 

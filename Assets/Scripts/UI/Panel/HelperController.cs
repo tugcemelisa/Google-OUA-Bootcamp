@@ -14,6 +14,14 @@ public class HelperController : MonoBehaviourSingletonPersistent<HelperControlle
         public HelpType helpType;
     }
 
+    private void Start()
+    {
+        foreach (var item in data)
+        {
+            item.gameObject.SetActive(false);
+        }
+    }
+
     public void ShowHelper(HelpType type)
     {
         foreach (var item in data)
@@ -36,11 +44,11 @@ public enum HelpType
     FindLiveStock,
     GoGrazePanel,
     TakeAnimalGrazePanel,
-    REstPanel,
+    REstPanel,  
     DefendPanel,
     CollectPanel,
     ReturnPanel,
-    BarnPanel,
+    BarnPanel,  
     FindClient,
     BuyPanel
 }

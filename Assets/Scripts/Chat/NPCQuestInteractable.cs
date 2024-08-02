@@ -86,6 +86,7 @@ public class NPCQuestInteractable : NPCInteractable
             }
 
             print("YOU GAINED MONEY");
+            HelperController.Instance.ShowHelper(HelpType.BuyPanel);
             _executingState = executingState.Wait;
 
             //Sound

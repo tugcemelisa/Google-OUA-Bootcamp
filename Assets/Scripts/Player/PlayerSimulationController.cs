@@ -91,6 +91,7 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
             priority++;
         }
         OnTranshumingStart.Invoke(_herd);
+        HelperController.Instance.ShowHelper(HelpType.GoGrazePanel);
         _executingState = PlayerStates.TakeAnimals;
     }
 
@@ -102,6 +103,7 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
             AnimalManager.Instance.Meadow = meadow.centerOfTheCircle;
 
             OnHerdLeaveBarn.Invoke();
+            HelperController.Instance.ShowHelper(HelpType.TakeAnimalGrazePanel);
             _executingState = PlayerStates.Default;
 
         }
@@ -243,6 +245,7 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         {
             OnPlayerBridgeBuy.Invoke();
             OnItemSell.Invoke(-bridgePrice);
+            HelperController.Instance.ShowHelper(HelpType.FindLiveStock);
         }
         else
         {

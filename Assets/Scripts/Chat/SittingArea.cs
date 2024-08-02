@@ -52,6 +52,7 @@ public class SittingArea : Interactable
 
         InventoryManager.BeforeDayNightCycle.Invoke();
         GameModeManager.OnNightStart.Invoke();
+        HelperController.Instance.ShowHelper(HelpType.DefendPanel);
 
         //Sound
         SoundManager.Instance.ChangeAmbientSound(AmbientSoundType.NightAmbient);

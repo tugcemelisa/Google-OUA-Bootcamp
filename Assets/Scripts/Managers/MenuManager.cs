@@ -49,6 +49,7 @@ public class MenuManager : MonoBehaviourSingletonPersistent<MenuManager>
 
     public void StartMenu()
     {
+        HelperController.Instance.ShowHelper(HelpType.FindLiveStock);
         menuCanvas.SetActive(true);
         otherCanvas.SetActive(true);
         SetMenuActive(true);
