@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bridge : MonoBehaviour
 {
-    ParticleSystem _particleSystem;
+    [SerializeField] private ParticleSystem _particleSystem;
     public CinemachineVirtualCamera cam;
 
     [SerializeField] Transform requestedTransform;
@@ -16,11 +16,6 @@ public class Bridge : MonoBehaviour
     private void OnDisable()
     {
         PlayerSimulationController.OnPlayerBridgeBuy -= () => StartCoroutine(BuildBridge());
-    }
-
-    private void Start()
-    {
-        _particleSystem = GetComponentInChildren<ParticleSystem>();
     }
 
     private IEnumerator BuildBridge()
