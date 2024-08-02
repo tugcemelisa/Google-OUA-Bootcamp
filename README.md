@@ -5,7 +5,7 @@ Unity Takım 65
 ## Takım Üyeleri
 - ***Muhammed Sefa Karataş*** - Developer
 - ***Beyzanur Özen*** - Developer and Level Designer
-- ***Melisa tuğçe Haspolat*** - 3D
+- ***Melisa Tuğçe Haspolat*** - 3D
 - ***Zeynep Kefalı*** - 2D and UI
 - ***Bahadır Şahin*** - Product Owner and Scrum Master
 
