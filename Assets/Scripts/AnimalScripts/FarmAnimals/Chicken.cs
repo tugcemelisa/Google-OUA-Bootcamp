@@ -54,6 +54,7 @@ public class Chicken : MonoBehaviour
     {
         if (other.CompareTag("Chicken"))
         {
+            animator.SetTrigger("Bounce");
             target = other.transform;
             Vector3 fleeDirection = (transform.position - target.position).normalized;
             Vector3 newFleePos = transform.position + fleeDirection * wanderRadius;
