@@ -5,7 +5,6 @@ public class AnimalWaitInBarnState : AnimalStates
     public override void EnterState(AnimalBase fsm)
     {
         fsm.OnIdle.Invoke();
-        fsm.Agent.radius = 0.5f;
     }
 
     public override void UpdateState(AnimalBase fsm)
