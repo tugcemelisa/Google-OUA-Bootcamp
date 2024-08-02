@@ -99,10 +99,11 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         if (_executingState == PlayerStates.TakeAnimals)
         {
             WolfManager.Instance.ResetWolfManagerFor(meadow);
+            AnimalManager.Instance.Meadow = meadow.centerOfTheCircle;
+
             OnHerdLeaveBarn.Invoke();
             _executingState = PlayerStates.Default;
 
-            AnimalManager.Instance.Meadow = meadow.centerOfTheCircle;
         }
     }
 
