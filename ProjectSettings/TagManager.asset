@@ -12,6 +12,7 @@ TagManager:
   - Item
   - NPC
   - Sheep
+  - Chicken
   layers:
   - Default
   - TransparentFX

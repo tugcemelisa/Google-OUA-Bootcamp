@@ -62,6 +62,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     private Vector3 randomPoint;
     public float detectionRadius = 4f;
     public float moveRadius = 15f;
+    private float _radius;
 
     public float grazeTime = 6f;
     [HideInInspector] public float _grazeTimer;
@@ -151,11 +152,12 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
 
         acceleration = Agent.acceleration;
         speed = Agent.speed;
+        _radius = Agent.radius;
 
         hitPoint = hitPointMaximum;
 
-        executingState = ExecutingAnimalState.GetUsed;
-        currentState = getUsedState;
+        executingState = ExecutingAnimalState.WaitInBarn;
+        currentState = waitInBarnState;
         currentState.EnterState(this);
     }
 
@@ -168,6 +170,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     {
         executingState = ExecutingAnimalState.GoToMeadow;
         gameObject.GetComponent<Collider>().enabled = true;
+        Agent.radius = _radius;
     }
 
     public void CheckIfArrived()
