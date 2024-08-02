@@ -32,6 +32,8 @@ public class AnimalGetHuntedState : AnimalStates
     public override void ExitState(AnimalBase fsm)
     {
         AnimalManager.Instance.Meadow = AnimalManager.Instance.Home;
+        HelperController.Instance.ShowHelper(HelpType.BarnPanel);
+
         if (fsm.executingState == ExecutingAnimalState.Dead)
             fsm.SwitchState(fsm.deadState);
         else if (fsm.executingState == ExecutingAnimalState.GoToMeadow)

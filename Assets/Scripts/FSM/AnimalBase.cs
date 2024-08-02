@@ -167,7 +167,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     private void ReturnVillage()
     {
         executingState = ExecutingAnimalState.GoToMeadow;
-        gameObject.GetComponent<Collider>().enabled = true;
+        //gameObject.GetComponent<Collider>().enabled = true;
         Agent.radius = _radius;
     }
 

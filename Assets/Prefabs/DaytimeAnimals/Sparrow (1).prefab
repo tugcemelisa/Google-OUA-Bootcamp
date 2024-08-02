@@ -364,7 +364,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4708969919901354445}
-  - component: {fileID: 2044004411144982712}
   - component: {fileID: 5507643441702705267}
   - component: {fileID: 3285117248977690331}
   - component: {fileID: 252052213662138276}
@@ -394,25 +393,6 @@ Transform:
   - {fileID: 1569561674506896564}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2044004411144982712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7535663982043849067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f30152459e323e4485bfa1bcb4480fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minSpawRate: 10
-  maxSpawRate: 50
-  eggPrefab: {fileID: 7186951478494596263, guid: 7a42afc523719db4cb881fa23c93dbd8, type: 3}
-  wanderRadius: 10
-  wanderTimer: 5
-  fleeRadius: 5
-  target: {fileID: 0}
 --- !u!114 &5507643441702705267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,8 +410,8 @@ MonoBehaviour:
   eggPrefab: {fileID: 7186951478494596263, guid: 7a42afc523719db4cb881fa23c93dbd8, type: 3}
   wanderRadius: 10
   wanderTimer: 5
-  fleeRadius: 5
   target: {fileID: 0}
+  marketPlace: {fileID: 0}
 --- !u!95 &3285117248977690331
 Animator:
   serializedVersion: 7

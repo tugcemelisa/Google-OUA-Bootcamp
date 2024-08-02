@@ -17,6 +17,7 @@ public class Chicken : MonoBehaviour
     private NavMeshAgent agent;
     private Animator animator;
     private float timer;
+    [SerializeField] Transform marketPlace;
 
     private void Start()
     {
@@ -44,7 +45,7 @@ public class Chicken : MonoBehaviour
         if (timer >= wanderTimer)
         {
             animator.SetTrigger("Eat");
-            Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
+            Vector3 newPos = RandomNavSphere(marketPlace.position, wanderRadius, -1);
             agent.SetDestination(newPos);
             timer = 0;
         }

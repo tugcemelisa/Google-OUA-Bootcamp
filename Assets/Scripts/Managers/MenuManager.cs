@@ -54,4 +54,26 @@ public class MenuManager : MonoBehaviourSingletonPersistent<MenuManager>
         otherCanvas.SetActive(true);
         SetMenuActive(true);
     }
+
+    public void StartGameMenu(bool set)
+    {
+        HelperController.Instance.ShowHelper(HelpType.FindLiveStock);
+        menuCanvas.SetActive(true);
+        otherCanvas.SetActive(true);
+        SetMenuActive(true);
+
+        menuAnimator.SetBool("isOpen", set);
+        otherMenuAnimator.SetBool("isOpen", !set);
+
+        menuCam.Priority = set ? 15 : 10;
+
+        normalCam.Priority = !set ? 15 : 10;
+
+        //playerAnimator.SetTrigger("SitToIdle");
+
+        if (isOpen)
+        {
+            StarterAssets.InputController.Instance.DisableInputs();
+        }
+    }
 }

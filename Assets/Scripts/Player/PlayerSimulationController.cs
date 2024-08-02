@@ -40,7 +40,10 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         GameModeManager.OnNightStart += ActivatePlayerNightMode;
         NPCQuestInteractable.OnNpcBuy += GainMoney;
         GoMeadowButton.OnGoingMeadowRequest += StartGrazing;
-        WolfManager.OnHuntOver += () => _animator.runtimeAnimatorController = daytimeAnimator;
+        WolfManager.OnHuntOver += () => {
+            _animator.runtimeAnimatorController = daytimeAnimator;
+            _executingState = PlayerStates.Default;
+        };
         UnlockBridgeButton.OnUnlockBridgeRequest += UnlockBridge;
     }
     private void OnDisable()
@@ -48,7 +51,10 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         GameModeManager.OnNightStart -= ActivatePlayerNightMode;
         NPCQuestInteractable.OnNpcBuy -= GainMoney;
         GoMeadowButton.OnGoingMeadowRequest -= StartGrazing;
-        WolfManager.OnHuntOver -= () => _animator.runtimeAnimatorController = daytimeAnimator;
+        WolfManager.OnHuntOver -= () => { 
+            _animator.runtimeAnimatorController = daytimeAnimator;
+            _executingState = PlayerStates.Default;
+        };
         UnlockBridgeButton.OnUnlockBridgeRequest -= UnlockBridge;
     }
 
