@@ -32,20 +32,23 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     [HideInInspector] public static Action<List<AnimalBase>> OnTranshumingStart;
     [HideInInspector] public static Action OnHerdLeaveBarn;
     [HideInInspector] public static Action<float> OnItemSell;
+    [HideInInspector] public static Action OnPlayerBridgeBuy;
 
     private void OnEnable()
     {
         GameModeManager.OnNightStart += ActivatePlayerNightMode;
         NPCQuestInteractable.OnNpcBuy += GainMoney;
         GoMeadowButton.OnGoingMeadowRequest += StartGrazing;
-        WolfManager.OnHuntOver += () => _animator.runtimeAnimatorController = daytimeAnimator; 
+        WolfManager.OnHuntOver += () => _animator.runtimeAnimatorController = daytimeAnimator;
+        UnlockBridgeButton.OnUnlockBridgeRequest += UnlockBridge;
     }
     private void OnDisable()
     {
         GameModeManager.OnNightStart -= ActivatePlayerNightMode;
         NPCQuestInteractable.OnNpcBuy -= GainMoney;
         GoMeadowButton.OnGoingMeadowRequest -= StartGrazing;
-        WolfManager.OnHuntOver -= () => _animator.runtimeAnimatorController = daytimeAnimator; 
+        WolfManager.OnHuntOver -= () => _animator.runtimeAnimatorController = daytimeAnimator;
+        UnlockBridgeButton.OnUnlockBridgeRequest -= UnlockBridge;
     }
 
     private void Start()
@@ -213,6 +216,14 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         }
 
         OnItemSell.Invoke(totalAmount);
+    }
+    float bridgePrice = 200f;
+    private void UnlockBridge()
+    {
+        if(totalAmount >= bridgePrice)
+        {
+            OnPlayerBridgeBuy.Invoke();
+        }
     }
 
     private void ActivatePlayerNightMode()
