@@ -1315,7 +1315,7 @@ GameObject:
   - component: {fileID: 7446850485531124177}
   - component: {fileID: 8190853495755415968}
   m_Layer: 0
-  m_Name: Quest NPC 02 1
+  m_Name: Quest NPC 02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
