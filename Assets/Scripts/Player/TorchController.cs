@@ -18,12 +18,18 @@ public class TorchController : MonoBehaviour
     private void OnEnable()
     {
         GameModeManager.OnNightStart += () => torchHead.gameObject.SetActive(true);
-        WolfManager.OnHuntOver += () => torchHead.gameObject.SetActive(true);
+        WolfManager.OnHuntOver += () => HuntOver();
     }
     private void OnDisable()
     {
         GameModeManager.OnNightStart -= () => torchHead.gameObject.SetActive(true);
-        WolfManager.OnHuntOver -= () => torchHead.gameObject.SetActive(true);
+        WolfManager.OnHuntOver -= () => HuntOver();
+    }
+
+    void HuntOver()
+    {
+        torchHead.gameObject.SetActive(false);
+        SoundManager.Instance.ChangeAmbientSound(AmbientSoundType.NormalVillage);
     }
 
     private void Start()

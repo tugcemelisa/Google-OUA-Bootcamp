@@ -38,7 +38,7 @@ public class MenuManager : MonoBehaviourSingletonPersistent<MenuManager>
 
         normalCam.Priority = !set ? 15 : 10;
 
-        playerAnimator.SetTrigger("IdleToSit");
+        playerAnimator.SetTrigger(set ? "IdleToSit" : "SitToIdle");
 
         if (isOpen)
         {

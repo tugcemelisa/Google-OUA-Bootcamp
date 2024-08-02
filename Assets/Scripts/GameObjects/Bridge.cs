@@ -25,6 +25,7 @@ public class Bridge : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
+        requestedTransform.parent = null;
         transform.position = requestedTransform.position;
         transform.rotation = requestedTransform.rotation;
         _particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
