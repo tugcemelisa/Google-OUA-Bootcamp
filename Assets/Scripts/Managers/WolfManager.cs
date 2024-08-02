@@ -186,7 +186,7 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
     private IEnumerator ShowHelpers()
     {
         HelperController.Instance.ShowHelper(HelpType.CollectPanel);
-        yield return new WaitForSeconds(60f);
+        yield return new WaitForSeconds(30f);
         HelperController.Instance.ShowHelper(HelpType.ReturnPanel);
     }
 
