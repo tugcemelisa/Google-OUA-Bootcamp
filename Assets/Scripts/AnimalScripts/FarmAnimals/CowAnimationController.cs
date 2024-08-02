@@ -31,6 +31,7 @@ public class CowAnimationController : MonoBehaviour
     private void OnEnable()
     {
         GameModeManager.OnNightStart += () => Animator.runtimeAnimatorController = nightAnimator;
+        WolfManager.OnHuntOver += () => Animator.runtimeAnimatorController = daytimeAnimator;
 
         CowController.OnWalk += () => InputTrigger("Walk");
         CowController.OnGetScared += () => InputTrigger("GetScared");
@@ -43,6 +44,7 @@ public class CowAnimationController : MonoBehaviour
     private void OnDisable()
     {
         GameModeManager.OnNightStart -= () => Animator.runtimeAnimatorController = nightAnimator;
+        WolfManager.OnHuntOver -= () => Animator.runtimeAnimatorController = daytimeAnimator;
 
         CowController.OnWalk -= () => InputTrigger("Walk");
         CowController.OnGetScared -= () => InputTrigger("GetScared");
