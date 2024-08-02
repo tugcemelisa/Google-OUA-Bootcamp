@@ -2084,6 +2084,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7886388424543219215}
+  - component: {fileID: 8015391310289921645}
   m_Layer: 5
   m_Name: Corner
   m_TagString: Untagged
@@ -2120,6 +2121,49 @@ RectTransform:
   m_AnchoredPosition: {x: 241, y: 88}
   m_SizeDelta: {x: 383.596, y: 145.6034}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8015391310289921645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5341232665187490185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ae172b8ecfb6b4fb6377591ffb10c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - name: 
+    gameObject: {fileID: 5331134764686695605}
+    helpType: 0
+  - name: 
+    gameObject: {fileID: 4338937516632121997}
+    helpType: 1
+  - name: 
+    gameObject: {fileID: 1126454461141835051}
+    helpType: 2
+  - name: 
+    gameObject: {fileID: 2317681197024591074}
+    helpType: 3
+  - name: 
+    gameObject: {fileID: 105367342633593268}
+    helpType: 4
+  - name: 
+    gameObject: {fileID: 4834207292606774895}
+    helpType: 5
+  - name: 
+    gameObject: {fileID: 5117112665666405896}
+    helpType: 6
+  - name: 
+    gameObject: {fileID: 7641725380652371833}
+    helpType: 7
+  - name: 
+    gameObject: {fileID: 7829816349293814179}
+    helpType: 8
+  - name: 
+    gameObject: {fileID: 9136086797271947800}
+    helpType: 9
 --- !u!1 &5627742913765534610
 GameObject:
   m_ObjectHideFlags: 0

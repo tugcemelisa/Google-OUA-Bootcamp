@@ -141,8 +141,6 @@ MonoBehaviour:
   - {fileID: 3021928274363226354}
   - {fileID: 8932284577969242456}
   executingState: 0
-  meadow: {fileID: 0}
-  home: {fileID: 0}
   Agent: {fileID: 0}
   acceleration: 0
   speed: 0
@@ -156,6 +154,7 @@ MonoBehaviour:
   hitPointUI: {fileID: 2651100822763241617}
   item: {fileID: 1007481942926011054}
   deadInteractable: {fileID: 8932284577969242456}
+  moveAroundCenter: {fileID: 0}
 --- !u!195 &8207165073875513603
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -175,7 +174,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.62
-  m_BaseOffset: -0.1
+  m_BaseOffset: -0.19
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!65 &5561207175784555001
