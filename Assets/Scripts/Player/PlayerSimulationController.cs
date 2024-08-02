@@ -94,12 +94,15 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         _executingState = PlayerStates.TakeAnimals;
     }
 
-    public void StartGrazing()
+    public void StartGrazing(MeadowWolfManagerInfoHolder meadow)
     {
         if (_executingState == PlayerStates.TakeAnimals)
         {
+            WolfManager.Instance.ResetWolfManagerFor(meadow);
             OnHerdLeaveBarn.Invoke();
             _executingState = PlayerStates.Default;
+
+            AnimalManager.Instance.Meadow = meadow.centerOfTheCircle;
         }
     }
 

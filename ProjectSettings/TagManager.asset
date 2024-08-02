@@ -13,6 +13,7 @@ TagManager:
   - NPC
   - Sheep
   - Chicken
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - UI
   - Torch
   - Wolf
-  - 
+  - NotWithWolf
   - 
   - OnlyMiniMap
   - OnlyNormal

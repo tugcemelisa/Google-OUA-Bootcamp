@@ -5,7 +5,9 @@ using UnityEngine.UI;
 public class GoMeadowButton : MonoBehaviour
 {
     Button button;
-    [HideInInspector] public static Action OnGoingMeadowRequest;
+    [HideInInspector] public static Action<MeadowWolfManagerInfoHolder> OnGoingMeadowRequest;
+
+    [SerializeField] private MeadowWolfManagerInfoHolder meadowWolfManagerInfoHolder;
 
     private void OnEnable()
     {
@@ -13,7 +15,7 @@ public class GoMeadowButton : MonoBehaviour
 
         button.onClick.AddListener(() =>
         {
-            OnGoingMeadowRequest.Invoke();
+            OnGoingMeadowRequest.Invoke(meadowWolfManagerInfoHolder);
             MapManager.Instance.OpenMap(false);
         });
     }
@@ -21,7 +23,7 @@ public class GoMeadowButton : MonoBehaviour
     {
         button.onClick.RemoveListener(() =>
         {
-            OnGoingMeadowRequest.Invoke();
+            OnGoingMeadowRequest.Invoke(meadowWolfManagerInfoHolder);
             MapManager.Instance.OpenMap(false);
         });
     }

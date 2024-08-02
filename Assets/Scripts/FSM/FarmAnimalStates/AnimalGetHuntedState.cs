@@ -5,7 +5,7 @@ public class AnimalGetHuntedState : AnimalStates
     public override void EnterState(AnimalBase fsm)
     {
         fsm.OnWalk.Invoke();
-        fsm.Agent.SetDestination(fsm.GetRandomPos(fsm.meadow.position, 5f));
+        fsm.Agent.SetDestination(fsm.GetRandomPos(AnimalManager.Instance.Meadow.position, 5f));
     }
 
     public override void UpdateState(AnimalBase fsm)
@@ -31,7 +31,7 @@ public class AnimalGetHuntedState : AnimalStates
 
     public override void ExitState(AnimalBase fsm)
     {
-        fsm.meadow = fsm.home;
+        AnimalManager.Instance.Meadow = AnimalManager.Instance.Home;
         if (fsm.executingState == ExecutingAnimalState.Dead)
             fsm.SwitchState(fsm.deadState);
         else if (fsm.executingState == ExecutingAnimalState.GoToMeadow)

@@ -5,7 +5,7 @@ public class AnimalGoToMeadowState : AnimalStates
     public override void EnterState(AnimalBase fsm)
     {
         fsm.OnWalk.Invoke();
-        fsm.Agent.SetDestination(fsm.GetRandomPos(fsm.meadow.position, 20f));
+        fsm.Agent.SetDestination(fsm.GetRandomPos(AnimalManager.Instance.Meadow.position, 20f));
     }
 
     public override void UpdateState(AnimalBase fsm)

@@ -48,8 +48,6 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     #endregion
 
     #region Variables..
-    public Transform meadow;
-    public Transform home;
 
     protected Transform _playerTransform;
     protected IPlayer IPlayer;
@@ -213,7 +211,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
 
     public void StartFlee()
     {
-        if (meadow != null && executingState == ExecutingAnimalState.GoToMeadow)
+        if (AnimalManager.Instance.Meadow != null && executingState == ExecutingAnimalState.GoToMeadow)
         {
             AvoidOtherAnimals();
         }
@@ -311,6 +309,7 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
 
     public void RejoinHerd()
     {
+        Transform meadow = AnimalManager.Instance.Meadow;
         if (meadow != null)
         {
             executingState = ExecutingAnimalState.GoToMeadow;
