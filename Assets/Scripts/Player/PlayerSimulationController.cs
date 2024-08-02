@@ -26,6 +26,7 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     [SerializeField] private Transform pailAnchorTransform;
     [SerializeField] private Transform milkPailTransform;
     [SerializeField] private GameObject milkPailPrefab;
+    [SerializeField] private Transform scissor;
     [SerializeField] private ParticleSystem cutWoolEffect;
 
     private List<AnimalBase> _herd = new();
@@ -95,7 +96,7 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
 
     public void StartGrazing()
     {
-        if(_executingState == PlayerStates.TakeAnimals)
+        if (_executingState == PlayerStates.TakeAnimals)
         {
             OnHerdLeaveBarn.Invoke();
             _executingState = PlayerStates.Default;
@@ -178,6 +179,10 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         _usingAnimal = sheepTransform;
         _milkable = _usingAnimal.GetComponent<IFarmAnimal>();
         InputTrigger("Crouch");
+
+        //Added for scissor
+        scissor.gameObject.SetActive(true);
+
         //InputTrigger("HoldingDown");
         Invoke("StartCuttingAnimation", 1.9f);
 
@@ -191,6 +196,9 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     private IEnumerator FinishShearing()
     {
         yield return new WaitForSeconds(5.5f);
+
+        //Added for scissor
+        scissor.gameObject.SetActive(false);
 
         InputTrigger("FinishCrouching");
         _holdingPail = Instantiate(woolPrefab, transform.position + new Vector3(0, 0, 1.5f), Quaternion.identity);
@@ -220,7 +228,7 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     float bridgePrice = 200f;
     private void UnlockBridge()
     {
-        if(totalAmount >= bridgePrice)
+        if (totalAmount >= bridgePrice)
         {
             OnPlayerBridgeBuy.Invoke();
         }

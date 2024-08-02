@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CowController : AnimalBase
 {
-
     private void Update()
     {
         currentState.UpdateState(this);
