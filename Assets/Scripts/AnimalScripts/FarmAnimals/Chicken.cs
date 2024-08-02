@@ -12,7 +12,6 @@ public class Chicken : MonoBehaviour
 
     [SerializeField] private float wanderRadius = 10f;
     public float wanderTimer = 5f;
-    public float fleeRadius = 5f;
 
     public Transform target;
     private NavMeshAgent agent;
