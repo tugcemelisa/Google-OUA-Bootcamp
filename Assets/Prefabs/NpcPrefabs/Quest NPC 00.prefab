@@ -1170,7 +1170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   executingState: 0
-  _barn: {fileID: 0}
+  _marketplace: {fileID: 0}
 --- !u!114 &3422726291164685711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1184,10 +1184,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableUIElements:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  npcHeadLookAt: {fileID: 0}
+  - {fileID: 6657084236693070725}
+  - {fileID: 5382553726385563341}
+  - {fileID: 5874528035757995087}
+  npcHeadLookAt: {fileID: 7026702137620383784}
   textToSay: 'Quest NPC: '
   neededItems:
   - Type: {fileID: 11400000, guid: 424c1ef6f4e96fe4b9998b1f9ca2e36e, type: 2}
@@ -1208,6 +1208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rig: {fileID: 7975111457601628587}
   headLookAtTransform: {fileID: 8441054048535544284}
+  lookingTime: 5
 --- !u!195 &2829137086611126986
 NavMeshAgent:
   m_ObjectHideFlags: 0
