@@ -28,4 +28,6 @@ public class CoinTextController : MonoBehaviour
     {
         CoinAmountText.text = amount.ToString();
     }
+
+
 }

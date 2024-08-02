@@ -14,10 +14,18 @@ public class NPCQuestInteractable : NPCInteractable
 
     [SerializeField] List<ItemData> neededItems = new List<ItemData>();
 
+    float totalMoney = 0;
+
     public override void Start()
     {
         base.Start();
         _executingState = executingState.GiveQuest;
+
+        float totalAmount = 0;
+        for (int i = 0; i < neededItems.Count; i++)
+        {
+            totalAmount += neededItems[i].Type.value * neededItems[i].count;
+        }
     }
     public override void Interact(Transform interactorTransform, KeyCode keyCode)
     {
@@ -27,17 +35,12 @@ public class NPCQuestInteractable : NPCInteractable
         {
             if ((int)keyCode == (int)InteractKeys.Bargain)
                 Bargain(interactorTransform);
-              
+
             else if ((int)keyCode == (int)InteractKeys.Talk)
             {
-                string itemList = "";
-                foreach (ItemData item in neededItems)
-                {
-                    itemList += item.Type.itemName + " : " + item.count.ToString();
-                }
-                ShowQuest(interactorTransform, IconType.Bargain, textToSay + " | " + itemList);
+                ShowQuest(interactorTransform, IconType.Bargain, textToSay + " I can give you " + totalMoney + "$ for those:");
             }
-        } 
+        }
     }
 
     private void ShowQuest(Transform interactor, IconType iconType, string textToSay)

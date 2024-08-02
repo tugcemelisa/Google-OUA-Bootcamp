@@ -215,6 +215,13 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         }
     }
 
+    [ContextMenu("Give Money")]
+    public void GiveMoneyManually()
+    {
+        totalAmount += 200;
+        OnItemSell.Invoke(totalAmount);
+    }
+
     float totalAmount = 0;
     public void GainMoney(List<ItemData> soldItems)
     {
@@ -231,6 +238,11 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         if (totalAmount >= bridgePrice)
         {
             OnPlayerBridgeBuy.Invoke();
+            OnItemSell.Invoke(-bridgePrice);
+        }
+        else
+        {
+            ChatBubble.Create(null, transform.position + Vector3.up, IconType.Informative, "You don't have enough money, you need " + (bridgePrice - totalAmount) + " more.");
         }
     }
 
