@@ -173,4 +173,10 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
         }
         Debug.Log(wolfState.ToString());
     }
+
+
+    public void ResetWolfManagerFor(MeadowWolfManagerInfoHolder meadow)
+    {
+
+    }
 }
