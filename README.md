@@ -32,6 +32,11 @@ Oyunumuz tek kişilik singleplayer türünde yapılmıştır. Oyunda gündüzler
 - Indie Oyun Oynayan Kitle
 - YouTube, Kick ve Twitch üzerinde yayın yapan yayıncılar
 
+## Projede Kullanılan Yapay Zeka Araçları
+- Animasyon: https://www.deepmotion.com/saymotion
+- Müzik: https://suno.com/create
+- Ses: https://elevenlabs.io/
+
 ## SPRİNT 1
 - Sprint 1 aşamasında amacımız oyunun temelini kurmak, ve genel yapısını inşa etmek. Geliştirme aşaması olarak: Alpha
 - Toplam Backlog Puanı olarak 400 Puan hedeflenmiştir.
@@ -43,8 +48,6 @@ Oyunumuz tek kişilik singleplayer türünde yapılmıştır. Oyunda gündüzler
 ## Geliştirme Ekran Görüntüleri
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/dc5d0fba-9648-4175-8bd1-38e0f392dc43)
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/7f631f19-d00f-43e7-98c7-08f13fb51228)
-
-
 
 
 ## Daily Scrum: WhatsApp
@@ -121,7 +124,10 @@ https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/15c372cb-5c9b
 ## Sprint 3 Toplantı Notları
 https://docs.google.com/document/d/1mZp6CSDwYcwkymt_h7y5vC6phQNhz2JBaWzmgE8BrLI/edit#heading=h.pgwkylp9uqu2
 
-## Sprint 3 Ekran Görüntüleri
+## Daily Scrum Toplantı Notları
+- https://docs.google.com/document/d/1DfvLOTVW5Q_hrXPTaVVVrtVW1eARHI7NoyNak2bmEYc/edit?usp=sharing
+
+## Sprint 3 Geliştirme Ekran Görüntüleri
 ![Ekran görüntüsü 2024-07-31 232502](https://github.com/user-attachments/assets/31b8901e-e09e-42c4-9108-c8c34cae6443)
 ![Ekran görüntüsü 2024-07-29 232131](https://github.com/user-attachments/assets/818ff0e2-25ff-4b11-b7ff-c433c71dc43d)
 ![WhatsApp Görsel 2024-07-31 saat 21 14 43_000acc2f](https://github.com/user-attachments/assets/d333e4ab-8d5f-4b4e-878c-b423f4b0c5a3)
@@ -143,3 +149,33 @@ https://youtu.be/BxP0133UrHI
 - 3D kısmında gecikmeler oldu ama diğer işlevler tam zamanında halloldu
 - Ayın 2'sinde oyun build alınıp proje yollanacak.
 
+## Kullanılan Hazır Assetler
+https://assetstore.unity.com/packages/2d/textures-materials/sky/fantasy-skybox-free-18353 
+https://assetstore.unity.com/packages/3d/characters/animals/mammals/3d-stylized-animated-dogs-kit-284699
+https://assetstore.unity.com/packages/3d/characters/animals/sparrow-quirky-series-247228
+https://quaternius.com/packs/farmbuildings.html
+https://assetstore.unity.com/packages/3d/characters/animals/animated-goat-and-sheep-3d-low-poly-free-251910
+https://gdevelop.io/asset-store/free/3d-animated-animals-3d-animated-animals
+
+
+## Kullanılan Programlar
+- Unity
+- Blender
+- Adobe Illustrator
+- Adobe After Effect
+- Adobe Photoshop
+- Adobe Audition
+- Github Desktop
+
+## Projede Kullanılan Siteler
+- Miro
+- Google Docs
+- DeepMotion Saymotion Eklentisi (Text to 3D Animation)
+- Elevenlabs
+- Suno
+- Mixamo
+
+## Scrum ve Sprint İçin Kullanılan İletişim Araçları
+- WhatsApp: Daily Scrum
+- Discord: Sprint ve Toplantılar
+- Miro: Ürün Geliştirme Tahtası
