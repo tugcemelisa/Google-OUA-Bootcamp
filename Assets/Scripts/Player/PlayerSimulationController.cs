@@ -40,7 +40,8 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         GameModeManager.OnNightStart += ActivatePlayerNightMode;
         NPCQuestInteractable.OnNpcBuy += GainMoney;
         GoMeadowButton.OnGoingMeadowRequest += StartGrazing;
-        WolfManager.OnHuntOver += () => {
+        WolfManager.OnHuntOver += () =>
+        {
             _animator.runtimeAnimatorController = daytimeAnimator;
             _executingState = PlayerStates.Default;
         };
@@ -51,7 +52,8 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         GameModeManager.OnNightStart -= ActivatePlayerNightMode;
         NPCQuestInteractable.OnNpcBuy -= GainMoney;
         GoMeadowButton.OnGoingMeadowRequest -= StartGrazing;
-        WolfManager.OnHuntOver -= () => { 
+        WolfManager.OnHuntOver -= () =>
+        {
             _animator.runtimeAnimatorController = daytimeAnimator;
             _executingState = PlayerStates.Default;
         };
@@ -60,6 +62,9 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
 
     private void Start()
     {
+        totalAmount = PlayerPrefs.GetFloat("Money");
+        OnItemSell.Invoke(totalAmount);
+
         _torchController = GetComponent<TorchController>();
         _animator = GetComponent<Animator>();
         _animator.runtimeAnimatorController = daytimeAnimator;
@@ -230,8 +235,8 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     [ContextMenu("Give Money")]
     public void GiveMoneyManually()
     {
-        totalAmount += 200;
-        OnItemSell.Invoke(totalAmount);
+        TotalAmount += 200;
+        OnItemSell.Invoke(TotalAmount);
     }
 
     float totalAmount = 0;
@@ -239,15 +244,18 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
     {
         for (int i = 0; i < soldItems.Count; i++)
         {
-            totalAmount += soldItems[i].Type.value * soldItems[i].count;
+            TotalAmount += soldItems[i].Type.value * soldItems[i].count;
         }
 
-        OnItemSell.Invoke(totalAmount);
+        OnItemSell.Invoke(TotalAmount);
     }
     float bridgePrice = 200f;
+
+    public float TotalAmount { get => totalAmount; set => totalAmount = value; }
+
     private void UnlockBridge()
     {
-        if (totalAmount >= bridgePrice)
+        if (TotalAmount >= bridgePrice)
         {
             OnPlayerBridgeBuy.Invoke();
             OnItemSell.Invoke(-bridgePrice);
@@ -255,7 +263,7 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         }
         else
         {
-            ChatBubble.Create(null, transform.position + Vector3.up, IconType.Informative, "You don't have enough money, you need " + (bridgePrice - totalAmount) + " more.");
+            ChatBubble.Create(null, transform.position + Vector3.up, IconType.Informative, "You don't have enough money, you need " + (bridgePrice - TotalAmount) + " more.");
         }
     }
 

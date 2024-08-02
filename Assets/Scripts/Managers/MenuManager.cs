@@ -30,6 +30,7 @@ public class MenuManager : MonoBehaviourSingletonPersistent<MenuManager>
 
     public void SetMenuActive(bool set)
     {
+        
         Cursor.lockState = set ? CursorLockMode.None : CursorLockMode.Locked;
         menuAnimator.SetBool("isOpen", set);
         otherMenuAnimator.SetBool("isOpen", !set);
@@ -55,25 +56,12 @@ public class MenuManager : MonoBehaviourSingletonPersistent<MenuManager>
         SetMenuActive(true);
     }
 
-    public void StartGameMenu(bool set)
+    public void PlayButton()
     {
         HelperController.Instance.ShowHelper(HelpType.FindLiveStock);
-        menuCanvas.SetActive(true);
-        otherCanvas.SetActive(true);
-        SetMenuActive(true);
+     
+        isOpen = false;
+        SetMenuActive(false);
 
-        menuAnimator.SetBool("isOpen", set);
-        otherMenuAnimator.SetBool("isOpen", !set);
-
-        menuCam.Priority = set ? 15 : 10;
-
-        normalCam.Priority = !set ? 15 : 10;
-
-        //playerAnimator.SetTrigger("SitToIdle");
-
-        if (isOpen)
-        {
-            StarterAssets.InputController.Instance.DisableInputs();
-        }
     }
 }
