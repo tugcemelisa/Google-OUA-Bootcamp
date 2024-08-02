@@ -134,11 +134,15 @@ public class WolfController : Interactable
         StartCoroutine(RunToTheCircle());
     }
 
+    float stuckCheckDuration = 50f;
+    private float stuckCheckIntervalTimer;
     IEnumerator RunToTheCircle()
     {
         while (HorizontalDistance(transform.position, target.position) > Agent.stoppingDistance)    // 0.15f    !!!!!
         {
             yield return new WaitForFixedUpdate();
+            stuckCheckIntervalTimer += Time.fixedDeltaTime; 
+            if (stuckCheckIntervalTimer >= stuckCheckDuration) break;
         }
         Agent.isStopped = true;
         //

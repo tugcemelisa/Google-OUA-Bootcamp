@@ -8,6 +8,7 @@ public class AnimalGetUsedState : AnimalStates
         //fsm.InteractableUIElements[0].interactableText = fsm.interactTXT;
         fsm.ChangeUIElement();
         HelperController.Instance.ShowHelper(HelpType.FindClient);
+        fsm.Agent.radius = 0.5f;
     }
 
     public override void UpdateState(AnimalBase fsm)

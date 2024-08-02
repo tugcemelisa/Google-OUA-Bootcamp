@@ -6,6 +6,7 @@ public class AnimalGoToMeadowState : AnimalStates
     {
         fsm.OnWalk.Invoke();
         fsm.Agent.SetDestination(fsm.GetRandomPos(AnimalManager.Instance.Meadow.position, 20f));
+        fsm.gameObject.GetComponent<Collider>().enabled = true;
     }
 
     public override void UpdateState(AnimalBase fsm)
