@@ -9,6 +9,11 @@ public class Bridge : MonoBehaviour
 
     [SerializeField] Transform requestedTransform;
 
+    [SerializeField]
+    private GameObject newMeadowButton;
+    [SerializeField]
+    private GameObject buyMeadowButton;
+
     private void OnEnable()
     {
         PlayerSimulationController.OnPlayerBridgeBuy += () => StartCoroutine(BuildBridge());
@@ -20,6 +25,8 @@ public class Bridge : MonoBehaviour
 
     private IEnumerator BuildBridge()
     {
+        newMeadowButton.SetActive(true);
+        buyMeadowButton.SetActive(false);
         _particleSystem.Play();
         cam.Priority = 16;
 

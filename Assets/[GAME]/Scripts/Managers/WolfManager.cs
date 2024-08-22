@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -190,13 +190,17 @@ public class WolfManager : MonoBehaviourSingletonPersistent<WolfManager>
         HelperController.Instance.ShowHelper(HelpType.ReturnPanel);
     }
 
-
     public void ResetWolfManagerFor(MeadowWolfManagerInfoHolder meadow)
     {
         int i = 0;
         foreach (var wolf in scariedWolves)
         {
-            wolf.ResetWolf(meadow.SpawnPositionsForWolves[i]);
+            wolf.ResetWolf(meadow.SpawnPositionsForWolves[i++]);
+        }
+        i = 0;
+        foreach (var wolf in normalWolves)
+        {
+            wolf.ResetWolf(meadow.SpawnPositionsForWolves[i++]);
         }
 
         centerOfTheCircle = meadow.centerOfTheCircle;

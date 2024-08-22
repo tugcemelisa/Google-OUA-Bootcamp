@@ -138,12 +138,14 @@ public class WolfController : Interactable
     private float stuckCheckIntervalTimer;
     IEnumerator RunToTheCircle()
     {
+        GetComponent<Collider>().enabled = false;
         while (HorizontalDistance(transform.position, target.position) > Agent.stoppingDistance)    // 0.15f    !!!!!
         {
             yield return new WaitForFixedUpdate();
             stuckCheckIntervalTimer += Time.fixedDeltaTime; 
             if (stuckCheckIntervalTimer >= stuckCheckDuration) break;
         }
+
         Agent.isStopped = true;
         //
         animator.SetTrigger("Idle");
@@ -194,6 +196,7 @@ public class WolfController : Interactable
         {
             case WolfStates.RunInsideCircle:
                 animator.SetTrigger("Run");
+                GetComponent<Collider>().enabled = true;
                 break;
             default:
                 break;

@@ -258,8 +258,10 @@ public class PlayerSimulationController : MonoBehaviour, IPlayer
         if (TotalAmount >= bridgePrice)
         {
             OnPlayerBridgeBuy.Invoke();
-            OnItemSell.Invoke(-bridgePrice);
+            TotalAmount -= bridgePrice;
+            OnItemSell.Invoke(TotalAmount);
             HelperController.Instance.ShowHelper(HelpType.FindLiveStock);
+
         }
         else
         {
