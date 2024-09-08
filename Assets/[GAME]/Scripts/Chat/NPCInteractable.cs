@@ -5,10 +5,12 @@ public class NPCInteractable : Interactable
     /*[SerializeField]*/ protected Animator animator;
     [SerializeField] protected NPCHeadLookAt npcHeadLookAt;
     [SerializeField] protected string textToSay = "Hello World";
+    protected InteractUIController interactUIController;
 
     public virtual void Start()
     {
         animator = GetComponentInChildren<Animator>();
+        interactUIController = InteractUIController.Instance;
     }
 
     public void Talk(Transform interactor, IconType iconType, string textToSay)

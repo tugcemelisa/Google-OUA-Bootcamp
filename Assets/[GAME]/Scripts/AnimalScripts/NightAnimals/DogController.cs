@@ -43,8 +43,8 @@ public class DogController : Interactable
                 Player.transform.position = playerPos.position;
                 Player.Pet(transform);
 
-                InteractableUIElements[0].Disable(false);
-                PlayerInteractableUI.Instance.UpdateUIElements();
+                InteractableUIElements[0].Disable(false);           
+                PlayerInteractableUI.Instance.UpdateUIElements();   
 
                 pettable = false;
                 Invoke("EnablePetting", pettingDelay);

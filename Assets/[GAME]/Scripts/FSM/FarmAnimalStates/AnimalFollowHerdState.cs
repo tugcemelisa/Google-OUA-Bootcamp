@@ -7,6 +7,7 @@ public class AnimalFollowHerdState : AnimalStates
         //Debug.Log("FOLLOW HERD " + fsm.gameObject.name);
         //fsm.OnWalk.Invoke();
         fsm.FollowHerd();
+        InteractUIController.Instance.ManageInteractUI(InteractType.Accelerate, InteractType.CollectMeat);
     }
 
     public override void UpdateState(AnimalBase fsm)

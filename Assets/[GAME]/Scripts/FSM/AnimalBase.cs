@@ -331,6 +331,8 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     }
 
     public abstract void GetUsed(KeyCode interactKey);
+    public abstract void GetUsedInteractUI();
+    public abstract void DoNothingInteractUI();
 
     public Vector3 GetRandomPos(Vector3 center, float range)
     {
@@ -344,21 +346,13 @@ public abstract class AnimalBase : Interactable, IFarmAnimal
     {
         executingState = ExecutingAnimalState.DoNothing;
 
-        Invoke("ChangeUIElement", duration);
+        InteractUIController.Instance.ManageInteractUI(InteractType.Milk, InteractType.Accelerate);
+        Invoke("ChangeUIElement", duration);   // ?? 
     }
 
-    public void ChangeUIElement()
+    public void ChangeUIElement()   
     {
-        foreach (var item in InteractableUIElements)
-        {
-            if (item.enabled)
-            {
-                item.Disable(true);
-
-                PlayerInteractableUI.Instance.UpdateUIElements();
-                break;
-            }
-        }
+        PlayerInteractableUI.Instance.UpdateUIElements();
     }
 
     [ContextMenu("Execute Take Damage Manually in editor")]

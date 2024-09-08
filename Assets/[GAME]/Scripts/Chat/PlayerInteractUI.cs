@@ -58,10 +58,12 @@ public class PlayerInteractableUI : MonoBehaviourSingletonPersistent<PlayerInter
         int i = 0;
         foreach (var element in UIElements)
         {
-            if (!element.enabled) continue;
-            var placeHolder = interactableUIPlaceHolders[i++];
-            placeHolder.SetOption(element);
-            placeHolder.gameObject.SetActive(true);
+            if(element.enabled)
+            {
+                var placeHolder = interactableUIPlaceHolders[i++];
+                placeHolder.SetOption(element);
+                placeHolder.gameObject.SetActive(true);
+            }
         }
     }
 

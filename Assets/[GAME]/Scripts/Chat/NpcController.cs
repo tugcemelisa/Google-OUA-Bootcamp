@@ -10,7 +10,6 @@ public enum NpcState
 }
 public class NpcController : MonoBehaviour, INpc
 {
-    PlayerInteract playerInteract;
     public NpcState executingState;
     private NavMeshAgent Agent;
     private NavMeshHit hit;
@@ -25,7 +24,6 @@ public class NpcController : MonoBehaviour, INpc
         Agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         _player = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        playerInteract = _player.GetComponent<PlayerInteract>();
         executingState = NpcState.WalkAround;
     }
 
@@ -68,7 +66,7 @@ public class NpcController : MonoBehaviour, INpc
     {
         Agent.SetDestination(transform.position);
         
-        if (playerInteract.GetInteractable() == null)
+        if (playerInteract.GetInteractable() == null)   // This line might be a problem after changing the interaction system.
         {
             executingState = NpcState.WalkAround;
         }

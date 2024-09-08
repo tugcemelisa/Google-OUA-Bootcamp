@@ -9,6 +9,7 @@ public class InteractableUIElement : MonoBehaviour
     [SerializeField] string interactableText;
     [SerializeField] Sprite interactIcon;
     [SerializeField] InteractKeys interactKey;
+    public InteractType interactType;
     //[SerializeField] IconType interactIconType;
 
     [SerializeField] InteractableUIElement activateWhenDisable;

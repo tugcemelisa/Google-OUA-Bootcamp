@@ -70,6 +70,16 @@ public class CowController : AnimalBase
         GetMilked(interactKey);
     }
 
+    public override void GetUsedInteractUI()
+    {
+        InteractUIController.Instance.ManageInteractUI(InteractType.Milk, InteractType.Accelerate);
+    }
+
+    public override void DoNothingInteractUI()
+    {
+        InteractUIController.Instance.ManageInteractUI(InteractType.AlreadyMilked, InteractType.Milk);
+    }
+
     protected override void Die()
     {
         base.Die();

@@ -80,6 +80,16 @@ public class SheepController : AnimalBase
         GetSheared(interactKey);
     }
 
+    public override void GetUsedInteractUI()
+    {
+        InteractUIController.Instance.ManageInteractUI(InteractType.Sheare, InteractType.Accelerate);
+    }
+
+    public override void DoNothingInteractUI()
+    {
+        InteractUIController.Instance.ManageInteractUI(InteractType.AlreadySheared, InteractType.Sheare);
+    }
+
     protected override void Die()
     {
         base.Die();

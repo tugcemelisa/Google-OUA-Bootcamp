@@ -9,6 +9,7 @@ public class AnimalGrazeState : AnimalStates
         ChooseAnim(fsm);
         fsm.Agent.SetDestination(fsm.transform.position);
         fsm._grazeTimer = fsm.grazeTime;
+        InteractUIController.Instance.ManageInteractUI(InteractType.Accelerate, InteractType.AlreadyMilked);
     }
 
     public override void UpdateState(AnimalBase fsm)

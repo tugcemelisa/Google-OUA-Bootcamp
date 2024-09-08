@@ -7,6 +7,7 @@ public class AnimalMoveAroundState : AnimalStates
         //Debug.Log("MOVE AROUND " + fsm.gameObject.name);
         fsm._herdHeartbeat = fsm._maxDuration;
         fsm.StartMove();
+        InteractUIController.Instance.ManageInteractUI(InteractType.Accelerate, InteractType.AlreadyMilked);
     }
 
     public override void UpdateState(AnimalBase fsm)

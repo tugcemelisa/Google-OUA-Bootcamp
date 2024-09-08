@@ -14,12 +14,6 @@ public class AnimalRestState : AnimalStates
         lastPosition = fsm.Agent.transform.position;
         stuckCheckIntervalTimer = stuckCheckInterval;
         stuckTime = 0.0f;
-
-        //InteractableUIElement activeUIElement;
-        //if(fsm.InteractableUIElements.Any(x => x.enabled))
-        //{
-        //    activeUIElement = fsm.InteractableUIElements.Where(x => x.enabled);
-        //}
     }
 
     public override void UpdateState(AnimalBase fsm)

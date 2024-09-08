@@ -16,6 +16,9 @@ public class NpcLivestockOwner : NPCInteractable
     {
         base.Start();
         _executingState = executingState.LookForShepherd;
+
+        interactUIController.ShowInteractUI(InteractType.E_ForOffer);
+        interactUIController.ShowInteractUI(InteractType.AcceptOffer);
     }
     public override void Interact(Transform interactorTransform, KeyCode interactKey)
     {
@@ -36,20 +39,9 @@ public class NpcLivestockOwner : NPCInteractable
 
     private void AcceptQuest()
     {
-        foreach (var item in InteractableUIElements)
-        {
-            if (item.enabled && item.InteractKey == InteractKeys.Talk)
-            {
-                item.enabled = false;
-                PlayerInteractableUI.Instance.UpdateUIElements();
-            }
-            if (item.enabled && item.InteractKey == InteractKeys.Accept)
-            {
-                item.Disable(true);
-                PlayerInteractableUI.Instance.UpdateUIElements();
-                break;
-            }
-        }
+        interactUIController.HideInteractUI(InteractType.E_ForOffer);
+        interactUIController.ManageInteractUI(InteractType.AlreadyAccepted, InteractType.AcceptOffer);
+        PlayerInteractableUI.Instance.UpdateUIElements();
 
         GiveAnimals();
         _executingState = executingState.Wait;
