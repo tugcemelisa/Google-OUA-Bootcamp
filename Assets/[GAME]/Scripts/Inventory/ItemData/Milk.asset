@@ -15,6 +15,6 @@ MonoBehaviour:
   id: 0
   itemName: Milk
   value: 10
-  icon: {fileID: 21300000, guid: a8b43ebc2194ec9419e766b4f1871e75, type: 3}
+  icon: {fileID: 21300000, guid: 664d18a39ddd2be48a260356916020ce, type: 3}
   isHoldable: 1
   HoldingType: 0

@@ -15,6 +15,6 @@ MonoBehaviour:
   id: 1
   itemName: Egg
   value: 3
-  icon: {fileID: 21300000, guid: 4a42c4fc74b413445b26bf6555b722eb, type: 3}
+  icon: {fileID: 21300000, guid: 8df211d9c427b284d923b2720c124868, type: 3}
   isHoldable: 1
   HoldingType: 1

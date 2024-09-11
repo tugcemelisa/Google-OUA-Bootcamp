@@ -15,6 +15,6 @@ MonoBehaviour:
   id: 8
   itemName: Knit
   value: 15
-  icon: {fileID: 21300000, guid: f38d3263bd28bc04e9d07b06e008d190, type: 3}
+  icon: {fileID: 21300000, guid: e6b3ade6ade13504297aa586b8a12326, type: 3}
   isHoldable: 1
   HoldingType: 1

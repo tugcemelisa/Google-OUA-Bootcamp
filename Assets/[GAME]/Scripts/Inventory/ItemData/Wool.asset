@@ -15,6 +15,6 @@ MonoBehaviour:
   id: 7
   itemName: Wool
   value: 5
-  icon: {fileID: 21300000, guid: 9d772125c1e26df42b544d3fb4d349b5, type: 3}
+  icon: {fileID: 21300000, guid: 9b644d5418de70749b67dce7a159fd42, type: 3}
   isHoldable: 1
   HoldingType: 1

@@ -15,6 +15,6 @@ MonoBehaviour:
   id: 1
   itemName: Cheese
   value: 20
-  icon: {fileID: 21300000, guid: f007bebc53ba04e46b7734a5409000e5, type: 3}
+  icon: {fileID: 21300000, guid: dfda2dac0c45f7a4b8376e5c37001e30, type: 3}
   isHoldable: 1
   HoldingType: 1
