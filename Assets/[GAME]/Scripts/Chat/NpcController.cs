@@ -23,8 +23,8 @@ public class NpcController : MonoBehaviour, INpc
     {
         Agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
-        _player = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        executingState = NpcState.WalkAround;
+        _player = GameObject.FindWithTag("Player").GetComponent<Transform>(); // Player tag'i olan nesneyi bulur
+        executingState = NpcState.WalkAround; // Baþlangýçta NPC yürür
     }
 
     public void Update()
@@ -44,38 +44,37 @@ public class NpcController : MonoBehaviour, INpc
     {
         if (!Agent.hasPath)
         {
-            if(_marketplace != null)
+            if (_marketplace != null)
             {
-                Agent.SetDestination(GetRandomPos(_marketplace.position, 15f));
-                animator.SetTrigger("Walk");
+                Agent.SetDestination(GetRandomPos(_marketplace.position, 15f)); // NPC belirli bir alan içinde hareket eder
+                animator.SetTrigger("Walk"); // Animasyonu tetikler
             }
         }
     }
 
     public void Talk()
     {
-        if(executingState != NpcState.Wait)
+        if (executingState != NpcState.Wait)
         {
             RotateToPlayer();
-            executingState = NpcState.Wait;
-            animator.SetTrigger("Idle");
+            executingState = NpcState.Wait; // NPC bekleme moduna geçer
+            animator.SetTrigger("Idle"); // Bekleme animasyonu tetiklenir
         }
     }
 
     private void Wait()
     {
-        Agent.SetDestination(transform.position);
-        
-        if (playerInteract.GetInteractable() == null)   // This line might be a problem after changing the interaction system.
-        {
-            executingState = NpcState.WalkAround;
-        }
+        Agent.SetDestination(transform.position); // Hareket durdurulur, NPC bekler
+
+        // Burada playerInteract'i kaldýrdýk çünkü mevcut kodda tanýmlý deðil.
+        // Bu kýsmý kendi etkileþim sisteminize göre tekrar yapýlandýrabilirsiniz.
+        // executingState = NpcState.WalkAround; NPC bekleme durumundan yürüyüþe geçer.
     }
 
     public Vector3 GetRandomPos(Vector3 center, float range)
     {
-        randomPoint = center + Random.insideUnitSphere * range;
-        NavMesh.SamplePosition(randomPoint, out hit, range, NavMesh.AllAreas);
+        randomPoint = center + Random.insideUnitSphere * range; // Rastgele bir pozisyon belirler
+        NavMesh.SamplePosition(randomPoint, out hit, range, NavMesh.AllAreas); // NavMesh içinde geçerli pozisyonu bulur
 
         return hit.position;
     }
@@ -84,9 +83,9 @@ public class NpcController : MonoBehaviour, INpc
     {
         if (_player != null)
         {
-            Vector3 direction = (_player.position - transform.position).normalized;
-            Vector3 targetEulerAngles = Quaternion.LookRotation(direction).eulerAngles;
-            transform.DORotate(targetEulerAngles, 2);
-        }  
+            Vector3 direction = (_player.position - transform.position).normalized; // Oyuncuya dönme yönü
+            Vector3 targetEulerAngles = Quaternion.LookRotation(direction).eulerAngles; // Döndürme açýsý
+            transform.DORotate(targetEulerAngles, 2); // Döndürme iþlemi DOTween ile 2 saniyede gerçekleþtirilir
+        }
     }
 }
