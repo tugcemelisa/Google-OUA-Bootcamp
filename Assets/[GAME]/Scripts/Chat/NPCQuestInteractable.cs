@@ -69,9 +69,24 @@ public class NPCQuestInteractable : NPCInteractable
             Talk(interactorTransform, IconType.Success, " The quest has been completed succesfully. \n" +
                 "Thank for seeling me those items and here is your money.");
 
-            interactUIController.HideInteractUI(InteractType.E_ToTalk);
-            interactUIController.ManageInteractUI(InteractType.AfterDeal, InteractType.MakeDeal);
-            PlayerInteractableUI.Instance.UpdateUIElements();  
+            foreach (var item in InteractableUIElements)
+            {
+                if (item.enabled && item.InteractKey == InteractKeys.Talk)
+                {
+                    item.enabled = false;
+                    PlayerInteractableUI.Instance.UpdateUIElements();
+                }
+                if (item.enabled && item.InteractKey == InteractKeys.Bargain)
+                {
+                    item.Disable(true);
+
+                    PlayerInteractableUI.Instance.UpdateUIElements();
+                    break;
+                }
+            }
+            //interactUIController.HideInteractUI(InteractType.E_ToTalk);
+            //interactUIController.ManageInteractUI(InteractType.AfterDeal, InteractType.MakeDeal);
+            //PlayerInteractableUI.Instance.UpdateUIElements();  
 
             print("YOU GAINED MONEY");
             HelperController.Instance.ShowHelper(HelpType.BuyPanel);
