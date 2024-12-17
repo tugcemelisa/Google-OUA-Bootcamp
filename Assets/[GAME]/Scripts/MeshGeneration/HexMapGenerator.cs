@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class HexMapGenerator : MonoBehaviour
@@ -12,6 +13,7 @@ public class HexMapGenerator : MonoBehaviour
     private float hexHeight;            // Altýgen yüksekliði
     private Vector3 startPosition;      // Baþlangýç pozisyonu
 
+    public bool GenerateSmooth = false;
     void Start()
     {
         hexWidth = Mathf.Sqrt(3) * hexSize;
@@ -19,16 +21,22 @@ public class HexMapGenerator : MonoBehaviour
 
         startPosition = new Vector3(-mapWidth * hexWidth * 0.5f, 0, -mapHeight * hexHeight * 0.75f * 0.5f);
 
-        GenerateMapWithPerlinNoise();
+        GenerateMapWithPerlinNoise(GenerateSmooth);
     }
 
-    [SerializeField] private float waterHeight = 0f;
+	private void GenerateMapWithPerlinNoise(bool generateSmooth)
+	{
+        if (GenerateSmooth) GenerateMapWithPerlinNoiseSmooth();
+        else GenerateMapWithPerlinNoiseFlat();
+	}
+
+	[SerializeField] private float waterHeight = 0f;
     [SerializeField] private float grassHeight = 0.5f;
     [SerializeField] private float sandHeight = 1.0f;
     [SerializeField] private float mountainHeight = 1.5f;
     [SerializeField] private float hexPrefabHeight = 11.5f;
 
-    void GenerateMapWithPerlinNoise()
+    void GenerateMapWithPerlinNoiseFlat()
     {
         for (int x = 0; x < mapWidth; x++)
         {
@@ -83,27 +91,27 @@ public class HexMapGenerator : MonoBehaviour
         return height;
     }
 
-    //void GenerateMapWithPerlinNoise()
-    //{
-    //    for (int x = 0; x < mapWidth; x++)
-    //    {
-    //        for (int y = 0; y < mapHeight; y++)
-    //        {
-    //            Vector3 hexPos = CalculateHexPosition(x, y);
+    void GenerateMapWithPerlinNoiseSmooth()
+    {
+        for (int x = 0; x < mapWidth; x++)
+        {
+            for (int y = 0; y < mapHeight; y++)
+            {
+                Vector3 hexPos = CalculateHexPosition(x, y);
 
-    //            float noiseValue = Mathf.PerlinNoise((x + 0.1f) / noiseScale, (y + 0.1f) / noiseScale);
+                float noiseValue = Mathf.PerlinNoise((x + 0.1f) / noiseScale, (y + 0.1f) / noiseScale);
 
-    //            GameObject hex = Instantiate(hexPrefab, hexPos, Quaternion.identity);
-    //            hex.transform.SetParent(this.transform);
-    //            hex.name = $"Hex_{x}_{y}";
+                GameObject hex = Instantiate(hexPrefab, hexPos, Quaternion.identity);
+                hex.transform.SetParent(this.transform);
+                hex.name = $"Hex_{x}_{y}";
 
-    //            SetHexColorBasedOnNoise(hex, noiseValue);
+                SetHexColorBasedOnNoise(hex, noiseValue);
 
-    //            float heightValue = noiseValue * 100f;
-    //            hex.transform.position += new Vector3(0, heightValue, 0);
-    //        }
-    //    }
-    //}
+                float heightValue = noiseValue * 100f;
+                hex.transform.position += new Vector3(0, heightValue, 0);
+            }
+        }
+    }
 
     Vector3 CalculateHexPosition(int x, int y)
     {
