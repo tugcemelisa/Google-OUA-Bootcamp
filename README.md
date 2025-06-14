@@ -1,60 +1,46 @@
-Google-OUA-Bootcamp
-Takım İsmi
-Unity Team 65
+# Google-OUA-Bootcamp  
+## Team Name  
+Unity Team 65  
 
-Takım Üyeleri
-Muhammed Sefa Karataş - Developer
+## Team Members  
+- ***Muhammed Sefa Karataş*** - Developer  
+- ***Beyzanur Özen*** - Developer and Level Designer  
+- ***Melisa Tuğçe Haspolat*** - 3D  
+- ***Zeynep Kefalı*** - 2D and UI  
+- ***Bahadır Şahin*** - Product Owner and Scrum Master  
 
-Beyzanur Özen - Developer and Level Designer
+## Game Title: Meadow Monarch  
 
-Melisa Tuğçe Haspolat - 3D
+## Product Backlog URL  
+https://miro.com/app/board/uXjVK2F2-WQ=/  
 
-Zeynep Kefalı - 2D and UI
+## Game Description  
+Our game is designed as a single-player experience. During the daytime, the gameplay focuses on herding animals, guiding them, collecting resources, and selling them. At night, players must protect their animals from aggressive predators such as wolves and foxes that attempt to attack.
 
-Bahadır Şahin - Product Owner and Scrum Master
+## Game Features  
+- Simulation  
+- 3D  
+- Singleplayer  
+- Roleplay  
+- Strategy  
 
-Oyun İsmi: Meadow Monarch
-Product Backlog URL
-https://miro.com/app/board/uXjVK2F2-WQ=/
+## Target Audience  
+- Males and females aged 15–30 who play RPG games  
+- Males and females aged 15–35 who play simulation games  
+- Males and females aged 20–35 who play 3D games  
+- Indie game enthusiasts  
+- Streamers on platforms such as YouTube, Kick, and Twitch  
 
-Oyun Açıklaması
-Our game is a single-player simulation. During the day, players will herd animals, guide them, collect resources, and sell them. At night, they must protect the animals from predators like wolves and foxes.
+## AI Tools Used in the Project  
+- Animation: https://www.deepmotion.com/saymotion  
+- Music: https://suno.com/create  
+- Voice: https://elevenlabs.io/  
 
-Oyun Özellikleri
-Simulation
+## SPRİNT 1  
+- In Sprint 1, our goal was to establish the foundation and overall structure of the game. Development phase: Alpha  
+- A total backlog of 400 points was targeted.  
+- We decided to base the sprint on an 80-point system. Since we are currently building the main structure of the game, we chose to move the tasks outside of core functionality to the second Scrum. We successfully reached the 80-point goal.
 
-3D
-
-Singleplayer
-
-Roleplay
-
-Strategy
-
-Hedef Kitle
-Male and female players aged 15–30 who enjoy RPG games
-
-Male and female players aged 15–35 who enjoy simulation games
-
-Players aged 20–35 who play 3D games
-
-Indie game lovers
-
-Streamers on YouTube, Kick, and Twitch
-
-Projede Kullanılan Yapay Zeka Araçları
-Animation: https://www.deepmotion.com/saymotion
-
-Music: https://suno.com/create
-
-Voice: https://elevenlabs.io/
-
-SPRİNT 1
-In Sprint 1, our goal was to build the foundation and core structure of the game. Development phase: Alpha
-
-We targeted a total backlog of 400 points.
-
-We decided to focus on an 80-point sprint goal. Since we are currently building the core systems, we chose to complete secondary features in Sprint 2. We successfully reached the 80-point goal.
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/0f3b45ff-8d5d-47c6-bf22-d6c3550797a7)
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/72327b96-acd6-46d9-8dbe-67c905b51590)
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/4d38de5f-1ee7-4d8f-a4dc-e3137c0926c5)
