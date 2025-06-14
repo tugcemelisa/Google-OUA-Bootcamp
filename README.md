@@ -1,46 +1,60 @@
-# Google-OUA-Bootcamp
-## Takım İsmi
-Unity Takım 65
+Google-OUA-Bootcamp
+Takım İsmi
+Unity Team 65
 
-## Takım Üyeleri
-- ***Muhammed Sefa Karataş*** - Developer
-- ***Beyzanur Özen*** - Developer and Level Designer
-- ***Melisa Tuğçe Haspolat*** - 3D
-- ***Zeynep Kefalı*** - 2D and UI
-- ***Bahadır Şahin*** - Product Owner and Scrum Master
+Takım Üyeleri
+Muhammed Sefa Karataş - Developer
 
-- ## Oyun İsmi: Meadow Monarch
+Beyzanur Özen - Developer and Level Designer
 
-## Product Backlog URL
+Melisa Tuğçe Haspolat - 3D
+
+Zeynep Kefalı - 2D and UI
+
+Bahadır Şahin - Product Owner and Scrum Master
+
+Oyun İsmi: Meadow Monarch
+Product Backlog URL
 https://miro.com/app/board/uXjVK2F2-WQ=/
 
-## Oyun Açıklaması
-Oyunumuz tek kişilik singleplayer türünde yapılmıştır. Oyunda gündüzleri hayvanları gütme, onları yönlendirme ve kaynak toplayıp satma üzerine kurulu olacak. Geceleri ise hayvanlarımızı yemek isteyen kurt ve tilki gibi saldırgan hayvanlara karşı korumak üzerine olacak
+Oyun Açıklaması
+Our game is a single-player simulation. During the day, players will herd animals, guide them, collect resources, and sell them. At night, they must protect the animals from predators like wolves and foxes.
 
-## Oyun Özellikleri
-- Simülasyon
-- 3D
-- Singleplayer
-- Roleplay
-- Strateji
+Oyun Özellikleri
+Simulation
 
+3D
 
-## Hedef Kitle
-- RPG Oyunlarını Oynayan 15-30 Yaş Arası Erkek ve Kadınlar
-- Simülasyon Oyunları Oynayan 15-35 Yaş Arası Erkek ve Kadınlar
-- 3D Oyun Oynayan 20-35 Yaş Arası Erkek ve Kadınlar
-- Indie Oyun Oynayan Kitle
-- YouTube, Kick ve Twitch üzerinde yayın yapan yayıncılar
+Singleplayer
 
-## Projede Kullanılan Yapay Zeka Araçları
-- Animasyon: https://www.deepmotion.com/saymotion
-- Müzik: https://suno.com/create
-- Ses: https://elevenlabs.io/
+Roleplay
 
-## SPRİNT 1
-- Sprint 1 aşamasında amacımız oyunun temelini kurmak, ve genel yapısını inşa etmek. Geliştirme aşaması olarak: Alpha
-- Toplam Backlog Puanı olarak 400 Puan hedeflenmiştir.
-- Backlog Puanı'nı 80 puan üzerinden yapmayı kararlaştırdık. Şu anlık oyunun ana yapısını kuracağımız için temel fonksiyon dışındaki görevleri 2. Scrum'da yapmaya karar verdik. 80 puan hedefine ulaştık.
+Strategy
+
+Hedef Kitle
+Male and female players aged 15–30 who enjoy RPG games
+
+Male and female players aged 15–35 who enjoy simulation games
+
+Players aged 20–35 who play 3D games
+
+Indie game lovers
+
+Streamers on YouTube, Kick, and Twitch
+
+Projede Kullanılan Yapay Zeka Araçları
+Animation: https://www.deepmotion.com/saymotion
+
+Music: https://suno.com/create
+
+Voice: https://elevenlabs.io/
+
+SPRİNT 1
+In Sprint 1, our goal was to build the foundation and core structure of the game. Development phase: Alpha
+
+We targeted a total backlog of 400 points.
+
+We decided to focus on an 80-point sprint goal. Since we are currently building the core systems, we chose to complete secondary features in Sprint 2. We successfully reached the 80-point goal.
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/0f3b45ff-8d5d-47c6-bf22-d6c3550797a7)
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/72327b96-acd6-46d9-8dbe-67c905b51590)
 ![image](https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/4d38de5f-1ee7-4d8f-a4dc-e3137c0926c5)
