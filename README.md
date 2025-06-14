@@ -5,8 +5,8 @@ Unity Team 65
 ## Team Members  
 - ***Muhammed Sefa Karataş*** - Developer  
 - ***Beyzanur Özen*** - Developer and Level Designer  
-- ***Melisa Tuğçe Haspolat*** - 3D  
-- ***Zeynep Kefalı*** - 2D and UI  
+- ***Melisa Tuğçe Haspolat*** - 3D Artist
+- ***Zeynep Kefalı*** - 2D and UI Artist
 - ***Bahadır Şahin*** - Product Owner and Scrum Master  
 
 ## Game Title: Meadow Monarch  
