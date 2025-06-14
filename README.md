@@ -9,7 +9,7 @@ Unity Team 65
 - ***Zeynep Kefalı*** - 2D and UI Artist
 - ***Bahadır Şahin*** - Product Owner and Scrum Master  
 
-## Game Title: Meadow Monarch  
+## Game Title: " Meadow Monarch "  
 
 ## Product Backlog URL  
 https://miro.com/app/board/uXjVK2F2-WQ=/  
