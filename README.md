@@ -5,7 +5,7 @@ Unity Team 65
 ## Team Members  
 - ***Muhammed Sefa Karataş*** - Developer  
 - ***Beyzanur Özen*** - Developer and Level Designer  
-- ***Melisa Tuğçe Haspolat*** - 3D Artist
+- ***Melisa Tuğçe Haspolat*** - 3D Artist and Level Designer
 - ***Zeynep Kefalı*** - 2D and UI Artist
 - ***Bahadır Şahin*** - Product Owner and Scrum Master  
 
