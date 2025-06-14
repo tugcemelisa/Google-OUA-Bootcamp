@@ -176,8 +176,8 @@ https://youtu.be/BxP0133UrHI
 - Discord: Sprint and general team meetings  
 - Miro: Product Development Board
 
-## FINAL RESULT
-# About the Game  
+# FINAL RESULT
+## About the Game  
 **Meadow Monarch** is a 3D third-person simulation game created with a low-poly aesthetic and built for single-player experience. The story follows a character who leaves city life behind to build a new life in the countryside. Starting by taking care of villagers’ animals, the player earns money to eventually purchase their own animals, land, and buildings. At night, players must protect their animals from wolf attacks using a torch. The game features time-of-day and environment transitions to enhance the immersive experience.
 
 ### Core Features:
