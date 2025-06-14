@@ -77,7 +77,7 @@ https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/15c372cb-5c9b
 - UI content discussed with the art team  
 - Character and animal animations + health bars implemented  
 
-## SPRİNT 2  
+## Sprint 2  
 - Sprint 2 point target: 160  
 - Achieved: 110 points  
 - Goal: Complete visual design, place 3D models, and implement 2D UI elements  
@@ -109,7 +109,7 @@ https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/15c372cb-5c9b
 - 3D artist was asked to accelerate tasks, color palette and fonts decided  
 - All tasks except Level Design to be completed by July 28. Level Design scheduled for July 28–August 1  
 
-## SPRİNT 3  
+## SPRINT 3  
 - Sprint 3 point target: 160 + remaining 50 from Sprint 2 = Total: 210  
 - Completed: 210 points  
 - Instead of ChatGPT or Gemini for AI, we used tools for 3D animation and audio effects  
