@@ -84,10 +84,10 @@ https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/15c372cb-5c9b
 - Due to delays in Level Design and 3D modeling (technical/personal reasons), tasks will be finalized in Sprint 3  
 
 ## Daily Scrum Notes  
-- https://docs.google.com/document/d/1DfvLOTVW5Q_hrXPTaVVVrtVW1eARHI7NoyNak2bmEYc/edit?usp=sharing  
+- https://docs.google.com/document/d/116Uk_m3rVemLmaJNcXhFmFE0F0ZzBVOxo_HMMGk5pvg/edit?usp=sharing 
 
 # Sprint 2 Meeting Notes  
-- https://docs.google.com/document/d/1mZp6CSDwYcwkymt_h7y5vC6phQNhz2JBaWzmgE8BrLI/edit?usp=sharing  
+- https://docs.google.com/document/d/1ySQuoBbW0FzKhhJp87Rg7I13c06GuGe-Ef-pdoxC-qA/edit?usp=sharing  
 
 ![OUA Unity 65](https://github.com/user-attachments/assets/61c92a1d-f6e0-40bd-b02c-07212d352c61)  
 ![OUA Unity 65 (1)](https://github.com/user-attachments/assets/cfcf73d9-cd21-4367-acea-b5003279bb3c)  
@@ -120,10 +120,10 @@ https://github.com/tugcemelisa/Google-OUA-Bootcamp/assets/47990079/15c372cb-5c9b
 ![OUA Unity 65 (5)](https://github.com/user-attachments/assets/2dd5f8f3-f769-4c50-b722-935593f08379)  
 
 ## Sprint 3 Meeting Notes  
-https://docs.google.com/document/d/1mZp6CSDwYcwkymt_h7y5vC6phQNhz2JBaWzmgE8BrLI/edit#heading=h.pgwkylp9uqu2  
+https://docs.google.com/document/d/1DcclwBGp0d3oq4tCAU9wF1oofuSoQH2IDl3w5-aiWcg/edit?usp=sharing
 
 ## Daily Scrum Notes  
-- https://docs.google.com/document/d/1DfvLOTVW5Q_hrXPTaVVVrtVW1eARHI7NoyNak2bmEYc/edit?usp=sharing  
+https://docs.google.com/document/d/16bFanUaIwdsOhRQ8EPfg_6sYLSjCeEmoKbdb0MLtWeg/edit?usp=sharing 
 
 ## Sprint 3 Development Screenshots  
 ![Screenshot 2024-07-31 23:25:02](https://github.com/user-attachments/assets/31b8901e-e09e-42c4-9108-c8c34cae6443)  
