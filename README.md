@@ -19,14 +19,21 @@ Unity Team 65
 https://miro.com/app/board/uXjVK2F2-WQ=/  
 
 ## Game Description  
-Our game is designed as a single-player experience. During the daytime, the gameplay focuses on herding animals, guiding them, collecting resources, and selling them. At night, players must protect their animals from aggressive predators such as wolves and foxes that attempt to attack.
+Meadow Monarch is a 3D third-person simulation game created with a low-poly aesthetic and built for single-player experience. The story follows a character who leaves city life behind to build a new life in the countryside. Starting by taking care of villagers’ animals, the player earns money to eventually purchase their own animals, land, and buildings. At night, players must protect their animals from wolf attacks using a torch. The game features time-of-day and environment transitions to enhance the immersive experience. Our game is designed as a single-player experience. During the daytime, the gameplay focuses on herding animals, guiding them, collecting resources, and selling them. At night, players must protect their animals from aggressive predators such as wolves and foxes that attempt to attack. The game balances peaceful farming with strategic survival elements. All animations and voice effects were supported using AI tools like DeepMotion, ElevenLabs, and Suno.
 
-## Game Features  
+## Game Features:
 - Simulation  
 - 3D  
 - Singleplayer  
 - Roleplay  
 - Strategy  
+
+## Core Features:
+- Herd and manage animals  
+- Earn money through tasks and trade  
+- Defend against night-time predators  
+- Expand your farm with new lands and buildings  
+- AI-generated animations and sound effects  
 
 ## Target Audience  
 - Males and females aged 15–30 who play RPG games  
@@ -179,22 +186,6 @@ https://youtu.be/BxP0133UrHI
 - WhatsApp: Daily Scrum  
 - Discord: Sprint and general team meetings  
 - Miro: Product Development Board
-
-# FINAL RESULT
-## About the Game  
-**Meadow Monarch** is a 3D third-person simulation game created with a low-poly aesthetic and built for single-player experience. The story follows a character who leaves city life behind to build a new life in the countryside. Starting by taking care of villagers’ animals, the player earns money to eventually purchase their own animals, land, and buildings. At night, players must protect their animals from wolf attacks using a torch. The game features time-of-day and environment transitions to enhance the immersive experience.
-
-### Core Features:
-- Herd and manage animals  
-- Earn money through tasks and trade  
-- Defend against night-time predators  
-- Expand your farm with new lands and buildings  
-- AI-generated animations and sound effects  
-
-The game balances peaceful farming with strategic survival elements. All animations and voice effects were supported using AI tools like DeepMotion, ElevenLabs, and Suno.
-
-## Credits  
-We would like to thank our mentors, Tolgay Hickiran and Atıl Samancıoğlu. Thanks to Google and the Bootcamp community for helping us realize our dreams. We look forward to continuing development and sharing future updates!
 
 ## Feedback Welcome  
 We would love to hear your feedback. Try the game and let us know your thoughts!
