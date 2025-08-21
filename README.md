@@ -35,7 +35,12 @@ Our game is designed as a single-player experience. During the daytime, the game
 ## AI Tools Used in the Project  
 - Animation: https://www.deepmotion.com/saymotion  
 - Music: https://suno.com/create  
-- Voice: https://elevenlabs.io/  
+- Voice: https://elevenlabs.io/
+
+## Gameplay Trailer & Links  
+- [Watch the Game Trailer](https://lnkd.in/dx-A9D_t)  
+- [Watch Gameplay](https://lnkd.in/dX6-e9p2)  
+
 
 ## SPRINT 1  
 - In Sprint 1, our goal was to establish the foundation and overall structure of the game. Development phase: Alpha  
@@ -189,10 +194,6 @@ https://youtu.be/BxP0133UrHI
 - AI-generated animations and sound effects  
 
 The game balances peaceful farming with strategic survival elements. All animations and voice effects were supported using AI tools like DeepMotion, ElevenLabs, and Suno.
-
-## Gameplay Trailer & Links  
-- [Watch the Game Trailer](https://lnkd.in/dx-A9D_t)  
-- [Watch Gameplay](https://lnkd.in/dX6-e9p2)  
 
 ## Credits  
 We would like to thank our mentors, Tolgay Hickiran and Atıl Samancıoğlu. Thanks to Google and the Bootcamp community for helping us realize our dreams. We look forward to continuing development and sharing future updates!
