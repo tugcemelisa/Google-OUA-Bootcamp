@@ -1,8 +1,8 @@
-## Gameplay Trailer & Links  
+# Gameplay Trailer & Links  
 - [Watch the Game Trailer](https://lnkd.in/dx-A9D_t)  
 - [Watch Gameplay](https://lnkd.in/dX6-e9p2)  
 
-# Google-OUA-Bootcamp  
+## Google-OUA-Bootcamp  
 ## Team Name  
 Unity Team 65  
 
