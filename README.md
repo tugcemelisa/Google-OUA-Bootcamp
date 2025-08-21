@@ -1,3 +1,7 @@
+## Gameplay Trailer & Links  
+- [Watch the Game Trailer](https://lnkd.in/dx-A9D_t)  
+- [Watch Gameplay](https://lnkd.in/dX6-e9p2)  
+
 # Google-OUA-Bootcamp  
 ## Team Name  
 Unity Team 65  
@@ -36,11 +40,6 @@ Our game is designed as a single-player experience. During the daytime, the game
 - Animation: https://www.deepmotion.com/saymotion  
 - Music: https://suno.com/create  
 - Voice: https://elevenlabs.io/
-
-## Gameplay Trailer & Links  
-- [Watch the Game Trailer](https://lnkd.in/dx-A9D_t)  
-- [Watch Gameplay](https://lnkd.in/dX6-e9p2)  
-
 
 ## SPRINT 1  
 - In Sprint 1, our goal was to establish the foundation and overall structure of the game. Development phase: Alpha  
